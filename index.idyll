@@ -1,0 +1,56 @@
+[meta title:"Dimensionality Reduction" description:"Short description of your project" /]
+
+[Header
+  title:"Dimensionality Reduction"
+  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
+  author:"Your Name Here"
+  authorLink:"https://idyll-lang.org" /]
+
+This is an Idyll file. Write text
+as you please in here. To add interactivity,
+you can add  different components to the text.
+
+
+Here is how you can use a variable:
+
+[var name:"exampleVar" value:5 /]
+
+[Range min:0 max:10 value:exampleVar /]
+[Display value:exampleVar /]
+
+```
+[var name:"exampleVar" value:5 /]
+
+[Range min:0 max:10 value:exampleVar /]
+[Display value:exampleVar /]
+```
+
+And here is a custom component:
+
+[CustomComponent /]
+
+You can use standard html tags if a
+component with the same name
+doesn't exist.
+
+* *markdown* syntax is supported.
+
+
+You can also load files from your `static/` directory.
+[img
+  src:'static/images/quill.svg'
+  style:`{ width: 75, display: 'block', margin: '30px auto' }`
+  /]
+
+[Fixed]
+
+[var name:"state" value:0 /]
+
+This component is implemented using D3:
+
+[CustomD3Component className:"d3-component" state:state /]
+[button onClick:`state++`]
+  Click Me.
+[/button]
+
+[/Fixed]
