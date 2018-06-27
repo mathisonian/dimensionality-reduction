@@ -1,10 +1,33 @@
 
+
+.idyll-root {
+  padding: 0;
+}
+
+.idyll-scroll {
+  margin-top: 0;
+}
+
+.idyll-scroll-text:first-of-type {
+  padding-top: 30vh;
+}
+
+.idyll-scroll-text .idyll-step {
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+
 .d3-component svg {
   background: #ddd;
   max-height: 300px;
 }
 
 @media all and (max-width: 1000px) {
+
+  .idyll-text-container {
+    margin-left: 0 !important;
+  }
   .d3-component svg {
     max-height: 200px;
   }

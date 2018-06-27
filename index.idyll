@@ -1,56 +1,71 @@
-[meta title:"Dimensionality Reduction" description:"Short description of your project" /]
-
-[Header
-  title:"Dimensionality Reduction"
-  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
-  author:"Your Name Here"
-  authorLink:"https://idyll-lang.org" /]
-
-This is an Idyll file. Write text
-as you please in here. To add interactivity,
-you can add  different components to the text.
+[meta
+  title:"What is Dimensionality Reduction?"
+  description:"An intuitive guide to the statistical technique." /]
 
 
-Here is how you can use a variable:
+[var name:"scrollState" value:"iniital" /]
 
-[var name:"exampleVar" value:5 /]
 
-[Range min:0 max:10 value:exampleVar /]
-[Display value:exampleVar /]
+[Scroller currentState:scrollState]
 
-```
-[var name:"exampleVar" value:5 /]
+  [Graphic]
+    [DRComponent state:scrollState /]
+  [/Graphic]
 
-[Range min:0 max:10 value:exampleVar /]
-[Display value:exampleVar /]
-```
+  [Step state:"inital"]
+    [Header
+      title:"What is Dimensionality Reduction?"
+      subtitle:"An intuitive guide to the statistical technique."
+      date:"July 12, 2018"
+      authors:`[
+        { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
+        { name: "Fred Hohman", link: "http://fredhohman.com/card-shuffling/" }
+      ]` /]
+  [/Step]
 
-And here is a custom component:
+  [Step state:"1d"]
+    Wooo 1D and stuff!
+  [/Step]
+
+
+  [Step state:"pca-1"]
+    back to
+  [/Step]
+
+[/Scroller]
+
+Some other stuff can go here
+
+[CustomD3Component /]
 
 [CustomComponent /]
 
-You can use standard html tags if a
-component with the same name
-doesn't exist.
+## Yeah, stuff
 
-* *markdown* syntax is supported.
+### Maybe the graphic comes back?
+
+[div style:`{height:'30vh', width:'100%'}`/] // just get some whitespace
+
+[var name:"scrollState2" value:"iniital" /]
 
 
-You can also load files from your `static/` directory.
-[img
-  src:'static/images/quill.svg'
-  style:`{ width: 75, display: 'block', margin: '30px auto' }`
-  /]
+[Scroller currentState:scrollState2]
 
-[Fixed]
+  [Graphic]
+    [DRComponent state:scrollState2 fill:"blue" /]
+  [/Graphic]
 
-[var name:"state" value:0 /]
+  [Step state:"inital"]
+    # Second Graphic! 🙃
+  [/Step]
 
-This component is implemented using D3:
+  [Step state:"1d"]
+    Wooo 1D and stuff!
+  [/Step]
 
-[CustomD3Component className:"d3-component" state:state /]
-[button onClick:`state++`]
-  Click Me.
-[/button]
 
-[/Fixed]
+  [Step state:"pca-1"]
+    back to
+  [/Step]
+
+[/Scroller]

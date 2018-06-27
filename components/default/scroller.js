@@ -1,7 +1,7 @@
 const React = require('react');
 const { filterChildren, mapChildren } = require('idyll-component-children');
 import TextContainer from './text-container';
-const d3 = require('d3');
+const d3 = require('d3-selection');
 
 
 const styles = {
@@ -106,15 +106,15 @@ class Scroller extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentStep !== nextProps.currentStep) {
+    if (nextProps.disableScroll && this.props.currentStep !== nextProps.currentStep) {
       d3.selectAll(`#idyll-scroll-${this.id} .idyll-step`)
         .filter(function (d, i) { return i === nextProps.currentStep;})
         .node()
         .scrollIntoView({ behavior: 'smooth' });
     }
-    if (this.props.currentState !== nextProps.currentState) {
+    if (nextProps.disableScroll && this.props.currentState !== nextProps.currentState) {
       d3.selectAll(`#idyll-scroll-${this.id} .idyll-step`)
-        .filter(function (d, i) { return nextProps.currentState === this.SCROLL_NAME_MAP[i] })
+        .filter( (d, i) => { return nextProps.currentState === this.SCROLL_NAME_MAP[i] })
         .node()
         .scrollIntoView({ behavior: 'smooth' });
     }

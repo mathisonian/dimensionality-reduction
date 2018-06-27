@@ -1,11 +1,18 @@
 {
-  "name": "dimensionality-reduction",
+  "name": "what-is-dimensionality-reduction",
   "version": "1.0.0",
   "license": "MIT",
+  "idyll": {
+    "layout": "blog"
+  },
+  "scripts": {
+    "start": "idyll"
+  },
   "dependencies": {
-    "idyll": "^3.0.0",
-    "idyll-d3-component": "^2.0.0",
-    "d3": "^4.0.0"
+    "d3": "^4.13.0",
+    "idyll": "^3.0.16",
+    "idyll-components": "^3.0.5",
+    "idyll-d3-component": "^2.0.0"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0"
