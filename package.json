@@ -9,9 +9,10 @@
     "start": "idyll"
   },
   "dependencies": {
+    "bibtex-parser": "0.0.0",
     "d3": "^4.13.0",
-    "idyll": "^3.0.16",
-    "idyll-components": "^3.0.5",
+    "idyll": "^3.0.18",
+    "idyll-components": "^3.0.6",
     "idyll-d3-component": "^2.0.0"
   },
   "devDependencies": {
