@@ -4,7 +4,7 @@ const cite = require('./references').cite;
 class Cite extends React.Component {
 
   renderReference(id) {
-    return <a href={`#reference-${id}`}>{id}</a>;
+    return <a key={id} href={`#reference-${id}`}>{id}</a>;
   }
 
   renderInner() {
@@ -13,7 +13,7 @@ class Cite extends React.Component {
       return this.renderReference(cite(reference));
     } else if (Array.isArray(reference)) {
       return reference
-        .map(r => this.renderReference(cite(r)))
+        .map((r) => this.renderReference(cite(r)))
         .reduce((prev, curr) => [prev, ', ', curr])
     }
   }
