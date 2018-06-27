@@ -1,6 +1,11 @@
 const React = require('react');
 const parse = require('bibtex-parser')
 
+const citationCache = {};
+const cite = (label) => {
+  return citationCache[label.toUpperCase()];
+}
+
 // need to load in .bib file directly as a string
 let bibliography = "@inproceedings{test1,\
  author = {Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim},\
@@ -36,22 +41,43 @@ let bibliography = "@inproceedings{test1,\
  address = {New York, NY, USA},\
 }";
 
-console.log(parse(bibliography));
+const parsedBib = parse(bibliography);
+
+Object.keys(parsedBib).forEach((key, i) => {
+  citationCache[key.toUpperCase()] = i + 1;
+});
 
 class References extends React.Component {
 
+  createReference(reference, i) {
+    return (
+      <li id={`reference-${i + 1}`} key={reference.TITLE}>
+        {reference.TITLE} - {reference.AUTHOR}
+      </li>
+    )
+  }
+
   createReferences() {
-    console.log(Object.keys(bibliography))
+    return Object.keys(parsedBib)
+      .map((key, i) => {
+        const reference = parsedBib[key];
+        return this.createReference(reference, i);
+      });
   };
 
   render() {
     const { hasError, idyll, updateProps, ...props } = this.props;
     return (
       <div {...props}>
-        {this.createReferences()}
+        <h3>References</h3>
+        <ol>
+          {this.createReferences()}
+        </ol>
       </div>
     );
   }
 }
+
+References.cite = cite;
 
 module.exports = References;

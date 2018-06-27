@@ -23,6 +23,33 @@
       ]` /]
   [/Step]
 
+  [Step]
+
+    // intro
+    [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a powerful technique...
+
+    [Cite reference:"test1"  /]
+
+    [Cite reference:"test2"  /]
+
+    [Cite reference:`["test1", "test2"]`  /]
+
+    ## Example
+    Let's start with an example.
+    Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
+    This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
+    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
+    That means each artowkr is represntation by a number of different *features*.
+
+    *Show table—introduce rows (data points) and columns (features)*.
+
+    If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
+    In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
+
+    Algorithms for this task are based on the idea that the dimensionality of many data sets is only artificially high.
+
+  [/Step]
+
   [Step state:"1d"]
     Wooo 1D and stuff!
   [/Step]
@@ -71,30 +98,9 @@ Some other stuff can go here
 [/Scroller]
 
 
-// intro
-[Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a powerful technique...
-
-## Example
-Let's start with an example.
-Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
-This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
-Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
-That means each artowkr is represntation by a number of different *features*.
-
-*Show table—introduce rows (data points) and columns (features)*. 
-
-If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
-In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
-
-Algorithms for this task are based on the idea that the dimensionality of many data sets is only artificially high.
-
 
 ### Acknowledgements
 * This article was created using [Idyll](https://idyll-lang.org).
 * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 
 [References /]
-
-### References
-1. "Scikit-learn: Machine Learning in Python". Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E. Journal of Machine Learning Research, 2011.
-2. 

@@ -21285,7 +21285,81 @@ ReactDOM[mountMethod](React.createElement(IdyllDocument, {
   theme: theme
 }), mountNode);
 
-},{"__IDYLL_AST__":"__IDYLL_AST__","__IDYLL_COMPONENTS__":"__IDYLL_COMPONENTS__","__IDYLL_CONTEXT__":"__IDYLL_CONTEXT__","__IDYLL_DATA__":"__IDYLL_DATA__","__IDYLL_OPTS__":"__IDYLL_OPTS__","__IDYLL_SYNTAX_HIGHLIGHT__":"__IDYLL_SYNTAX_HIGHLIGHT__","idyll-document":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-document/dist/cjs/index.js","react":"react","react-dom":"react-dom"}],"/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js":[function(require,module,exports){
+},{"__IDYLL_AST__":"__IDYLL_AST__","__IDYLL_COMPONENTS__":"__IDYLL_COMPONENTS__","__IDYLL_CONTEXT__":"__IDYLL_CONTEXT__","__IDYLL_DATA__":"__IDYLL_DATA__","__IDYLL_OPTS__":"__IDYLL_OPTS__","__IDYLL_SYNTAX_HIGHLIGHT__":"__IDYLL_SYNTAX_HIGHLIGHT__","idyll-document":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-document/dist/cjs/index.js","react":"react","react-dom":"react-dom"}],"/Users/mathisonian/projects/dimensionality-reduction/components/cite.js":[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = require('react');
+var cite = require('./references').cite;
+
+var Cite = function (_React$Component) {
+  _inherits(Cite, _React$Component);
+
+  function Cite() {
+    _classCallCheck(this, Cite);
+
+    return _possibleConstructorReturn(this, (Cite.__proto__ || Object.getPrototypeOf(Cite)).apply(this, arguments));
+  }
+
+  _createClass(Cite, [{
+    key: 'renderReference',
+    value: function renderReference(id) {
+      return React.createElement(
+        'a',
+        { href: '#reference-' + id },
+        id
+      );
+    }
+  }, {
+    key: 'renderInner',
+    value: function renderInner() {
+      var _this2 = this;
+
+      var reference = this.props.reference;
+      if (typeof reference === 'string') {
+        return this.renderReference(cite(reference));
+      } else if (Array.isArray(reference)) {
+        return reference.map(function (r) {
+          return _this2.renderReference(cite(r));
+        }).reduce(function (prev, curr) {
+          return [prev, ', ', curr];
+        });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          hasError = _props.hasError,
+          idyll = _props.idyll,
+          updateProps = _props.updateProps,
+          props = _objectWithoutProperties(_props, ['hasError', 'idyll', 'updateProps']);
+
+      return React.createElement(
+        'span',
+        { className: 'citation' },
+        '[',
+        this.renderInner(),
+        ']'
+      );
+    }
+  }]);
+
+  return Cite;
+}(React.Component);
+
+module.exports = Cite;
+
+},{"./references":"/Users/mathisonian/projects/dimensionality-reduction/components/references.js","react":"react"}],"/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21482,7 +21556,383 @@ var DRComponent = function (_D3Component) {
 
 module.exports = DRComponent;
 
-},{"d3":"/Users/mathisonian/projects/dimensionality-reduction/node_modules/d3/build/d3.node.js","idyll-d3-component":"/Users/mathisonian/projects/dimensionality-reduction/node_modules/idyll-d3-component/lib.js","react":"react"}],"/Users/mathisonian/projects/dimensionality-reduction/node_modules/d3-array/build/d3-array.js":[function(require,module,exports){
+},{"d3":"/Users/mathisonian/projects/dimensionality-reduction/node_modules/d3/build/d3.node.js","idyll-d3-component":"/Users/mathisonian/projects/dimensionality-reduction/node_modules/idyll-d3-component/lib.js","react":"react"}],"/Users/mathisonian/projects/dimensionality-reduction/components/references.js":[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = require('react');
+var parse = require('bibtex-parser');
+
+var citationCache = {};
+var cite = function cite(label) {
+  return citationCache[label.toUpperCase()];
+};
+
+// need to load in .bib file directly as a string
+var bibliography = "@inproceedings{test1,\
+ author = {Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim},\
+ title = {Group morphology with convolution algebras},\
+ booktitle = {Proceedings of the 14th ACM Symposium on Solid and Physical Modeling},\
+ series = {SPM '10},\
+ year = {2010},\
+ isbn = {978-1-60558-984-8},\
+ location = {Haifa, Israel},\
+ pages = {11--22},\
+ numpages = {12},\
+ url = {http://doi.acm.org/10.1145/1839778.1839781},\
+ doi = {10.1145/1839778.1839781},\
+ acmid = {1839781},\
+ publisher = {ACM},\
+ address = {New York, NY, USA},\
+}\
+@inproceedings{test2, \
+  author = { Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim }, \
+  title = { Group morphology with convolution algebras }, \
+  booktitle = { Proceedings of the 14th ACM Symposium on Solid and Physical Modeling }, \
+  series = {\
+    SPM '10},\
+ year = {2010},\
+ isbn = {978-1-60558-984-8},\
+ location = {Haifa, Israel},\
+ pages = {11--22},\
+ numpages = {12},\
+ url = {http://doi.acm.org/10.1145/1839778.1839781},\
+ doi = {10.1145/1839778.1839781},\
+ acmid = {1839781},\
+ publisher = {ACM},\
+ address = {New York, NY, USA},\
+}";
+
+var parsedBib = parse(bibliography);
+
+Object.keys(parsedBib).forEach(function (key, i) {
+  citationCache[key.toUpperCase()] = i + 1;
+});
+
+var References = function (_React$Component) {
+  _inherits(References, _React$Component);
+
+  function References() {
+    _classCallCheck(this, References);
+
+    return _possibleConstructorReturn(this, (References.__proto__ || Object.getPrototypeOf(References)).apply(this, arguments));
+  }
+
+  _createClass(References, [{
+    key: 'createReference',
+    value: function createReference(reference, i) {
+      return React.createElement(
+        'li',
+        { id: 'reference-' + (i + 1), key: reference.TITLE },
+        reference.TITLE,
+        ' - ',
+        reference.AUTHOR
+      );
+    }
+  }, {
+    key: 'createReferences',
+    value: function createReferences() {
+      var _this2 = this;
+
+      return Object.keys(parsedBib).map(function (key, i) {
+        var reference = parsedBib[key];
+        return _this2.createReference(reference, i);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          hasError = _props.hasError,
+          idyll = _props.idyll,
+          updateProps = _props.updateProps,
+          props = _objectWithoutProperties(_props, ['hasError', 'idyll', 'updateProps']);
+
+      return React.createElement(
+        'div',
+        props,
+        React.createElement(
+          'h3',
+          null,
+          'References'
+        ),
+        React.createElement(
+          'ol',
+          null,
+          this.createReferences()
+        )
+      );
+    }
+  }]);
+
+  return References;
+}(React.Component);
+
+References.cite = cite;
+
+module.exports = References;
+
+},{"bibtex-parser":"/Users/mathisonian/projects/dimensionality-reduction/node_modules/bibtex-parser/parse-bibtex.js","react":"react"}],"/Users/mathisonian/projects/dimensionality-reduction/node_modules/bibtex-parser/parse-bibtex.js":[function(require,module,exports){
+// Original work by Henrik Muehe (c) 2010
+//
+// CommonJS port by Mikola Lysenko 2013
+//
+//
+
+// Issues:
+//  no comment handling within strings
+//  no string concatenation
+//  no variable values yet
+
+// Grammar implemented here:
+//  bibtex -> (string | preamble | comment | entry)*;
+//  string -> '@STRING' '{' key_equals_value '}';
+//  preamble -> '@PREAMBLE' '{' value '}';
+//  comment -> '@COMMENT' '{' value '}';
+//  entry -> '@' key '{' key ',' key_value_list '}';
+//  key_value_list -> key_equals_value (',' key_equals_value)*;
+//  key_equals_value -> key '=' value;
+//  value -> value_quotes | value_braces | key;
+//  value_quotes -> '"' .*? '"'; // not quite
+//  value_braces -> '{' .*? '"'; // not quite
+function BibtexParser() {
+  this.pos = 0;
+  this.input = "";
+  
+  this.entries = {};
+  this.strings = {
+      JAN: "January",
+      FEB: "February",
+      MAR: "March",      
+      APR: "April",
+      MAY: "May",
+      JUN: "June",
+      JUL: "July",
+      AUG: "August",
+      SEP: "September",
+      OCT: "October",
+      NOV: "November",
+      DEC: "December"
+  };
+  this.currentKey = "";
+  this.currentEntry = "";
+  
+
+  this.setInput = function(t) {
+    this.input = t;
+  }
+  
+  this.getEntries = function() {
+      return this.entries;
+  }
+
+  this.isWhitespace = function(s) {
+    return (s == ' ' || s == '\r' || s == '\t' || s == '\n');
+  }
+
+  this.match = function(s) {
+    this.skipWhitespace();
+    if (this.input.substring(this.pos, this.pos+s.length) == s) {
+      this.pos += s.length;
+    } else {
+      throw "Token mismatch, expected " + s + ", found " + this.input.substring(this.pos);
+    }
+    this.skipWhitespace();
+  }
+
+  this.tryMatch = function(s) {
+    this.skipWhitespace();
+    if (this.input.substring(this.pos, this.pos+s.length) == s) {
+      return true;
+    } else {
+      return false;
+    }
+    this.skipWhitespace();
+  }
+
+  this.skipWhitespace = function() {
+    while (this.isWhitespace(this.input[this.pos])) {
+      this.pos++;
+    }
+    if (this.input[this.pos] == "%") {
+      while(this.input[this.pos] != "\n") {
+        this.pos++;
+      }
+      this.skipWhitespace();
+    }
+  }
+
+  this.value_braces = function() {
+    var bracecount = 0;
+    this.match("{");
+    var start = this.pos;
+    while(true) {
+      if (this.input[this.pos] == '}' && this.input[this.pos-1] != '\\') {
+        if (bracecount > 0) {
+          bracecount--;
+        } else {
+          var end = this.pos;
+          this.match("}");
+          return this.input.substring(start, end);
+        }
+      } else if (this.input[this.pos] == '{') {
+        bracecount++;
+      } else if (this.pos == this.input.length-1) {
+        throw "Unterminated value";
+      }
+      this.pos++;
+    }
+  }
+
+  this.value_quotes = function() {
+    this.match('"');
+    var start = this.pos;
+    while(true) {
+      if (this.input[this.pos] == '"' && this.input[this.pos-1] != '\\') {
+          var end = this.pos;
+          this.match('"');
+          return this.input.substring(start, end);
+      } else if (this.pos == this.input.length-1) {
+        throw "Unterminated value:" + this.input.substring(start);
+      }
+      this.pos++;
+    }
+  }
+  
+  this.single_value = function() {
+    var start = this.pos;
+    if (this.tryMatch("{")) {
+      return this.value_braces();
+    } else if (this.tryMatch('"')) {
+      return this.value_quotes();
+    } else {
+      var k = this.key();
+      if (this.strings[k.toUpperCase()]) {
+        return this.strings[k];
+      } else if (k.match("^[0-9]+$")) {
+        return k;
+      } else {
+        throw "Value expected:" + this.input.substring(start);
+      }
+    }
+  }
+  
+  this.value = function() {
+    var values = [];
+    values.push(this.single_value());
+    while (this.tryMatch("#")) {
+      this.match("#");
+      values.push(this.single_value());
+    }
+    return values.join("");
+  }
+
+  this.key = function() {
+    var start = this.pos;
+    while(true) {
+      if (this.pos == this.input.length) {
+        throw "Runaway key";
+      }
+    
+      if (this.input[this.pos].match("[a-zA-Z0-9_:\\./-]")) {
+        this.pos++
+      } else {
+        return this.input.substring(start, this.pos).toUpperCase();
+      }
+    }
+  }
+
+  this.key_equals_value = function() {
+    var key = this.key();
+    if (this.tryMatch("=")) {
+      this.match("=");
+      var val = this.value();
+      return [ key, val ];
+    } else {
+      throw "... = value expected, equals sign missing:" + this.input.substring(this.pos);
+    }
+  }
+
+  this.key_value_list = function() {
+    var kv = this.key_equals_value();
+    this.entries[this.currentEntry][kv[0]] = kv[1];
+    while (this.tryMatch(",")) {
+      this.match(",");
+      // fixes problems with commas at the end of a list
+      if (this.tryMatch("}")) {
+        break;
+      }
+      kv = this.key_equals_value();
+      this.entries[this.currentEntry][kv[0]] = kv[1];
+    }
+  }
+
+  this.entry_body = function(d) {
+    this.currentEntry = this.key();
+    this.entries[this.currentEntry] = { entryType: d.substring(1) };
+    this.match(",");
+    this.key_value_list();
+  }
+
+  this.directive = function () {
+    this.match("@");
+    return "@"+this.key();
+  }
+
+  this.string = function () {
+    var kv = this.key_equals_value();
+    this.strings[kv[0].toUpperCase()] = kv[1];
+  }
+
+  this.preamble = function() {
+    this.value();
+  }
+
+  this.comment = function() {
+    this.value(); // this is wrong
+  }
+
+  this.entry = function(d) {
+    this.entry_body(d);
+  }
+
+  this.bibtex = function() {
+    while(this.tryMatch("@")) {
+      var d = this.directive().toUpperCase();
+      this.match("{");
+      if (d == "@STRING") {
+        this.string();
+      } else if (d == "@PREAMBLE") {
+        this.preamble();
+      } else if (d == "@COMMENT") {
+        this.comment();
+      } else {
+        this.entry(d);
+      }
+      this.match("}");
+    }
+  }
+}
+
+//Runs the parser
+function doParse(input) {
+  var b = new BibtexParser()
+  b.setInput(input)
+  b.bibtex()
+  return b.entries
+}
+
+module.exports = doParse
+},{}],"/Users/mathisonian/projects/dimensionality-reduction/node_modules/d3-array/build/d3-array.js":[function(require,module,exports){
 // https://d3js.org/d3-array/ Version 1.2.1. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -58705,7 +59155,7 @@ exports.XMLHttpRequest = function() {
 },{"_process":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/process/browser.js","buffer":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/buffer/index.js","child_process":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/browserify/lib/_empty.js","fs":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/browserify/lib/_empty.js","http":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/stream-http/index.js","https":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/https-browserify/index.js","url":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/url/url.js"}],"__IDYLL_AST__":[function(require,module,exports){
 "use strict";
 
-module.exports = [["var", [["name", ["value", "scrollState"]], ["value", ["value", "iniital"]]], []], ["var", [["name", ["value", "scrollState2"]], ["value", ["value", "iniital"]]], []], ["TextContainer", [], []], ["Scroller", [["currentState", ["variable", "scrollState"]]], [["Graphic", [], [["DRComponent", [["state", ["variable", "scrollState"]]], []]]], ["Step", [["state", ["value", "inital"]]], [["Header", [["title", ["value", "What is Dimensionality Reduction?"]], ["subtitle", ["value", "An intuitive guide to the statistical technique."]], ["date", ["value", "July 12, 2018"]], ["authors", ["expression", "[\n        { name: \"Matthew Conlen\", link: \"https://twitter.com/mathisonian\" },\n        { name: \"Fred Hohman\", link: \"http://fredhohman.com/card-shuffling/\" }\n      ]"]]], []]]], ["Step", [["state", ["value", "1d"]]], ["\n    Wooo 1D and stuff!"]], ["Step", [["state", ["value", "pca-1"]]], ["\n    back to\n  "]]]], ["TextContainer", [], [["p", [], ["Some other stuff can go here"]], ["CustomD3Component", [], []], ["CustomComponent", [], []], ["h2", [], ["Yeah, stuff"]], ["h3", [], ["Maybe the graphic comes back?"]], ["p", [], [["div", [["style", ["expression", "{height:'30vh', width:'100%'}"]]], []], " "]]]], ["Scroller", [["currentState", ["variable", "scrollState2"]]], [["Graphic", [], [["DRComponent", [["state", ["variable", "scrollState2"]], ["fill", ["value", "blue"]]], []]]], ["Step", [["state", ["value", "inital"]]], [["h1", [], ["Second Graphic", "!", " 🙃"]]]], ["Step", [["state", ["value", "1d"]]], ["\n    Wooo 1D and stuff!"]], ["Step", [["state", ["value", "pca-1"]]], ["\n    back to\n  "]]]]];
+module.exports = [["var", [["name", ["value", "scrollState"]], ["value", ["value", "iniital"]]], []], ["var", [["name", ["value", "scrollState2"]], ["value", ["value", "iniital"]]], []], ["TextContainer", [], []], ["Scroller", [["currentState", ["variable", "scrollState"]]], [["Graphic", [], [["DRComponent", [["state", ["variable", "scrollState"]]], []]]], ["Step", [["state", ["value", "inital"]]], [["Header", [["title", ["value", "What is Dimensionality Reduction?"]], ["subtitle", ["value", "An intuitive guide to the statistical technique."]], ["date", ["value", "July 12, 2018"]], ["authors", ["expression", "[\n        { name: \"Matthew Conlen\", link: \"https://twitter.com/mathisonian\" },\n        { name: \"Fred Hohman\", link: \"http://fredhohman.com/card-shuffling/\" }\n      ]"]]], []]]], ["Step", [], [["p", [], [["a", [["href", ["value", "https://en.wikipedia.org/wiki/Dimensionality_reduction"]]], ["Dimensionality reduction"]], " is a powerful technique..."]], ["Cite", [["reference", ["value", "test1"]]], []], ["Cite", [["reference", ["value", "test2"]]], []], ["Cite", [["reference", ["expression", "[\"test1\", \"test2\"]"]]], []], ["h2", [], ["Example"]], ["p", [], ["Let’s start with an example.\n    Consider a dataset of artworks from the ", ["a", [["href", ["value", "https://github.com/MuseumofModernArt/collection"]]], ["The Museum of Modern Art (MoMA) Collection"]], ".\n    This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.\n    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.\n    That means each artowkr is represntation by a number of different ", ["em", [], ["features"]], "."]], ["p", [], [["em", [], ["Show table—introduce rows (data points) and columns (features)"]], "."]], ["p", [], ["If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.\n    In Python, the scikit-learn package provided implementions for ", ["a", [["href", ["value", "http://scikit-learn.org/stable/modules/unsupervised_reduction.html"]]], ["unsupervised dimensionality reduction"]], ", as well as ", ["a", [["href", ["value", "http://scikit-learn.org/stable/modules/manifold.html"]]], ["manifold learning"]], ": an approach to non-linear dimensionality reduction."]], ["p", [], ["Algorithms for this task are based on the idea that the dimensionality of many data sets is only artificially high."]]]], ["Step", [["state", ["value", "1d"]]], ["\n    Wooo 1D and stuff!"]], ["Step", [["state", ["value", "pca-1"]]], ["\n    back to\n  "]]]], ["TextContainer", [], [["p", [], ["Some other stuff can go here"]], ["CustomD3Component", [], []], ["CustomComponent", [], []], ["h2", [], ["Yeah, stuff"]], ["h3", [], ["Maybe the graphic comes back?"]], ["p", [], [["div", [["style", ["expression", "{height:'30vh', width:'100%'}"]]], []], " "]]]], ["Scroller", [["currentState", ["variable", "scrollState2"]]], [["Graphic", [], [["DRComponent", [["state", ["variable", "scrollState2"]], ["fill", ["value", "blue"]]], []]]], ["Step", [["state", ["value", "inital"]]], [["h1", [], ["Second Graphic", "!", " 🙃"]]]], ["Step", [["state", ["value", "1d"]]], ["\n    Wooo 1D and stuff!"]], ["Step", [["state", ["value", "pca-1"]]], ["\n    back to\n  "]]]], ["TextContainer", [], [["h3", [], ["Acknowledgements"]], ["ul", [], [["li", [], ["This article was created using ", ["a", [["href", ["value", "https://idyll-lang.org"]]], ["Idyll"]], "."]], ["li", [], ["The source code is available on ", ["a", [["href", ["value", "https://github.com/mathisonian/dimensionality-reduction"]]], ["Github"]], "."]]]], ["References", [], []]]]];
 
 },{}],"__IDYLL_COMPONENTS__":[function(require,module,exports){
 'use strict';
@@ -58716,12 +59166,14 @@ module.exports = {
 	'graphic': require('/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/graphic.js'),
 	'header': require('/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js'),
 	'step': require('/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/step.js'),
+	'cite': require('/Users/mathisonian/projects/dimensionality-reduction/components/cite.js'),
 	'scroller': require('/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/scroller.js'),
 	'custom-d3-component': require('/Users/mathisonian/projects/dimensionality-reduction/components/custom-d3-component.js'),
-	'custom-component': require('/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js')
+	'custom-component': require('/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js'),
+	'references': require('/Users/mathisonian/projects/dimensionality-reduction/components/references.js')
 };
 
-},{"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/graphic.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/graphic.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/scroller.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/scroller.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/step.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/step.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/text-container.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/text-container.js","/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js","/Users/mathisonian/projects/dimensionality-reduction/components/custom-d3-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/custom-d3-component.js","/Users/mathisonian/projects/dimensionality-reduction/components/dr-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/dr-component.js"}],"__IDYLL_CONTEXT__":[function(require,module,exports){
+},{"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/graphic.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/graphic.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/header.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/scroller.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/scroller.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/step.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/step.js","/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/text-container.js":"/Users/mathisonian/.nvm/versions/node/v8.5.0/lib/node_modules/idyll/node_modules/idyll-components/dist/cjs/text-container.js","/Users/mathisonian/projects/dimensionality-reduction/components/cite.js":"/Users/mathisonian/projects/dimensionality-reduction/components/cite.js","/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/custom-component.js","/Users/mathisonian/projects/dimensionality-reduction/components/custom-d3-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/custom-d3-component.js","/Users/mathisonian/projects/dimensionality-reduction/components/dr-component.js":"/Users/mathisonian/projects/dimensionality-reduction/components/dr-component.js","/Users/mathisonian/projects/dimensionality-reduction/components/references.js":"/Users/mathisonian/projects/dimensionality-reduction/components/references.js"}],"__IDYLL_CONTEXT__":[function(require,module,exports){
 "use strict";
 
 module.exports = function () {};
