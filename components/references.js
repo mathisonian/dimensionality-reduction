@@ -24,8 +24,8 @@ let bibliography = "@inproceedings{test1,\
  address = {New York, NY, USA},\
 }\
 @inproceedings{test2, \
-  author = { Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim }, \
-  title = { Group morphology with convolution algebras }, \
+  author = { Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim}, \
+  title = { Group morphology with convolution algebras}, \
   booktitle = { Proceedings of the 14th ACM Symposium on Solid and Physical Modeling }, \
   series = {\
     SPM '10},\
@@ -52,7 +52,11 @@ class References extends React.Component {
   createReference(reference, i) {
     return (
       <li id={`reference-${i + 1}`} key={reference.TITLE}>
-        {reference.TITLE} - {reference.AUTHOR}
+        <strong>{reference.TITLE}.</strong>
+        <br />
+        {reference.AUTHOR}.
+        <br />
+        <i>{reference.BOOKTITLE}. {reference.LOCATION}, {reference.YEAR}.</i>
       </li>
     )
   }
