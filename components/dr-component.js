@@ -41,7 +41,7 @@ class DRComponent extends D3Component {
     if (props.state !== this.props.state) {
 
       switch(props.state) {
-        case 'inital':
+        case 'initial':
           this.$circles
             .transition()
             .attr('cx', () => Math.random() * this.width)

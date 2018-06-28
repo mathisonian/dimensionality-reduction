@@ -25,7 +25,7 @@ let bibliography = "@inproceedings{test1,\
 }\
 @inproceedings{test2, \
   author = { Lysenko, Mikola and Nelaturi, Saigopal and Shapiro, Vadim}, \
-  title = { Group morphology with convolution algebras}, \
+  title = { Group morphology with convolution algebras }, \
   booktitle = { Proceedings of the 14th ACM Symposium on Solid and Physical Modeling }, \
   series = {\
     SPM '10},\

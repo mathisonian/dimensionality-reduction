@@ -3,7 +3,7 @@
   description:"An intuitive guide to the statistical technique." /]
 
 
-[var name:"scrollState" value:"iniital" /]
+[var name:"scrollState" value:"initial" /]
 
 
 [Scroller currentState:scrollState]
@@ -12,7 +12,7 @@
     [DRComponent state:scrollState /]
   [/Graphic]
 
-  [Step state:"inital"]
+  [Step state:"initial"]
     [Header
       title:"What is Dimensionality Reduction?"
       subtitle:"An intuitive guide to the statistical technique."
@@ -82,7 +82,7 @@ Some other stuff can go here
     [DRComponent state:scrollState2 fill:"blue" /]
   [/Graphic]
 
-  [Step state:"inital"]
+  [Step state:"initial"]
     # Second Graphic! 🙃
   [/Step]
 
