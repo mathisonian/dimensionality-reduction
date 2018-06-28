@@ -73,7 +73,7 @@ Some other stuff can go here
 
 [div style:`{height:'30vh', width:'100%'}`/] // just get some whitespace
 
-[var name:"scrollState2" value:"iniital" /]
+[var name:"scrollState2" value:"initial" /]
 
 
 [Scroller currentState:scrollState2]
