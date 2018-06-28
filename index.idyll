@@ -26,7 +26,49 @@
   [Step]
 
     // intro
-    [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a powerful technique...
+    [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
+    The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
+    This presents a challenge for all dimsionality reduction techniques, since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the embedding or structure that is produced by the reduction algorithm.
+
+    *need more motivation examples: why do you do DR? preprocessing, feature reduction, more important but non interpretable features*
+
+    We can describe the technique using a data-centric view.
+    Consider a datseta typically represented as a matrix
+    [Equation display:false]X[/Equation], where
+    [Equation display:false]X[/Equation]
+    is of size
+    [Equation display:false]m \times n[/Equation], where
+    [Equation display:false]m[/Equation] is the number of rows of
+    [Equation display:false]X[/Equation], and
+    [Equation display:false]n[/Equation] is the number of columns.
+    Typically, the rows are *data points* and the columns are *features*.
+    Dimesionality reduction will reduce the number of eatures of each data point, turning
+    [Equation display:false]X[/Equation] into a new matrix,
+    [Equation display:false]X'[/Equation], of size 
+    [Equation display:false]m \times d[/Equation], where
+    [Equation display:false]d < n[/Equation].
+
+    For example, say [Equation display:false]m=n[/Equation], that is
+    [Equation display:false]X[/Equation] is a square matrix.
+    Performing dimesionality reduction on
+    [Equation display:false]X[/Equation] will change it from a square matrix to a tall, thin, rectangular matrix.
+
+    [Equation display:false]
+    \begin{bmatrix}
+    x & x & x \\
+    x & x & x \\
+    x & x & x 
+    \end{bmatrix}
+    \implies
+    \begin{bmatrix}
+    x & x \\
+    x & x \\
+    x & x 
+    \end{bmatrix}
+    [/Equation]
+
+    [br /]
+    *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.* 
 
     [Cite reference:"test1"  /]
 
@@ -43,10 +85,6 @@
 
     *Show table—introduce rows (data points) and columns (features)*.
 
-    If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
-    In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
-
-    Algorithms for this task are based on the idea that the dimensionality of many data sets is only artificially high.
 
   [/Step]
 
@@ -97,7 +135,8 @@ Some other stuff can go here
 
 [/Scroller]
 
-
+If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
+In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
 ### Acknowledgements
 * This article was created using [Idyll](https://idyll-lang.org).
