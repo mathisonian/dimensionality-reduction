@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "idyll": {
-    "layout": "blog"
-  },
-  "scripts": {
-    "start": "idyll"
+    "layout": "centered",
+    "template": "_index.html"
   },
   "dependencies": {
     "bibtex-parser": "0.0.0",
     "d3": "^4.13.0",
+    "hilbert": "^2.0.0",
     "idyll": "^3.0.18",
     "idyll-components": "^3.0.6",
     "idyll-d3-component": "^2.0.0"

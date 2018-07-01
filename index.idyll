@@ -3,24 +3,52 @@
   description:"An intuitive guide to the statistical technique." /]
 
 
-[var name:"scrollState" value:"initial" /]
+[data name:"images" source:"downloaded-artworks.csv"  /]
+[var name:"scrollState" value:"loading" /]
+
+[var name:"widthWeight" value:0.25 /]
+[var name:"heightWeight" value:0.25 /]
+[var name:"weightWeight" value:0.25 /]
+[var name:"brightnessWeight" value:0.25 /]
 
 
 [Scroller currentState:scrollState]
 
   [Graphic]
-    [DRComponent state:scrollState /]
+    [DRComponent
+      images:images
+      state:scrollState
+      weights:`{
+        'Width (cm)': widthWeight,
+        'Height (cm)': heightWeight,
+        'brightness_avg_perceived': brightnessWeight
+      }`
+       /]
+
   [/Graphic]
 
-  [Step state:"initial"]
+  [Step state:"loading"]
     [Header
       title:"What is Dimensionality Reduction?"
-      subtitle:"An intuitive guide to the statistical technique."
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
         { name: "Fred Hohman", link: "http://twitter.com/fredhohman" }
       ]` /]
+
+    [StartButton state:scrollState /]
+  [/Step]
+
+  [Step state:"reveal"]
+    ## Example
+
+    Let's start with an example.
+    Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
+    This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
+    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
+    That means each artowkr is represntation by a number of different *features*.
+
+    *Show table—introduce rows (data points) and columns (features)*.
   [/Step]
 
   [Step]
@@ -44,7 +72,7 @@
     Typically, the rows are *data points* and the columns are *features*.
     Dimesionality reduction will reduce the number of eatures of each data point, turning
     [Equation display:false]X[/Equation] into a new matrix,
-    [Equation display:false]X'[/Equation], of size 
+    [Equation display:false]X'[/Equation], of size
     [Equation display:false]m \times d[/Equation], where
     [Equation display:false]d < n[/Equation].
 
@@ -53,24 +81,26 @@
     Performing dimesionality reduction on
     [Equation display:false]X[/Equation] will change it from a square matrix to a tall, thin, rectangular matrix.
 
-    [Equation display:false]
-    X = 
+    [br /]
+    [Equation display:true]
+    X =
     \begin{bmatrix}
     x & x & x \\
     x & x & x \\
-    x & x & x 
+    x & x & x
     \end{bmatrix}
     \implies
     \begin{bmatrix}
     x & x \\
     x & x \\
-    x & x 
+    x & x
     \end{bmatrix}
-    = X' 
+    = X'
     [/Equation]
 
     [br /]
-    *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.* 
+    *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.*
+    [br /]
 
     [Cite reference:"test1"  /]
 
@@ -78,15 +108,6 @@
 
     [Cite reference:`["test1", "test2"]`  /]
 
-    ## Example
-    Let's start with an example.
-    Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
-    This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
-    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
-    That means each artowkr is represntation by a number of different *features*.
-
-    *Show table—introduce rows (data points) and columns (features)*.
-
 
   [/Step]
 
@@ -95,53 +116,46 @@
   [/Step]
 
 
-  [Step state:"pca-1"]
-    back to
+  [Step state:"hilbert-brightness"]
+    Hilbert space.
+
+    *Q. Should we draw the hilbert curve in the background?*
   [/Step]
 
-[/Scroller]
+  [Step state:"hilbert-custom"]
+    Can I interest you in your own projection?
 
-Some other stuff can go here
+    Use these sliders to toggle the influence of variables:
 
-[CustomD3Component /]
+    *Width*
+    [Range value:widthWeight min:0 max:1 step:0.005 /]
 
-[CustomComponent /]
+    *Height*
+    [Range value:heightWeight min:0 max:1 step:0.005 /]
 
-## Yeah, stuff
+    // *Weight*
+    // [Range value:weightWeight min:0 max:1 step:0.005 /]
 
-### Maybe the graphic comes back?
-
-[div style:`{height:'30vh', width:'100%'}`/] // just get some whitespace
-
-[var name:"scrollState2" value:"initial" /]
-
-
-[Scroller currentState:scrollState2]
-
-  [Graphic]
-    [DRComponent state:scrollState2 fill:"blue" /]
-  [/Graphic]
-
-  [Step state:"initial"]
-    # Second Graphic! 🙃
+    *Brightness*
+    [Range value:brightnessWeight min:0 max:1 step:0.005 /]
   [/Step]
 
-  [Step state:"1d"]
-    Wooo 1D and stuff!
+  [Step state:"pca"]
+    Introduce real D.R. algorithms...
   [/Step]
 
+  [Step]
 
-  [Step state:"pca-1"]
-    back to
-  [/Step]
+    If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
+    In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
-[/Scroller]
-
-If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
-In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
-
-### Acknowledgements
+    ### Acknowledgements
 * This article was created using [Idyll](https://idyll-lang.org).
 * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 
-[References /]
+    [References /]
+
+  [/Step]
+
+[/Scroller]
+
