@@ -27,12 +27,13 @@ class TableComponent extends React.PureComponent {
     return [];
   }
   render() {
+    const { idyll, hasError, updateProps, children, ...props} = this.props;
     return (
       <Table
         className={`table ${this.props.className || ''}`}
         showPagination={this.props.data.length > this.props.defaultPageSize}
         minRows={this.props.data.length <= this.props.defaultPageSize ? this.props.data.length : undefined}
-        {...this.props}
+        data={this.props.data || []}
         children={undefined}
         columns={this.getColumns()}
          />

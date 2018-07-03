@@ -15,11 +15,12 @@ h1, h2, h3, h4, h5, h6 {
 .article-header {
   text-align: center;
   font-family: Arvo;
-  /* width: 130%;/ */
+  width: 100%;
 }
 
 .article-header h1 {
   font-size: 3rem;
+  color: white !important;
 }
 
 .start-button {
@@ -38,12 +39,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .idyll-scroll {
   margin-top: 0;
+  pointer-events: none;
+}
+
+.idyll-scroll-text {
+  pointer-events: all;
 }
 
 .idyll-scroll-text:first-of-type {
   padding-top: 15vh;
 }
 
+.idyll-scroll-text .idyll-step:first-of-type {
+  margin-bottom: 25vh;
+}
 .idyll-scroll-text .idyll-step {
   margin-top: 0;
   background: none;
@@ -53,10 +62,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+h1 {
+  color: #FFD5C7;
+}
+
+svg text {
+  fill: white;
+}
 
 .d3-component svg {
   background: #ddd;
   max-height: 300px;
+  overflow: visible;
 }
 
 @media all and (max-width: 1000px) {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "idyll": {
-    "layout": "centered",
+    "layout": "blog",
     "template": "_index.html"
   },
   "dependencies": {

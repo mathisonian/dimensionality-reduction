@@ -23,7 +23,7 @@ class StartButton extends React.Component {
     this.setState({ status: 'loading' })
     setTimeout(() => {
       this.setState({ status: 'loaded' })
-    }, 1500);
+    }, 2000);
   }
 
   render() {
@@ -31,7 +31,7 @@ class StartButton extends React.Component {
     if (this.state.status === 'initial') {
       return (
         <button onClick={this.onClick.bind(this)} className={'start-button'}>
-          Click to Begin.
+          Click to Begin
         </button>
       );
     } else if (this.state.status === 'loading') {

@@ -12,20 +12,21 @@
 [var name:"brightnessWeight" value:0.25 /]
 
 
+[Fixed]
+  [DRComponent
+    images:images
+    state:scrollState
+    weights:`{
+      'Width (cm)': widthWeight,
+      'Height (cm)': heightWeight,
+      'brightness_avg_perceived': brightnessWeight
+    }`
+      /]
+
+[/Fixed]
+
 [Scroller currentState:scrollState]
 
-  [Graphic]
-    [DRComponent
-      images:images
-      state:scrollState
-      weights:`{
-        'Width (cm)': widthWeight,
-        'Height (cm)': heightWeight,
-        'brightness_avg_perceived': brightnessWeight
-      }`
-       /]
-
-  [/Graphic]
 
   [Step state:"loading"]
     [Header
@@ -39,26 +40,60 @@
     [StartButton state:scrollState /]
   [/Step]
 
-  [Step state:"reveal"]
-    ## Example
+  [Step state:"reveal" /]
+  [Step]
 
-    Let's start with an example.
+    # The Art
+
     Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
     This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
-    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
-    That means each artowkr is represntation by a number of different *features*.
-
-    *Show table—introduce rows (data points) and columns (features)*.
   [/Step]
 
   [Step]
+    # The Data
+
+    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
+
+
+    [br/]
+
+    [Table
+      data:`images.slice(0, 5)`
+      columns:`['Title', 'Artist', 'Data']` /]
+
+    [br/]
+
+    Computer scientists like to call these data attributes *features*.
+  [/Step]
+
+
+  [Step state:"1d"]
+    # The Projection
+
+    If you store the features in a *vector*, you can think of the data as existing in
+    an n-dimension space.
+
+    We often want to visualize the data, however we can't show all the dimensions at once.
+    Instead we can choose to project the data into a lower dimension that can
+    be visualized.
+
+    // TODO - make this better
+    [Svg src:"./static/images/projection.svg" /]
+
+    Here we sort the artworks by brighness, with the darkest images on the left,
+    and the brightest images on the right. Since we're projecting the artwork onto a line, this can be considered a dimensionality reduction to one-dimension. (Remember points are 0D, lines 1D, plane 2D, etc.)
+  [/Step]
+
+
+  [Step state:"reset"]
+    # The Math
 
     // intro
     [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
+
+
     The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
     This presents a challenge for all dimsionality reduction techniques, since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the embedding or structure that is produced by the reduction algorithm.
-
-    *need more motivation examples: why do you do DR? preprocessing, feature reduction, more important but non interpretable features*
 
     We can describe the technique using a data-centric view.
     Consider a datseta typically represented as a matrix
@@ -102,30 +137,27 @@
     *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.*
     [br /]
 
-    [Cite reference:"test1"  /]
+    // [Cite reference:"test1"  /]
 
-    [Cite reference:"test2"  /]
+    // [Cite reference:"test2"  /]
 
-    [Cite reference:`["test1", "test2"]`  /]
+    // [Cite reference:`["test1", "test2"]`  /]
 
 
-  [/Step]
-
-  [Step state:"1d"]
-    Wooo 1D and stuff!
   [/Step]
 
 
   [Step state:"hilbert-brightness"]
-    Hilbert space.
+    # The Embedding
 
-    *Q. Should we draw the hilbert curve in the background?*
-  [/Step]
+    Here we take the same brightness attribute and use it to position
+    the artworks in 2D space instead of 1D.
 
-  [Step state:"hilbert-custom"]
-    Can I interest you in your own projection?
+    The pieces have more room to spread out.
 
-    Use these sliders to toggle the influence of variables:
+    Some projections are more useful than others. Use these sliders
+    to toggle the influence that variables have in determining
+    the objects' position.
 
     *Width*
     [Range value:widthWeight min:0 max:1 step:0.005 /]
@@ -141,10 +173,30 @@
   [/Step]
 
   [Step state:"pca"]
-    Introduce real D.R. algorithms...
+    # The Algorithm
+
+    You may have noticed that its hard to find meaningful
+    combinations of variable weights. This is something
+    that computers are very good at: searching for
+    some optimal combination of numbers.
+
+    There are many algorithms that compute a dimensionality
+    reduction of a dataset.
+
+    For example, PCA...
+  [/Step]
+  [Step state:"pca"]
+    # The Algorithms
+
+    ### PCA
+
+    ### t-SNE
+
+    ### UMAP
   [/Step]
 
   [Step]
+    # The End
 
     If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
     In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.

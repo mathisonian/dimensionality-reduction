@@ -9,13 +9,15 @@ const jitter = (d) => {
   return d + 50 * (Math.random() - 0.5);
 }
 
+
+
 const brightnessKey = 'brightness_avg_perceived';
 
 
 class DRComponent extends D3Component {
 
   initialize(node, props) {
-    this.width = window.innerWidth;
+    this.width = node.getBoundingClientRect().width;
     this.height = window.innerHeight;
 
     const images = props.images.filter((d) => Math.random() > 0.5);
@@ -24,6 +26,8 @@ class DRComponent extends D3Component {
     svg.attr('viewBox', `0 0 ${this.width} ${this.height}`)
       .style('width', '100%')
       .style('height', 'auto')
+      .style('overflow', 'visible')
+      // .style('background', 'white')
       // .style('max-height', '100vh');
 
 
@@ -53,16 +57,50 @@ class DRComponent extends D3Component {
 
     this.$images = this.$el.append("svg:image")
       .attr('x', (d) => {
-        return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 20 / 2;
+        return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 10 / 2;
       })
       .attr('y', (d) => {
-        return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 20 / 2;
+        return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 10 / 2;
       })
       .attr('width', (d) => {
-        return this.normalizeVar(d, 'Width (cm)') * this.width / 20;
+        return this.normalizeVar(d, 'Width (cm)') * this.width / 10;
       })
       .attr('height', (d) => {
-        return this.normalizeVar(d, 'Height (cm)') * this.height / 20;
+        return this.normalizeVar(d, 'Height (cm)') * this.height / 10;
+      })
+      .on('mouseenter', (d, i, nodes) => {
+        console.log('mouseenter');
+        // TODO - move node's parent to front
+
+        d3.select(nodes[i])
+        .attr('x', (d) => {
+          return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 5 * 3;
+        })
+        .attr('y', (d) => {
+          return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 5 * 3;
+        })
+        .attr('width', (d) => {
+          return this.normalizeVar(d, 'Width (cm)') * this.width / 5 * 6;
+        })
+        .attr('height', (d) => {
+          return this.normalizeVar(d, 'Height (cm)') * this.height / 5 * 6;
+        })
+      })
+      .on('mouseleave', (d, i, nodes) => {
+        console.log('mouseleave');
+        d3.select(nodes[i])
+          .attr('x', (d) => {
+            return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 5 / 2;
+          })
+          .attr('y', (d) => {
+            return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 5 / 2;
+          })
+          .attr('width', (d) => {
+            return this.normalizeVar(d, 'Width (cm)') * this.width / 5;
+          })
+          .attr('height', (d) => {
+            return this.normalizeVar(d, 'Height (cm)') * this.height / 5;
+          })
       })
       .style('opacity', 0)
       .attr("xlink:href", (d) => d.ThumbnailURL);
@@ -105,25 +143,26 @@ class DRComponent extends D3Component {
             .attr('y', 0)
             .attr('width', 0)
             .attr('height', 0)
-            .style('fill', 'hsla(193,81%,73%,0.8)');
+            .style('fill', '#fff');
 
           this.$rects
             .transition()
             .duration(1000)
-            .delay(100)
+            // .delay(100)
             // .delay((d, i) => 100 + (i + 10) * 30 + (Math.random() - 0.5) * 30)
+            .delay((d, i) => 50 + 25 * Math.random() + i * 5)
             .ease(d3.easeElasticOut)
             .attr('x', (d) => {
-              return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 20 / 2;
+              return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 10 / 2;
             })
             .attr('y', (d) => {
-              return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 20 / 2;
+              return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 10 / 2;
             })
             .attr('width', (d) => {
-              return this.normalizeVar(d, 'Width (cm)') * this.width / 20;
+              return this.normalizeVar(d, 'Width (cm)') * this.width / 10;
             })
             .attr('height', (d) => {
-              return this.normalizeVar(d, 'Height (cm)') * this.height / 20;
+              return this.normalizeVar(d, 'Height (cm)') * this.height / 10;
             })
             // .on('end', () => {
             //     // `./static/images/${d.AccessionNumber}.jpg`)
@@ -136,6 +175,8 @@ class DRComponent extends D3Component {
           this.$images.style('opacity', 1);
           this.$rects
             .transition()
+            .delay((d, i) => 50 + 25 * Math.random() + i * 5)
+            .duration(1000)
             .style('opacity', 0)
             .on('end', function() {
               d3.select(this).remove();
@@ -145,6 +186,12 @@ class DRComponent extends D3Component {
           this.$el
               .transition()
               .attr('transform', (d) => `translate(${jitter(this.brightness(d[brightnessKey]))}, ${jitter(this.height / 2 - this.height / 30 / 2)})` );
+          break;
+        case 'reset':
+          this.$el
+            .transition()
+            .duration(1000)
+            .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
           break;
         case 'hilbert-brightness':
           this.$el
@@ -172,7 +219,7 @@ class DRComponent extends D3Component {
         default:
           break;
       }
-    } else if (props.state === 'hilbert-custom') {
+    } else if (props.state.indexOf('hilbert') > -1) {
       this.$el
         // .transition()
         .attr('transform', (d) => {
