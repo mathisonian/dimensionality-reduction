@@ -2,14 +2,14 @@ const React = require('react');
 const D3Component = require('idyll-d3-component');
 const d3 = require('d3');
 const H = require('hilbert');
+const Path = require('svg-path-generator');
 
 const size = 600;
 
 const jitter = (d) => {
-  return d + 50 * (Math.random() - 0.5);
+  // return d;
+  return d + 20 * (Math.random() - 0.5);
 }
-
-
 
 const brightnessKey = 'brightness_avg_perceived';
 
@@ -32,7 +32,9 @@ class DRComponent extends D3Component {
 
 
     const $elements = svg.selectAll('.element')
-      .data(images)
+      .data(images.map((d) => {
+        return Object.assign({_seed: Math.random()}, d);
+      }))
 
     const $el = $elements.enter()
         .append('g')
@@ -54,6 +56,45 @@ class DRComponent extends D3Component {
       return _scaleCache[key](d[key]);
     }
 
+
+    this.brightness = d3.scaleLinear().domain(d3.extent(images, (d) => d[brightnessKey])).range([0, this.width - this.width / 30]);
+
+
+    const scale = 0.66;
+    const HILBERT_SIZE = 4;
+    const _hilbertNormalize = d3.scaleLinear().domain([0, 1]).range([0, Math.pow(HILBERT_SIZE, 4)]);
+    const _hilbert = new H.Hilbert2d(HILBERT_SIZE);
+
+    const hilbertG = svg.append('g').attr('transform', `translate(${scale / Math.pow(HILBERT_SIZE, 2) / 2 * this.width}, ${scale / Math.pow(HILBERT_SIZE, 2) / 2 * this.height})`)
+
+    let hilbertPath = Path();
+    d3.range(Math.pow(HILBERT_SIZE, 4)).forEach((i) => {
+      const hilbertOut = _hilbert.xy(i);
+      const cx = (hilbertOut.x / Math.pow(2, HILBERT_SIZE)) * scale * this.width + (1 - scale) / 2 * this.width;
+      const cy = (hilbertOut.y / Math.pow(2, HILBERT_SIZE)) * scale * this.height + (1 - scale) / 2 * this.height;
+      if (i === 0) {
+        hilbertPath.moveTo(cx, cy);
+      } else {
+        hilbertPath.lineTo(cx, cy);
+      }
+    })
+
+    const hPath = hilbertG.append('path').attr('d', hilbertPath).attr('fill', 'none').attr('stroke', 'none').node();
+
+
+    const _pathLength = hPath.getTotalLength();
+    this.hilbert = (d) => {
+
+      const hilbertOut = hPath.getPointAtLength(_pathLength * d);
+
+      const scale = 0.66;
+      const xOffset = scale / Math.pow(HILBERT_SIZE, 2) / 2 * this.width;
+      const yOffset = scale / Math.pow(HILBERT_SIZE, 2) / 2 * this.height;
+      return {
+        x: xOffset + hilbertOut.x,
+        y: yOffset + hilbertOut.y
+      }
+    }
 
     this.$images = this.$el.append("svg:image")
       .attr('x', (d) => {
@@ -106,22 +147,6 @@ class DRComponent extends D3Component {
       .attr("xlink:href", (d) => d.ThumbnailURL);
 
 
-    this.brightness = d3.scaleLinear().domain(d3.extent(images, (d) => d[brightnessKey])).range([0, this.width - this.width / 30]);
-
-
-    const HILBERT_SIZE = 4;
-    const _hilbertNormalize = d3.scaleLinear().domain([0, 1]).range([0, Math.pow(4, HILBERT_SIZE)]);
-
-    const _hilbert = new H.Hilbert2d(HILBERT_SIZE);
-    this.hilbert = (d) => {
-      const hilbertOut = _hilbert.xy(_hilbertNormalize(d));
-
-      const scale = 0.66;
-      return {
-        x: (hilbertOut.x / Math.pow(2, HILBERT_SIZE)) * scale * this.width + (1 - scale) / 2 * this.width,
-        y: (hilbertOut.y / Math.pow(2, HILBERT_SIZE)) * scale * this.height + (1 - scale) / 2 * this.height
-      }
-    }
 
     // d3.range(0, 1, 0.001).forEach((d) => {
     //   const h = this.hilbert(d);
@@ -130,6 +155,38 @@ class DRComponent extends D3Component {
     //     .attr('cy', h.y)
     //     .attr('r', 5)
     // })
+  }
+
+  _updateHilbert(props) {
+    let max = 0;
+    let min = 0;
+    let weights = [];
+    this.$el
+      .each((d) => {
+
+        const _weighted = this.weightKeys.reduce((memo, key, i) => {
+          return memo + props.weights[key] * this.normalizeVar(d, key);
+        }, 0) / this.weightKeys.reduce((memo, key, i) => {
+          return memo + props.weights[key];
+        }, 0);
+
+        if (_weighted > max) {
+          max = _weighted;
+        }
+        if (_weighted < min) {
+          min = _weighted;
+        }
+        weights.push(_weighted);
+      });
+
+    console.log(max);
+    this.$el
+      // .transition()
+      // .duration(1000)
+      .attr('transform', (d, i) => {
+        const { x, y } = this.hilbert(min + weights[i] / (max - min));
+        return  `translate(${jitter(x)}, ${jitter(y)})`;
+      })
   }
 
   update(props) {
@@ -204,38 +261,16 @@ class DRComponent extends D3Component {
             })
           break;
         case 'hilbert-custom':
-          this.$el
-            .transition()
-            .duration(1000)
-            .attr('transform', (d) => {
-
-              const _weighted = this.weightKeys.reduce((memo, key, i) => {
-                return memo + props.weights[key] * this.normalizeVar(d, key);
-              }, 0) / this.weightKeys.reduce((memo, key, i) => {
-                return memo + props.weights[key];
-              }, 0);
-
-              const { x, y } = this.hilbert(_weighted);
-              return  `translate(${jitter(x)}, ${jitter(y)})`;
-            })
+          this._updateHilbert(props);
           break;
         default:
           break;
       }
     } else if (props.state.indexOf('hilbert') > -1) {
-      this.$el
-        // .transition()
-        .attr('transform', (d) => {
-          const _weighted = this.weightKeys.reduce((memo, key, i) => {
-            return memo + props.weights[key] * this.normalizeVar(d, key);
-          }, 0) / this.weightKeys.reduce((memo, key, i) => {
-            return memo + props.weights[key];
-          }, 0);
-
-          const { x, y } = this.hilbert(_weighted);
-          return  `translate(${jitter(x)}, ${jitter(y)})`;
-        })
+      this._updateHilbert(props);
     }
+
+
   }
 }
 

@@ -29,6 +29,8 @@
 
 
   [Step state:"loading"]
+
+
     [Header
       title:"What is Dimensionality Reduction?"
       date:"July 12, 2018"
@@ -90,6 +92,8 @@
 
     // intro
     [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
+
+
 
 
     The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
@@ -172,10 +176,27 @@
 
     *Brightness*
     [Range value:brightnessWeight min:0 max:1 step:0.005 /]
+
+
+    [var name:"showHilbert" value:false /]
+
+    [conditional if:`!showHilbert ` ]
+      [button onClick:` showHilbert = true ` ]
+        Show technical details
+      [/button]
+    [/conditional]
+
+    [conditional if:showHilbert ]
+      Say something about the hilbert curve.
+
+
+    [/conditional]
+
+
   [/Step]
 
   [Step state:"pca"]
-    # The Algorithm
+    # The Algorithms
 
     You may have noticed that its hard to find meaningful
     combinations of variable weights. This is something
@@ -185,20 +206,17 @@
     There are many algorithms that compute a dimensionality
     reduction of a dataset.
 
-    For example, PCA...
-  [/Step]
-  [Step state:"pca"]
-    # The Algorithms
-
     ### PCA
 
     ### t-SNE
 
     ### UMAP
+
+    etc.
   [/Step]
 
   [Step]
-    # The End
+    # The Outro
 
     If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
     In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.

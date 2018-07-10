@@ -12,7 +12,8 @@
     "hilbert": "^2.0.0",
     "idyll": "^3.0.18",
     "idyll-components": "^3.0.6",
-    "idyll-d3-component": "^2.0.0"
+    "idyll-d3-component": "^2.0.0",
+    "svg-path-generator": "^1.1.0"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0",

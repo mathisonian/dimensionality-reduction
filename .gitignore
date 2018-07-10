@@ -62,3 +62,7 @@ typings/
 
 .idyll
 build/**
+
+.ipynb_checkpoints
+static/images/met/
+met-images
