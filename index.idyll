@@ -47,8 +47,7 @@
     [StartButton state:scrollState /]
   [/Step]
 
-  [Step state:"reveal" /]
-  [Step]
+  [Step state:"reveal"]
 
     # The Art
 
@@ -56,7 +55,7 @@
     This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
   [/Step]
 
-  [Step]
+  [Step state:"table"]
     # The Data
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
