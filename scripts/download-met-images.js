@@ -40,6 +40,10 @@ const writeFile = promisify(fs.writeFile);
     // console.log(artwork);
     // console.log(artwork['Object Number']);
     console.log(artwork['Link Resource']);
+    if (fs.existsSync(`${__dirname}/../static/images/met/${artwork['Object ID']}.jpg`)) {
+      return;
+    }
+
     await page.goto(artwork['Link Resource']);
     const img = await page.$('#artwork__image');
     await img.screenshot({

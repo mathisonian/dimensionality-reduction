@@ -185,6 +185,7 @@ class DRComponent extends D3Component {
         case '1d':
           this.$el
               .transition()
+              .duration(1000)
               .attr('transform', (d) => `translate(${jitter(this.brightness(d[brightnessKey]))}, ${jitter(this.height / 2 - this.height / 30 / 2)})` );
           break;
         case 'reset':
@@ -196,6 +197,7 @@ class DRComponent extends D3Component {
         case 'hilbert-brightness':
           this.$el
             .transition()
+            .duration(1000)
             .attr('transform', (d) => {
               const { x, y } = this.hilbert(this.normalizeVar(d, brightnessKey));
               return  `translate(${jitter(x)}, ${jitter(y)})`;
@@ -204,6 +206,7 @@ class DRComponent extends D3Component {
         case 'hilbert-custom':
           this.$el
             .transition()
+            .duration(1000)
             .attr('transform', (d) => {
 
               const _weighted = this.weightKeys.reduce((memo, key, i) => {
