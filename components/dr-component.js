@@ -4,8 +4,6 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
-const size = 600;
-
 const jitter = (d, j = 20) => {
   // return d;
   return d + j * (Math.random() - 0.5);
@@ -241,7 +239,6 @@ class DRComponent extends D3Component {
           break;
 
         case 'reveal':
-
           this.$images.style('opacity', 1);
           this.$rects
             .transition()
@@ -251,6 +248,14 @@ class DRComponent extends D3Component {
             .on('end', function() {
               d3.select(this).remove();
             })
+          break;
+        case 'table':
+          if (this.props.state === '1d') {
+            this.$el
+              .transition()
+              .duration(1000)
+              .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
+          }
           break;
         case '1d':
           this.$el
