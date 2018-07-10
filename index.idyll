@@ -226,7 +226,7 @@
   [/Step]
 
   [Step]
-    # The End
+    # The Outro
 
     If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
     In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
