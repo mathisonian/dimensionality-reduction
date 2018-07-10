@@ -3,7 +3,7 @@
   description:"An intuitive guide to the statistical technique." /]
 
 
-[data name:"images" source:"downloaded-artworks.csv"  /]
+[data name:"images" source:"met-with-coordinates.csv"  /]
 [var name:"scrollState" value:"loading" /]
 
 [var name:"widthWeight" value:0 /]
@@ -18,8 +18,8 @@
     state:scrollState
     showHilbert:showHilbert
     weights:`{
-      'Width (cm)': widthWeight,
-      'Height (cm)': heightWeight,
+      // 'Width (cm)': widthWeight,
+      // 'Height (cm)': heightWeight,
       'brightness_avg_perceived': brightnessWeight
     }`
       /]
@@ -94,62 +94,63 @@
     // intro
     [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
 
-
-
-
     The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
     This presents a challenge for all dimsionality reduction techniques, since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the embedding or structure that is produced by the reduction algorithm.
 
-    We can describe the technique using a data-centric view.
-    Consider a datseta typically represented as a matrix
-    [Equation display:false]\textcolor{#fdefb5}{X}[/Equation], where
-    [Equation display:false]X[/Equation]
-    is of size
-    [Equation display:false]m \times n[/Equation], where
-    [Equation display:false]m[/Equation] is the number of rows of
-    [Equation display:false]X[/Equation], and
-    [Equation display:false]n[/Equation] is the number of columns.
-    Typically, the rows are *data points* and the columns are *features*.
-    Dimesionality reduction will reduce the number of eatures of each data point, turning
-    [Equation display:false]X[/Equation] into a new matrix,
-    [Equation display:false]X'[/Equation], of size
-    [Equation display:false]m \times d[/Equation], where
-    [Equation display:false]d < n[/Equation].
+    [var name:"showMathDetails" value:false /]
 
-    For example, say [Equation display:false]m=n[/Equation], that is
-    [Equation display:false]X[/Equation] is a square matrix.
-    Performing dimesionality reduction on
-    [Equation display:false]X[/Equation] will change it from a square matrix to a tall, thin, rectangular matrix.
+    [conditional if:`!showMathDetails ` ]
+      [button onClick:` showMathDetails = true ` ]
+        Show technical details
+      [/button]
+    [/conditional]
 
-    [br /]
-    [Equation display:true]
-    \textcolor{#fdefb5}{
-    X =
-    \begin{bmatrix}
-    x & x & x \\
-    x & x & x \\
-    x & x & x
-    \end{bmatrix}
-    \implies
-    \begin{bmatrix}
-    x & x \\
-    x & x \\
-    x & x
-    \end{bmatrix}
-    = X'
-    }
-    [/Equation]
+    [conditional if:showMathDetails ]
+      We can describe the technique using a data-centric view.
+      Consider a datseta typically represented as a matrix
+      [Equation display:false]\textcolor{#fdefb5}{X}[/Equation], where
+      [Equation display:false]X[/Equation]
+      is of size
+      [Equation display:false]m \times n[/Equation], where
+      [Equation display:false]m[/Equation] is the number of rows of
+      [Equation display:false]X[/Equation], and
+      [Equation display:false]n[/Equation] is the number of columns.
+      Typically, the rows are *data points* and the columns are *features*.
+      Dimesionality reduction will reduce the number of eatures of each data point, turning
+      [Equation display:false]X[/Equation] into a new matrix,
+      [Equation display:false]X'[/Equation], of size
+      [Equation display:false]m \times d[/Equation], where
+      [Equation display:false]d < n[/Equation].
 
-    [br /]
-    *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.*
-    [br /]
+      For example, say [Equation display:false]m=n[/Equation], that is
+      [Equation display:false]X[/Equation] is a square matrix.
+      Performing dimesionality reduction on
+      [Equation display:false]X[/Equation] will change it from a square matrix to a tall, thin, rectangular matrix.
 
-    // [Cite reference:"test1"  /]
+      [br /]
+      [Equation display:true]
+      \textcolor{#fdefb5}{
+      X =
+      \begin{bmatrix}
+      x & x & x \\
+      x & x & x \\
+      x & x & x
+      \end{bmatrix}
+      \implies
+      \begin{bmatrix}
+      x & x \\
+      x & x \\
+      x & x
+      \end{bmatrix}
+      = X'
+      }
+      [/Equation]
 
-    // [Cite reference:"test2"  /]
+      [br /]
+      *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.*
+      [br /]
 
-    // [Cite reference:`["test1", "test2"]`  /]
-
+    [/conditional]
 
   [/Step]
 
@@ -166,6 +167,8 @@
     to toggle the influence that variables have in determining
     the objects' position.
 
+    [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
+
     *Brightness*
     [Range value:brightnessWeight min:0 max:1 step:0.005 /]
 
@@ -174,6 +177,8 @@
 
     *Height*
     [Range value:heightWeight min:0 max:1 step:0.005 /]
+
+    [/div]
 
     [var name:"showHilbertDetails" value:false /]
 

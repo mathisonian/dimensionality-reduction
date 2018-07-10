@@ -14,12 +14,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-header {
   text-align: center;
-  font-family: Arvo;
+  font-family: 'Open Sans';
   width: 100%;
 }
 
 .article-header h1 {
   font-size: 3rem;
+  font-family: 'Arvo';
   color: white !important;
 }
 
@@ -31,6 +32,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
   cursor: pointer;
   width: 200px;
+  color: #1E467E;
 }
 
 .byline a, a {
@@ -63,17 +65,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  color: #FFD5C7;
+  color: hsl(49, 98%, 84%);
+  font-family: 'Arvo';
+}
+
+p {
+  font-family: 'Open Sans';
+  font-size: 18px;
 }
 
 svg text {
   fill: white;
 }
 
+.rt-td {
+  background: #fffdf5;
+}
+
+.rt-tbody {
+  color: #1E467E;
+}
+.rt-thead {
+  background: #ffd5c7;
+  color: #1E467E;
+}
+
 .d3-component svg {
   background: #ddd;
   max-height: 300px;
   overflow: visible;
+}
+
+button {
+  background: none;
+  border: 3px solid #ffd5c7;
+  padding: 15px;
+  color: #ffd5c7;
+  text-transform: uppercase;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  cursor: pointer;
 }
 
 @media all and (max-width: 1000px) {
