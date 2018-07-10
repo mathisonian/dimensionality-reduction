@@ -9,6 +9,7 @@
 [var name:"widthWeight" value:0 /]
 [var name:"heightWeight" value:0 /]
 [var name:"weightWeight" value:0 /]
+[var name:"endDateWeight" value:0 /]
 [var name:"brightnessWeight" value:1 /]
 [var name:"showHilbert" value:false /]
 [var name:"algorithm" value:"" /]
@@ -22,7 +23,7 @@
     weights:`{
       // 'Width (cm)': widthWeight,
       // 'Height (cm)': heightWeight,
-
+      'Object End Date': endDateWeight,
       'brightness_avg_perceived': brightnessWeight
     }`
       /]
@@ -162,8 +163,8 @@
     *Brightness*
     [Range value:brightnessWeight min:0 max:1 step:0.005 /]
 
-    *Width*
-    [Range value:widthWeight min:0 max:1 step:0.005 /]
+    *Artwork Age*
+    [Range value:endDateWeight min:0 max:1 step:0.005 /]
 
     *Height*
     [Range value:heightWeight min:0 max:1 step:0.005 /]
@@ -181,12 +182,10 @@
     [conditional if:showHilbertDetails ]
       Say something about the hilbert curve.
 
-      Show hilbert: [button onClick:`showHilbert = true `]show hilbert[/button].
+      [button onClick:`showHilbert = !showHilbert `][Display value:`showHilbert ? 'Show' : 'Hide'` /]  hilbert[/button]
 
-
+      !
     [/conditional]
-
-
   [/Step]
 
   [Step state:"algorithms"]

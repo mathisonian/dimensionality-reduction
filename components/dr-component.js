@@ -297,6 +297,7 @@ class DRComponent extends D3Component {
     }
 
     if (props.showHilbert !== this.props.showHilbert) {
+      this.$el.style('opacity', props.showHilbert ? 0.5 : 1);
       this.$hPath.attr('stroke', props.showHilbert ? 'black' : 'none');
     }
   }
