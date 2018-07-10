@@ -27,24 +27,9 @@ class DRComponent extends D3Component {
       .style('width', '100%')
       .style('height', 'auto')
       .style('overflow', 'visible')
+      .style('box-shadow', '0px 0px 10000px transparent') // hack for overflow on chrome
       // .style('background', 'white')
       // .style('max-height', '100vh');
-
-
-    const $elements = svg.selectAll('.element')
-      .data(images.map((d) => {
-        return Object.assign({_seed: Math.random()}, d);
-      }))
-
-    const $el = $elements.enter()
-        .append('g')
-        .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
-        .classed('element', true);
-
-
-    this.$el = $el;
-    this.$elements = $elements;
-
 
     this.weightKeys = Object.keys(props.weights);
     const _scaleCache = [];
@@ -79,8 +64,10 @@ class DRComponent extends D3Component {
       }
     })
 
-    const hPath = hilbertG.append('path').attr('d', hilbertPath).attr('fill', 'none').attr('stroke', 'none').node();
+    const $hPath = hilbertG.append('path').attr('d', hilbertPath).attr('fill', 'none').attr('stroke', 'none').attr('stroke-width', 3);
+    const hPath = $hPath.node();
 
+    this.$hPath = $hPath;
 
     const _pathLength = hPath.getTotalLength();
     this.hilbert = (d) => {
@@ -95,6 +82,22 @@ class DRComponent extends D3Component {
         y: yOffset + hilbertOut.y
       }
     }
+
+
+    const $elements = svg.selectAll('.element')
+      .data(images.map((d) => {
+        return Object.assign({_seed: Math.random()}, d);
+      }))
+
+    const $el = $elements.enter()
+        .append('g')
+        .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
+        .classed('element', true);
+
+
+    this.$el = $el;
+    this.$elements = $elements;
+
 
     this.$images = this.$el.append("svg:image")
       .attr('x', (d) => {
@@ -274,7 +277,9 @@ class DRComponent extends D3Component {
       this._updateHilbert(props);
     }
 
-
+    if (props.showHilbert !== this.props.showHilbert) {
+      this.$hPath.attr('stroke', props.showHilbert ? 'black' : 'none');
+    }
   }
 }
 
