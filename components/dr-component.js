@@ -184,7 +184,7 @@ class DRComponent extends D3Component {
       // .transition()
       // .duration(1000)
       .attr('transform', (d, i) => {
-        const { x, y } = this.hilbert(min + weights[i] / (max - min));
+        const { x, y } = this.hilbert((weights[i] - min) / (max - min));
         return  `translate(${jitter(x)}, ${jitter(y)})`;
       })
   }
