@@ -34,7 +34,7 @@
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
-        { name: "Fred Hohman", link: "http://twitter.com/fredhohman" }
+        { name: "Fred Hohman", link: "https://twitter.com/fredhohman" }
       ]` /]
 
     [StartButton state:scrollState /]
@@ -97,7 +97,7 @@
 
     We can describe the technique using a data-centric view.
     Consider a datseta typically represented as a matrix
-    [Equation display:false]X[/Equation], where
+    [Equation display:false]\textcolor{#fdefb5}{X}[/Equation], where
     [Equation display:false]X[/Equation]
     is of size
     [Equation display:false]m \times n[/Equation], where
@@ -118,6 +118,7 @@
 
     [br /]
     [Equation display:true]
+    \textcolor{#fdefb5}{
     X =
     \begin{bmatrix}
     x & x & x \\
@@ -131,6 +132,7 @@
     x & x
     \end{bmatrix}
     = X'
+    }
     [/Equation]
 
     [br /]
