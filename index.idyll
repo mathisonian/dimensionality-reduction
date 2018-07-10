@@ -6,10 +6,10 @@
 [data name:"images" source:"downloaded-artworks.csv"  /]
 [var name:"scrollState" value:"loading" /]
 
-[var name:"widthWeight" value:0.25 /]
-[var name:"heightWeight" value:0.25 /]
-[var name:"weightWeight" value:0.25 /]
-[var name:"brightnessWeight" value:0.25 /]
+[var name:"widthWeight" value:0 /]
+[var name:"heightWeight" value:0 /]
+[var name:"weightWeight" value:0 /]
+[var name:"brightnessWeight" value:1 /]
 
 
 [Fixed]
@@ -165,18 +165,14 @@
     to toggle the influence that variables have in determining
     the objects' position.
 
+    *Brightness*
+    [Range value:brightnessWeight min:0 max:1 step:0.005 /]
+
     *Width*
     [Range value:widthWeight min:0 max:1 step:0.005 /]
 
     *Height*
     [Range value:heightWeight min:0 max:1 step:0.005 /]
-
-    // *Weight*
-    // [Range value:weightWeight min:0 max:1 step:0.005 /]
-
-    *Brightness*
-    [Range value:brightnessWeight min:0 max:1 step:0.005 /]
-
 
     [var name:"showHilbert" value:false /]
 
