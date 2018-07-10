@@ -6,9 +6,9 @@ const Path = require('svg-path-generator');
 
 const size = 600;
 
-const jitter = (d) => {
+const jitter = (d, j = 20) => {
   // return d;
-  return d + 20 * (Math.random() - 0.5);
+  return d + j * (Math.random() - 0.5);
 }
 
 const brightnessKey = 'brightness_avg_perceived';
@@ -33,7 +33,7 @@ class DRComponent extends D3Component {
 
     this.weightKeys = Object.keys(props.weights);
     const _scaleCache = [];
-    this.weightKeys.forEach((key) => {
+    this.weightKeys.concat(['X_pca_x', 'X_pca_y', 'X_mctsne_x', 'X_mctsne_y', 'X_umap_x', 'X_umap_y']).forEach((key) => {
       _scaleCache[key] = d3.scaleLinear().domain(d3.extent(images, (d) => d[key]));
     })
 
@@ -48,10 +48,10 @@ class DRComponent extends D3Component {
     }
 
 
-    this.brightness = d3.scaleLinear().domain(d3.extent(images, (d) => d[brightnessKey])).range([0, this.width - this.width / 30]);
+    this.brightness = d3.scaleLinear().domain(d3.extent(images, (d) => d[brightnessKey])).range([0, this.height - this.height / 30]);
 
 
-    const scale = 0.66;
+    const scale = 0.9;
     const HILBERT_SIZE = 4;
     const _hilbertNormalize = d3.scaleLinear().domain([0, 1]).range([0, Math.pow(HILBERT_SIZE, 4)]);
     const _hilbert = new H.Hilbert2d(HILBERT_SIZE);
@@ -256,9 +256,10 @@ class DRComponent extends D3Component {
           this.$el
               .transition()
               .duration(1000)
-              .attr('transform', (d) => `translate(${jitter(this.brightness(d[brightnessKey]))}, ${jitter(this.height / 2 - this.height / 30 / 2)})` );
+              .attr('transform', (d) => `translate(${jitter(this.width / 2, this.width / 2)}, ${jitter(this.brightness(d[brightnessKey]))})` );
           break;
         case 'reset':
+          props.updateProps({ showHilbert: false });
           this.$el
             .transition()
             .duration(1000)
@@ -276,11 +277,23 @@ class DRComponent extends D3Component {
         case 'hilbert-custom':
           this._updateHilbert(props);
           break;
+        case 'algorithms':
+          props.updateProps({ showHilbert: false });
+          break;
         default:
           break;
       }
     } else if (props.state.indexOf('hilbert') > -1) {
       this._updateHilbert(props);
+    } else if (props.state === 'algorithms' && props.algorithm !== this.props.algorithm) {
+      this.$el
+        // .transition()
+        // .duration(1000)
+        .attr('transform', (d) => {
+          const x = this.width * this.normalizeVar(d, `X_${props.algorithm}_x`);
+          const y = this.height * this.normalizeVar(d, `X_${props.algorithm}_y`);
+          return  `translate(${x}, ${y})`;
+        })
     }
 
     if (props.showHilbert !== this.props.showHilbert) {

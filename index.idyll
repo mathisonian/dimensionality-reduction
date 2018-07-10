@@ -11,15 +11,18 @@
 [var name:"weightWeight" value:0 /]
 [var name:"brightnessWeight" value:1 /]
 [var name:"showHilbert" value:false /]
+[var name:"algorithm" value:"" /]
 
 [Fixed]
   [DRComponent
     images:images
     state:scrollState
     showHilbert:showHilbert
+    algorithm:algorithm
     weights:`{
       // 'Width (cm)': widthWeight,
       // 'Height (cm)': heightWeight,
+
       'brightness_avg_perceived': brightnessWeight
     }`
       /]
@@ -62,7 +65,7 @@
 
     [Table
       data:`images.slice(0, 5)`
-      columns:`['Title', 'Artist', 'Data']` /]
+      columns:`['Object Name', 'Title', 'Artist Display Name']` /]
 
     [br/]
 
@@ -199,7 +202,7 @@
 
   [/Step]
 
-  [Step state:"pca"]
+  [Step state:"algorithms"]
     # The Algorithms
 
     You may have noticed that its hard to find meaningful
@@ -210,13 +213,44 @@
     There are many algorithms that compute a dimensionality
     reduction of a dataset.
 
-    ### PCA
 
-    ### t-SNE
+    [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
-    ### UMAP
+      [button onClick:`algorithm = "pca" `]
+        PCA
+      [/button]
 
-    etc.
+      [button onClick:`algorithm = "mctsne" `]
+        TSNE
+      [/button]
+
+      [button onClick:`algorithm = "umap" `]
+        UMAP
+      [/button]
+    [/div]
+
+    [conditional if:`algorithm === 'pca' ` ]
+      ## PCA
+
+      Pros:
+
+      Cons:
+    [/conditional]
+    [conditional if:`algorithm === 'mctsne' ` ]
+      ## TSNE
+
+      Pros:
+
+      Cons:
+    [/conditional]
+    [conditional if:`algorithm === 'umap' ` ]
+      ## UMAP
+
+      Pros:
+
+      Cons:
+    [/conditional]
+
   [/Step]
 
   [Step]
