@@ -161,14 +161,18 @@ class DRComponent extends D3Component {
     let max = 0;
     let min = 0;
     let weights = [];
+    const scale = this.weightKeys.reduce((memo, key, i) => {
+      return memo + props.weights[key];
+    }, 0);
+    if (scale === 0) {
+      return;
+    }
     this.$el
       .each((d) => {
 
         const _weighted = this.weightKeys.reduce((memo, key, i) => {
           return memo + props.weights[key] * this.normalizeVar(d, key);
-        }, 0) / this.weightKeys.reduce((memo, key, i) => {
-          return memo + props.weights[key];
-        }, 0);
+        }, 0) / scale;
 
         if (_weighted > max) {
           max = _weighted;
