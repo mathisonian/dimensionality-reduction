@@ -13,6 +13,7 @@
 [var name:"brightnessWeight" value:1 /]
 [var name:"showHilbert" value:false /]
 [var name:"algorithm" value:"" /]
+[var name:"selectedArtwork" value:`null ` /]
 
 [Fixed]
   [DRComponent
@@ -20,6 +21,7 @@
     state:scrollState
     showHilbert:showHilbert
     algorithm:algorithm
+    selectedArtwork:selectedArtwork
     weights:`{
       // 'Width (cm)': widthWeight,
       // 'Height (cm)': heightWeight,
@@ -259,3 +261,6 @@
 
 [/Scroller]
 
+
+
+[ArtworkDetails artwork:selectedArtwork /]

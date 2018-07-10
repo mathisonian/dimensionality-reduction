@@ -11,6 +11,16 @@ const jitter = (d, j = 20) => {
 
 const brightnessKey = 'brightness_avg_perceived';
 
+const smallImageSize = 20;
+const largeImageSize = 4 * smallImageSize;
+let revealed = false;
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
 
 class DRComponent extends D3Component {
 
@@ -36,11 +46,11 @@ class DRComponent extends D3Component {
     })
 
     this.normalizeVar = (d, key) => {
-      console.log(key);
+      // console.log(key);
       try {
         return _scaleCache[key](d[key]);
       } catch(e) {
-        console.log(e);
+        // console.log(e);
         return 1;
       }
     }
@@ -105,49 +115,61 @@ class DRComponent extends D3Component {
 
     this.$images = this.$el.append("svg:image")
       .attr('x', (d) => {
-        return -10;
+        return - smallImageSize / 2;
       })
       .attr('y', (d) => {
-        return -10;
+        return - smallImageSize / 2;
       })
       .attr('width', (d) => {
-        return 20;
+        return smallImageSize;
       })
       .attr('height', (d) => {
-        return 20;
+        return smallImageSize;
       })
       .on('mouseenter', (d, i, nodes) => {
-        console.log('mouseenter');
+
+        if (!revealed) {
+          return;
+        }
+        // console.log('mouseenter');
         // TODO - move node's parent to front
+        this.props.updateProps({
+          selectedArtwork: d
+        });
+
+        d3.select(nodes[i].parentNode).moveToFront();
 
         d3.select(nodes[i])
         .attr('x', (d) => {
-          return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 5 * 3;
+          return - largeImageSize / 2;
         })
         .attr('y', (d) => {
-          return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 5 * 3;
+          return - largeImageSize / 2;
         })
         .attr('width', (d) => {
-          return this.normalizeVar(d, 'Width (cm)') * this.width / 5 * 6;
+          return largeImageSize;
         })
         .attr('height', (d) => {
-          return this.normalizeVar(d, 'Height (cm)') * this.height / 5 * 6;
+          return largeImageSize;
         })
       })
       .on('mouseleave', (d, i, nodes) => {
-        console.log('mouseleave');
+        // console.log('mouseleave');
+        this.props.updateProps({
+          selectedArtwork: null
+        });
         d3.select(nodes[i])
           .attr('x', (d) => {
-            return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 5 / 2;
+            return - smallImageSize / 2;
           })
           .attr('y', (d) => {
-            return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 5 / 2;
+            return - smallImageSize / 2;
           })
           .attr('width', (d) => {
-            return this.normalizeVar(d, 'Width (cm)') * this.width / 5;
+            return smallImageSize;
           })
           .attr('height', (d) => {
-            return this.normalizeVar(d, 'Height (cm)') * this.height / 5;
+            return smallImageSize;
           })
       })
       .style('opacity', 0)
@@ -239,6 +261,7 @@ class DRComponent extends D3Component {
           break;
 
         case 'reveal':
+          revealed = true;
           this.$images.style('opacity', 1);
           this.$rects
             .transition()
@@ -288,7 +311,7 @@ class DRComponent extends D3Component {
         default:
           break;
       }
-    } else if (props.state.indexOf('hilbert') > -1) {
+    } else if (props.state.indexOf('hilbert') > -1 && props.selectedArtwork === this.props.selectedArtwork) {
       this._updateHilbert(props);
     } else if (props.state === 'algorithms' && props.algorithm !== this.props.algorithm) {
       this.$el
