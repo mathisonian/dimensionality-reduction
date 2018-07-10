@@ -38,7 +38,13 @@ class DRComponent extends D3Component {
     })
 
     this.normalizeVar = (d, key) => {
-      return _scaleCache[key](d[key]);
+      console.log(key);
+      try {
+        return _scaleCache[key](d[key]);
+      } catch(e) {
+        console.log(e);
+        return 1;
+      }
     }
 
 
@@ -101,16 +107,16 @@ class DRComponent extends D3Component {
 
     this.$images = this.$el.append("svg:image")
       .attr('x', (d) => {
-        return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 10 / 2;
+        return -10;
       })
       .attr('y', (d) => {
-        return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 10 / 2;
+        return -10;
       })
       .attr('width', (d) => {
-        return this.normalizeVar(d, 'Width (cm)') * this.width / 10;
+        return 20;
       })
       .attr('height', (d) => {
-        return this.normalizeVar(d, 'Height (cm)') * this.height / 10;
+        return 20;
       })
       .on('mouseenter', (d, i, nodes) => {
         console.log('mouseenter');
@@ -147,7 +153,7 @@ class DRComponent extends D3Component {
           })
       })
       .style('opacity', 0)
-      .attr("xlink:href", (d) => d.ThumbnailURL);
+      .attr("xlink:href", (d) => `./static/images/met/${d['Object ID']}.jpg`);
 
 
 
@@ -207,7 +213,7 @@ class DRComponent extends D3Component {
             .attr('y', 0)
             .attr('width', 0)
             .attr('height', 0)
-            .style('fill', '#fff');
+            .style('fill', '#feefae');
 
           this.$rects
             .transition()
@@ -217,16 +223,16 @@ class DRComponent extends D3Component {
             .delay((d, i) => 50 + 25 * Math.random() + i * 5)
             .ease(d3.easeElasticOut)
             .attr('x', (d) => {
-              return -1 * this.normalizeVar(d, 'Width (cm)') * this.width / 10 / 2;
+              return -10;
             })
             .attr('y', (d) => {
-              return -1 * this.normalizeVar(d, 'Height (cm)') * this.height / 10 / 2;
+              return -10;
             })
             .attr('width', (d) => {
-              return this.normalizeVar(d, 'Width (cm)') * this.width / 10;
+              return 20;
             })
             .attr('height', (d) => {
-              return this.normalizeVar(d, 'Height (cm)') * this.height / 10;
+              return 20;
             })
             // .on('end', () => {
             //     // `./static/images/${d.AccessionNumber}.jpg`)

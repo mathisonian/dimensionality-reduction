@@ -3,7 +3,7 @@
   description:"An intuitive guide to the statistical technique." /]
 
 
-[data name:"images" source:"downloaded-artworks.csv"  /]
+[data name:"images" source:"met-with-coordinates.csv"  /]
 [var name:"scrollState" value:"loading" /]
 
 [var name:"widthWeight" value:0 /]
@@ -18,8 +18,8 @@
     state:scrollState
     showHilbert:showHilbert
     weights:`{
-      'Width (cm)': widthWeight,
-      'Height (cm)': heightWeight,
+      // 'Width (cm)': widthWeight,
+      // 'Height (cm)': heightWeight,
       'brightness_avg_perceived': brightnessWeight
     }`
       /]
@@ -94,9 +94,6 @@
     // intro
     [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
 
-
-
-
     The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
     This presents a challenge for all dimsionality reduction techniques, since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the embedding or structure that is produced by the reduction algorithm.
 
@@ -157,6 +154,8 @@
     to toggle the influence that variables have in determining
     the objects' position.
 
+    [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
+
     *Brightness*
     [Range value:brightnessWeight min:0 max:1 step:0.005 /]
 
@@ -165,6 +164,8 @@
 
     *Height*
     [Range value:heightWeight min:0 max:1 step:0.005 /]
+
+    [/div]
 
     [var name:"showHilbertDetails" value:false /]
 
