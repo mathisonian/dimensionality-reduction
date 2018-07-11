@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .article-header h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-family: 'Arvo';
   color: white !important;
 }
@@ -35,7 +35,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .byline a, a {
-  color: hsla(193, 81%, 73%, 1);
+  color: hsl(49, 98%, 84%);
+  /* color: hsla(193, 81%, 73%, 1); */
 }
 
 .idyll-scroll {
@@ -68,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   color: hsl(49, 98%, 84%);
   font-family: 'Arvo';
+  font-size: 40px;
 }
 
 p {
@@ -86,6 +88,7 @@ svg text {
 .rt-tbody {
   color: #1E467E;
 }
+
 .rt-thead {
   background: #ffd5c7;
   color: #1E467E;
@@ -119,6 +122,10 @@ button {
 }
 
 .katex-html {
-  color: hsla(15, 100%, 89%, 1);
+  color: hsl(49, 98%, 84%);
   /* #fdefb5  */
+}
+
+.reference {
+  font-size: 14px;
 }

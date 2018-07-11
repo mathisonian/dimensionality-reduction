@@ -49,60 +49,102 @@
     [StartButton state:scrollState /]
   [/Step]
 
+  [Step state:"intro"]
+
+  # The Intro
+
+  [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful
+  technique used in data mining, machine learning, and now more broadly, AI research and applications
+  that is used to visualize datasets to identify patterns and clusters of similar or dissimlar data.
+  // cite some applications?
+
+  More formally, the goal of dimsionality reduction, a subset of unsupervised learning,
+  is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
+  
+  [br/]
+
+  This presents a challenge for all dimsionality reduction techniques,
+  since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the
+  embedding or structure that is produced by the reduction algorithm.
+
+  Furthermore, many of the commonly used algorithms produce puzzling *embeddings*: the output of dimensionality reduction.
+
+  Here, we will show examples of what dimensionality produces on real data,
+  present an interactive visualization of a simple reduction that allows a user to specify the rules of the embedding,
+  and a comparison of three of the most popular dimensionality reduction algorithms used today.
+
+  [/Step]
+
   [Step state:"reveal"]
 
     # The Art
+    
+    For our data, consider a collection of artworks from the [The Metropolitan Museum of Art](https://www.metmuseum.org/) [Cite reference:"met"/].
+    
+    [br/]
 
-    Consider a dataset of artworks from the [The Museum of Modern Art (MoMA) Collection](https://github.com/MuseumofModernArt/collection).
-    This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
+    We will use a subset of this data that contains 1,517 artworks.
+    
+    [br/]
+
+    Hover over an artwork to see its details.
+
   [/Step]
 
   [Step state:"table"]
+
     # The Data
 
-    Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
-
+    Each artwork includes basic metadata, such as its title, artist, date made, medium, and dimensions.
+    Below are 10 random artworks from the dataset.
 
     [br/]
 
     [Table
-      data:`images.slice(0, 5)`
+      data:`images.slice(0, 10)`
       columns:`['Object Name', 'Title', 'Artist Display Name']` /]
 
     [br/]
 
-    Computer scientists like to call these data attributes *features*.
+    Computer scientists like to call metadata for each data point (artwork) *features*.
+
   [/Step]
 
 
   [Step state:"1d"]
+
     # The Projection
 
     If you store the features in a *vector*, you can think of the data as existing in
-    an n-dimension space.
+    a high-dimensional space.
 
-    We often want to visualize the data, however we can't show all the dimensions at once.
-    Instead we can choose to project the data into a lower dimension that can
-    be visualized.
+    We often want to visualize the data, however we cannot show all the dimensions at once.
+    Instead we can choose to project the data into a lower dimension (oftentimes 1D, 2D, or 3D) that can be visualized.
+    This projection sometimes is also called an embedding.
+    // of the data into a lower dimensional space.
 
     // TODO - make this better
     [Svg src:"./static/images/projection.svg" /]
 
-    Here we sort the artworks by brighness, with the darkest images on the left,
-    and the brightest images on the right. Since we're projecting the artwork onto a line, this can be considered a dimensionality reduction to one-dimension. (Remember points are 0D, lines 1D, plane 2D, etc.)
+    Let's compute a 1 dimensional embedding.
+    This means we will take each artwork and compute one number to describe it
+    instead of all of the features we showed earlier in the table.
+    A benefit of reducing to 1D is that we can sort the numbers, and thus the artworks, on a line.
+    (Remember points are 0D, lines are 1D, planes are 2D, etc.)
+
+    Let's reduce using *average pixel brightness* of each arwork, and then sort these values.
+    
+    Notice that the darkest images appear at the top and the brightest images on the bottom!
+
   [/Step]
 
 
   [Step state:"reset"]
+
     # The Math
 
-    // intro
-    [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful technique used in data mining, machine learning, and now more broadly, AI research and applications.
+    We can formulate dimensionality mathematically in the context of a given dataset.
 
-    The goal of dimsionality reduction, a subset of unsupervised learning, is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
-    This presents a challenge for all dimsionality reduction techniques, since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the embedding or structure that is produced by the reduction algorithm.
-
-    We can describe the technique using a data-centric view.
     Consider a datseta typically represented as a matrix
     [Equation display:false]X[/Equation], where
     [Equation display:false]X[/Equation]
@@ -112,16 +154,19 @@
     [Equation display:false]X[/Equation], and
     [Equation display:false]n[/Equation] is the number of columns.
     Typically, the rows are *data points* and the columns are *features*.
-    Dimesionality reduction will reduce the number of eatures of each data point, turning
+    Dimesionality reduction will reduce the number of features of each data point, turning
     [Equation display:false]X[/Equation] into a new matrix,
     [Equation display:false]X'[/Equation], of size
     [Equation display:false]m \times d[/Equation], where
     [Equation display:false]d < n[/Equation].
+    As already stated, for visualization, we typically set 
+    [Equation display:false]d[/Equation] to be 1, 2 or 3.
 
     For example, say [Equation display:false]m=n[/Equation], that is
     [Equation display:false]X[/Equation] is a square matrix.
     Performing dimesionality reduction on
-    [Equation display:false]X[/Equation] will change it from a square matrix to a tall, thin, rectangular matrix.
+    [Equation display:false]X[/Equation] and setting 
+    [Equation display:false]d=2[/Equation] will change it from a square matrix to a tall, rectangular matrix.
 
     [br /]
     [Equation display:true]
@@ -133,16 +178,18 @@
     \end{bmatrix}
     \implies
     \begin{bmatrix}
-    x & x \\
-    x & x \\
-    x & x
+    x' & x' \\
+    x' & x' \\
+    x' & x'
     \end{bmatrix}
     = X'
     [/Equation]
 
-    [br /]
-    *Reducing a 3x3 square matrix to a 3x2 matrix. Each data point only has two features now, i.e., each point has been reduced from a 3 dimensional vector to a 2 dimensional vector.*
-    [br /]
+    Here,
+    [Equation display:false]x[/Equation] and 
+    [Equation display:false]x'[/Equation] just represent nonzero values of a matrix.
+
+    Each data point only has two features now, i.e., each data point has been reduced from a 3 dimensional vector to a 2 dimensional vector.
 
   [/Step]
 
@@ -238,7 +285,7 @@
       Cons:
 
 
-      [Cite reference:"mcinnes2018umap"  /]
+      [Cite reference:"maaten2008visualizing"  /]
     [/conditional]
 
 
@@ -248,12 +295,15 @@
   [Step]
     # The Outro
 
-    If you have a data set and wish to understand it better, there are a number of different algorithms and implementations to perform dimensionality reduction.
-    In Python, the scikit-learn package provided implementions for [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html), as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
+    If you have a data set and wish to understand it better, there are a number of different algorithms and
+    implementations to perform dimensionality reduction.
+    In Python, the scikit-learn package provided implementions for
+    [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html),
+    as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
     ### Acknowledgements
-* This article was created using [Idyll](https://idyll-lang.org).
-* The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
+  * This article was created using [Idyll](https://idyll-lang.org).
+  * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 
     [References /]
 
