@@ -12,7 +12,7 @@
 [var name:"endDateWeight" value:0 /]
 [var name:"brightnessWeight" value:1 /]
 [var name:"showHilbert" value:false /]
-[var name:"algorithm" value:"pca" /]
+[var name:"algorithm" value:"" /]
 [var name:"selectedArtwork" value:`null ` /]
 
 [Fixed]

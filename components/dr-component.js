@@ -19,7 +19,6 @@ const DELAY_BASE = 150;
 const smallImageSize = 20;
 const largeImageSize = 160;
 let revealed = false;
-let firstAlgo = true;
 
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
@@ -282,24 +281,23 @@ class DRComponent extends D3Component {
 
         case 'reveal':
           revealed = true;
-          this
-            .$images
-            .style('opacity', 1);
-          this.$rects
-            .transition()
-            .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
-            .duration(ANIMATION_DURATION)
-            .style('opacity', 0)
-            .on('end', function() {
-              d3.select(this).remove();
-            })
-          break;
-        case 'table':
           if (this.props.state === '1d') {
             this.$el
               .transition()
               .duration(ANIMATION_DURATION)
               .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
+          } else {
+            this
+              .$images
+              .style('opacity', 1);
+            this.$rects
+              .transition()
+              .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
+              .duration(ANIMATION_DURATION)
+              .style('opacity', 0)
+              .on('end', function() {
+                d3.select(this).remove();
+              })
           }
           break;
         case '1d':
@@ -326,20 +324,10 @@ class DRComponent extends D3Component {
           break;
         case 'hilbert-custom':
           this._updateHilbert(props);
+          props.updateProps({ algorithm: '' });
           break;
         case 'algorithms':
-          if (firstAlgo) {
-            firstAlgo = false;
-            this.$el
-              .transition()
-              .duration(ANIMATION_DURATION)
-              .attr('transform', (d) => {
-                const x = this.width * this.normalizeVar(d, `X_${props.algorithm}_x`);
-                const y = this.height * this.normalizeVar(d, `X_${props.algorithm}_y`);
-                return  `translate(${x}, ${y})`;
-              })
-          }
-          props.updateProps({ showHilbert: false });
+          props.updateProps({ showHilbert: false, algorithm: 'pca' });
           break;
         default:
           break;
