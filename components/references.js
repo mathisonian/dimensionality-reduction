@@ -17,12 +17,12 @@ class References extends React.Component {
 
   createReference(reference, i) {
     return (
-      <li id={`reference-${i + 1}`} key={reference.TITLE}>
+      <li id={`reference-${i + 1}`} key={reference.TITLE} className={'reference'}>
         <strong>{reference.TITLE}.</strong>
         <br />
         {reference.AUTHOR}.
         <br />
-        <i>{reference.BOOKTITLE}. {reference.LOCATION}, {reference.YEAR}.</i>
+        <i>{reference.JOURNAL}, {reference.YEAR}.</i>
       </li>
     )
   }
