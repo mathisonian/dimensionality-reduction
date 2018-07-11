@@ -195,16 +195,19 @@
 
 
   [Step state:"hilbert-brightness"]
+
     # The Embedding
 
-    Here we take the same brightness attribute and use it to position
-    the artworks in 2D space instead of 1D.
+    Instead of reducing to 1D, let's add another dimension and embed the artworks in 2D.
 
+    Here we take the same brightness feature and use it to position the artworks in 2D space instead of 1D.
     The pieces have more room to spread out.
 
-    Some projections are more useful than others. Use these sliders
-    to toggle the influence that variables have in determining
-    the objects' position.
+    But this is not the only way to emebd the artworks in 2D space. 
+    In fact, there are many, and some projections are more useful than others.
+
+    Use these sliders to toggle the influence that the features brightness, artwork age, and 3RD THING HERE
+    have in determining the artworks' embedding positions.
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
@@ -237,16 +240,26 @@
   [/Step]
 
   [Step state:"algorithms"]
+
     # The Algorithms
 
-    You may have noticed that its hard to find meaningful
-    combinations of variable weights. This is something
-    that computers are very good at: searching for
-    some optimal combination of numbers.
+    We just showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
+    However, you may have noticed that its hard to find meaningful combinations of feature weights.
+    Luckily this is something that computers are very good at: searching for some optimal combination of numbers.
 
-    There are many algorithms that compute a dimensionality
-    reduction of a dataset.
+    There are many algorithms that compute a dimensionality reduction of a dataset.
+    Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible emebdding.
+    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) ## TSNE [Cite reference:"maaten2008visualizing"/], iteratively produce highly clustered embeddings.
+    Unfortunately, whereas before each feature's influence was explictly known, one must relinquish control to a machine to determine the best embeding—
+    that means that it is not clear what features of the data are used to compute the embedding.
 
+    Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
+    developing new techniques to create better embeddings.
+    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/], is a non-linear reduction that aims to create visually striking
+    embeddings fast, scaling to larger datasets.
+
+    Below are the three discussed algorithms run on the artworks.
+    Click each button to toggle between the resulting embeddings.
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
@@ -255,7 +268,7 @@
       [/button]
 
       [button onClick:`algorithm = "mctsne" `]
-        TSNE
+        t-SNE
       [/button]
 
       [button onClick:`algorithm = "umap" `]
@@ -267,25 +280,39 @@
       ## PCA
 
       Pros:
+* Computationally cheap. 
+* Can save embedding model to then project new data points into the reduced space.
+* Determinsitic algorithm.
 
       Cons:
+* Linear reduction, resulting embedding is not as clustered as other algorithm.
+
     [/conditional]
     [conditional if:`algorithm === 'mctsne' ` ]
-      ## TSNE
+      ## t-SNE
 
       Pros:
+* Produces highly clustered, visualy striking embeddings.
+* Non-linear reduction, captures more structure in data.
 
       Cons:
+* More computationally expensive.
+* Requires setting hyperparameters that influence quality of the emebdding.
+* Non-determinsitic algorithm.
+
     [/conditional]
     [conditional if:`algorithm === 'umap' ` ]
       ## UMAP
 
       Pros:
+* Non-linear reduction that is computationally faster than t-SNE.
+* Often performs better at finding global structure of the data as well as preserving local neighbor relations.
+* Solid theoretical foundations in manifold learning.
 
       Cons:
+* New, less prevalent algorithm.
+* Requires setting hyperparameters that influence quality of the emebdding.
 
-
-      [Cite reference:"maaten2008visualizing"  /]
     [/conditional]
 
 
@@ -295,15 +322,21 @@
   [Step]
     # The Outro
 
-    If you have a data set and wish to understand it better, there are a number of different algorithms and
-    implementations to perform dimensionality reduction.
-    In Python, the scikit-learn package provided implementions for
-    [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html),
+    Dimensionality reduction is a powerful tool to better understand high-dimensional data.
+    If you have your own dataset and wish to visualize it using dimensionality reduction, there are a number of different algorithms and
+    implementations available.
+    In Python, the scikit-learn package provides APIs for many
+    [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html) algorithms,
     as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
+    Regarding the three algorithms dicussed above, you can find Python implementations of the algorithms we used for the artworks here:
+    [PCA](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html),
+    [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html), 
+    and [UMAP](https://github.com/lmcinnes/umap).
+
     ### Acknowledgements
-  * This article was created using [Idyll](https://idyll-lang.org).
-  * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
+* This article was created using [Idyll](https://idyll-lang.org).
+* The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 
     [References /]
 
