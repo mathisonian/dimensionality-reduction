@@ -168,7 +168,6 @@
     [Equation display:false]X[/Equation] and setting 
     [Equation display:false]d=2[/Equation] will change it from a square matrix to a tall, rectangular matrix.
 
-    [br /]
     [Equation display:true]
     X =
     \begin{bmatrix}
@@ -231,11 +230,26 @@
     [/conditional]
 
     [conditional if:showHilbertDetails ]
-      Say something about the hilbert curve.
+    The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
+    mapped on a space-filling hilbert curve to give the illusion of a 2D embedding.
 
-      [button onClick:`showHilbert = !showHilbert `][Display value:`showHilbert ? 'Show' : 'Hide'` /]  hilbert[/button]
+    Each artwork's 1D reduced projection is computed by a linear combination of the three features above.
 
-      !
+    Let [Equation display:false]a[/Equation] be a given artwork, and let each slider's value be a weight
+    [Equation display:false]w_{i}[/Equation].
+    We will compute
+    [Equation display:false]a'[/Equation], the scalar projection of 
+    [Equation display:false]a[/Equation] into
+    [Equation display:false]\mathbb{R}[/Equation].
+
+    [Equation display:true]
+    a' = (a_{\text{brightness}} \times w_{\text{brightness}}) + (a_{\text{age}} \times w_{\text{age}}) + (a_{\text{THIRD}} \times w_{\text{THIRD}})
+    [/Equation]
+
+    We then jitter the artworks to prevent excessive overlap.
+
+    [button onClick:`showHilbert = !showHilbert `][Display style:`margin:0` value:`showHilbert ? 'hide' : 'show'` /] hilbert curve[/button]
+
     [/conditional]
   [/Step]
 
@@ -249,14 +263,16 @@
 
     There are many algorithms that compute a dimensionality reduction of a dataset.
     Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible emebdding.
-    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) ## TSNE [Cite reference:"maaten2008visualizing"/], iteratively produce highly clustered embeddings.
-    Unfortunately, whereas before each feature's influence was explictly known, one must relinquish control to a machine to determine the best embeding—
+    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
+    iteratively produce highly clustered embeddings.
+    Unfortunately, whereas before each feature's influence was explictly known,
+    one must relinquish control to a machine to determine the best embedding—
     that means that it is not clear what features of the data are used to compute the embedding.
 
     Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
     developing new techniques to create better embeddings.
-    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/], is a non-linear reduction that aims to create visually striking
-    embeddings fast, scaling to larger datasets.
+    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/],
+    is a non-linear reduction that aims to create visually striking embeddings fast, scaling to larger datasets.
 
     Below are the three discussed algorithms run on the artworks.
     Click each button to toggle between the resulting embeddings.
@@ -282,7 +298,6 @@
       Pros:
 * Computationally cheap. 
 * Can save embedding model to then project new data points into the reduced space.
-* Determinsitic algorithm.
 
       Cons:
 * Linear reduction, resulting embedding is not as clustered as other algorithm.
