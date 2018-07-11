@@ -199,8 +199,8 @@ class DRComponent extends D3Component {
   }
 
   _updateHilbert(props) {
-    let max = 0;
-    let min = 0;
+    let max = Number.NEGATIVE_INFINITY;
+    let min = Number.POSITIVE_INFINITY;
     let weights = [];
     // const scale = this.weightKeys.reduce((memo, key, i) => {
     //   return memo + props.weights[key];
@@ -225,7 +225,7 @@ class DRComponent extends D3Component {
         weights.push(_weighted);
       });
 
-    console.log(max);
+    console.log('min', min, 'max', max);
     this.$el
       // .transition()
       // .duration(1000)

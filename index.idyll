@@ -40,7 +40,7 @@
 
     [Header
       title:"The Beginner's Guide to Dimensionality Reduction"
-      subtitle:"Explore our interactive tutorial."
+      subtitle:"Welcome to our interactive tutorial."
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
