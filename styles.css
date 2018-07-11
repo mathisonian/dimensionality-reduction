@@ -155,9 +155,8 @@ button {
   }
 }
 
-.katex-html {
+.katex {
   color: hsla(51,100%,98%,1);
-  /* #fdefb5  */
 }
 
 .reference {
