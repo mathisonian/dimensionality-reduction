@@ -2,6 +2,9 @@
   "name": "what-is-dimensionality-reduction",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "make-thumbnails": "thumb -w 40 -s '' static/images/met/ static/images/thumbnails/met/"
+  },
   "idyll": {
     "layout": "blog",
     "template": "_index.html"
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "gh-pages": "^0.12.0",
+    "node-thumbnail": "^0.14.0",
     "papaparse": "^4.5.0",
     "puppeteer": "^1.5.0"
   }
