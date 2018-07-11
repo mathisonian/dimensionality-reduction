@@ -4,6 +4,9 @@ import * as d3 from 'd3';
 
 const imageSize = 40;
 
+
+const IMAGE_BASE = 'https://s3-us-west-2.amazonaws.com/idyll-pub'
+
 class Projection extends React.Component {
 
   constructor(props) {
@@ -50,7 +53,7 @@ class Projection extends React.Component {
         .style('fill', '#fff');
 
       img
-        .attr("xlink:href", `./static/images/thumbnails/met/${image['Object ID']}.jpg`)
+        .attr("xlink:href", `${IMAGE_BASE}/thumbnails/met/${image['Object ID']}.jpg`)
         .transition().duration(1000)
         .attr('x', x(r) - imageSize / 2);
 

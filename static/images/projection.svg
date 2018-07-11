@@ -6,24 +6,26 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect class="" id="Rectangle-2" fill="#1E467E" x="0" y="0" width="622" height="477"></rect>
-        <g class="container" class="" id="projection" transform="translate(91.000000, 48.000000)">
-            <rect class="" id="Rectangle" stroke="#FFD5C7" stroke-width="5" transform="translate(222.000000, 74.500000) rotate(-270.000000) translate(-222.000000, -74.500000) " x="198" y="-145" width="48" height="439" rx="24"></rect>
-            <text class="" id="Attributes-Copy" font-family="Arvo-Bold, Arvo" font-size="24" font-weight="bold" fill="#000000">
-                <tspan x="149" y="23">Attributes</tspan>
+        <g class="container" class="" id="projection" transform="translate(87.000000, 50.000000)">
+            <rect class="" id="Rectangle" stroke="#FFD5C7" stroke-width="5" transform="translate(226.000000, 72.500000) rotate(-270.000000) translate(-226.000000, -72.500000) " x="202" y="-147" width="48" height="439" rx="24"></rect>
+            <text class="" id="Features" font-family="Arvo-Bold, Arvo" font-size="24" font-weight="bold" fill="#000000">
+                <tspan x="167.65625" y="23">Features</tspan>
             </text>
             <text class="" id="Output" font-family="Arvo-Bold, Arvo" font-size="24" font-weight="bold" fill="#000000">
-                <tspan x="177" y="376">Output</tspan>
+                <tspan x="183.09375" y="374">Output</tspan>
             </text>
-            <text class="" id="0" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
-                <tspan x="38.3105469" y="333">0</tspan>
+            <text id="0-(dark)" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="42.3105469" y="331">0</tspan>
+                <tspan x="0.59765625" y="352">(dark)</tspan>
             </text>
-            <text class="" id="1" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
-                <tspan x="403" y="334">1</tspan>
+            <text id="1-(bright)" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="407" y="332">1</tspan>
+                <tspan x="407" y="353">(bright)</tspan>
             </text>
             <text class="R " id="D" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
-                <tspan x="206" y="214">D.R.</tspan>
+                <tspan x="210" y="212">D.R.</tspan>
             </text>
-            <g class="attribute-labels" id="" transform="translate(30.000000, 58.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
+            <g class="attribute-labels" id="" transform="translate(34.000000, 56.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
                 <g class="" id="Group">
                     <text class="" id="a" font-size="24">
                         <tspan x="0" y="23">a</tspan>
@@ -65,16 +67,16 @@
                     </text>
                 </g>
             </g>
-            <path d="M111.5,325.5 L221.5,222.5" class="output-line" id="" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <rect class="" id="Rectangle-3" stroke="#FFD5C7" stroke-width="5" x="171.5" y="192.5" width="101" height="30"></rect>
-            <path d="M51.5,109.5 L219.5,190.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M138.5,114.5 L220.5,186.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M222.5,116.5 L222.5,187.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M316.5,116.5 L221.5,188.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M400.5,113.5 L227.5,190.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M204,192.482127 C210.267433,185.799368 216.438678,182.457989 222.513734,182.457989 C228.58879,182.457989 234.760035,185.799368 241.027468,192.482127 L204,192.482127 Z" class="" id="Path-2" fill="#FFD5C7"></path>
-            <path d="M63.5,327.5 L388.353813,327.5" class="bottom-line" id="" stroke="#FFD5C7" stroke-width="4" stroke-linecap="square"></path>
-            <circle class="output-circle" id="" fill="#FFFFFF" cx="108.5" cy="328.5" r="7.5"></circle>
+            <path d="M115.5,323.5 L225.5,220.5" class="output-line" id="" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <rect class="" id="Rectangle-3" stroke="#FFD5C7" stroke-width="5" x="175.5" y="190.5" width="101" height="30"></rect>
+            <path d="M55.5,107.5 L223.5,188.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M142.5,112.5 L224.5,184.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M226.5,114.5 L226.5,185.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M320.5,114.5 L225.5,186.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M404.5,111.5 L231.5,188.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M208,190.482127 C214.267433,183.799368 220.438678,180.457989 226.513734,180.457989 C232.58879,180.457989 238.760035,183.799368 245.027468,190.482127 L208,190.482127 Z" class="" id="Path-2" fill="#FFD5C7"></path>
+            <path d="M67.5,325.5 L392.353813,325.5" class="bottom-line" id="" stroke="#FFD5C7" stroke-width="4" stroke-linecap="square"></path>
+            <circle class="output-circle" id="" fill="#FFFFFF" cx="112.5" cy="326.5" r="7.5"></circle>
         </g>
     </g>
 </svg>

@@ -4,6 +4,8 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
+const IMAGE_BASE = 'https://s3-us-west-2.amazonaws.com/idyll-pub'
+
 const jitter = (d, j = 40) => {
   // return d;
   return d + j * (Math.random() - 0.5);
@@ -162,7 +164,7 @@ class DRComponent extends D3Component {
         .attr('height', (d) => {
           return largeImageSize;
         })
-        .attr("xlink:href", (d) => `./static/images/met/${d['Object ID']}.jpg`);
+        .attr("xlink:href", (d) => `${IMAGE_BASE}/met/${d['Object ID']}.jpg`);
       })
       .on('mouseleave', (d, i, nodes) => {
         // console.log('mouseleave');
@@ -182,7 +184,7 @@ class DRComponent extends D3Component {
           .attr('height', (d) => {
             return smallImageSize;
           })
-          .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
+          .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
 
@@ -274,7 +276,7 @@ class DRComponent extends D3Component {
             setTimeout(() => {
               this
                 .$images
-                .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`)
+                .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`)
             }, 2000)
 
           break;
