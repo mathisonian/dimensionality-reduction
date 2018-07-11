@@ -19,6 +19,7 @@ const DELAY_BASE = 150;
 const smallImageSize = 20;
 const largeImageSize = 160;
 let revealed = false;
+let firstAlgo = true;
 
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
@@ -34,13 +35,14 @@ class DRComponent extends D3Component {
     this.width = node.getBoundingClientRect().width;
     this.height = window.innerHeight;
 
-    const images = props.images;//.filter((d) => Math.random() > 0.5);
+    const images = props.images.filter((d) => Math.random() > 0.5);
 
     const svg = this.svg = d3.select(node).append('svg');
     svg.attr('viewBox', `0 0 ${this.width} ${this.height}`)
       .style('width', '100%')
       .style('height', 'auto')
       .style('overflow', 'visible')
+      .style('cursor', 'crosshair')
       .style('box-shadow', '0px 0px 10000px transparent') // hack for overflow on chrome
       // .style('background', 'white')
       // .style('max-height', '100vh');
@@ -49,7 +51,10 @@ class DRComponent extends D3Component {
     const _scaleCache = [];
     this.weightKeys.concat(['X_pca_x', 'X_pca_y', 'X_mctsne_x', 'X_mctsne_y', 'X_umap_x', 'X_umap_y']).forEach((key) => {
       _scaleCache[key] = d3.scaleLinear().domain(d3.extent(images, (d) => d[key]));
+      console.log(key, _scaleCache[key].domain())
     })
+
+    console.log('this.weightKeys', this.weightKeys);
 
     this.normalizeVar = (d, key) => {
       // console.log(key);
@@ -181,7 +186,6 @@ class DRComponent extends D3Component {
           .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
-      .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
 
 
 
@@ -198,18 +202,19 @@ class DRComponent extends D3Component {
     let max = 0;
     let min = 0;
     let weights = [];
-    const scale = this.weightKeys.reduce((memo, key, i) => {
-      return memo + props.weights[key];
-    }, 0);
-    if (scale === 0) {
-      return;
-    }
+    // const scale = this.weightKeys.reduce((memo, key, i) => {
+    //   return memo + props.weights[key];
+    // }, 0);
+    // if (scale === 0) {
+    //   return;
+    // }
     this.$el
       .each((d) => {
 
         const _weighted = this.weightKeys.reduce((memo, key, i) => {
+          // console.log('props.weights[' + key + ']', props.weightKeys)
           return memo + props.weights[key] * this.normalizeVar(d, key);
-        }, 0) / scale;
+        }, 0);
 
         if (_weighted > max) {
           max = _weighted;
@@ -241,7 +246,8 @@ class DRComponent extends D3Component {
             .attr('y', 0)
             .attr('width', 0)
             .attr('height', 0)
-            .style('fill', '#ffd5c7');
+            .style('fill', '#FFD5C7');
+
 
           this.$rects
             .transition()
@@ -263,14 +269,22 @@ class DRComponent extends D3Component {
               return 20;
             })
             // .on('end', () => {
-            //     // `./static/images/${d.AccessionNumber}.jpg`)
+            //   // `./static/images/${d.AccessionNumber}.jpg`)
             // });
+
+            setTimeout(() => {
+              this
+                .$images
+                .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`)
+            }, 2000)
 
           break;
 
         case 'reveal':
           revealed = true;
-          this.$images.style('opacity', 1);
+          this
+            .$images
+            .style('opacity', 1);
           this.$rects
             .transition()
             .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
@@ -314,6 +328,17 @@ class DRComponent extends D3Component {
           this._updateHilbert(props);
           break;
         case 'algorithms':
+          if (firstAlgo) {
+            firstAlgo = false;
+            this.$el
+              .transition()
+              .duration(ANIMATION_DURATION)
+              .attr('transform', (d) => {
+                const x = this.width * this.normalizeVar(d, `X_${props.algorithm}_x`);
+                const y = this.height * this.normalizeVar(d, `X_${props.algorithm}_y`);
+                return  `translate(${x}, ${y})`;
+              })
+          }
           props.updateProps({ showHilbert: false });
           break;
         default:

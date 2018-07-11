@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "make-thumbnails": "thumb -w 40 -s '' static/images/met/ static/images/thumbnails/met/"
+    "make-thumbnails": "thumb -w 20 -s '' static/images/met/ static/images/thumbnails/met/"
   },
   "idyll": {
     "layout": "blog",
