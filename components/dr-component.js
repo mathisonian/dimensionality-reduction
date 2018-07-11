@@ -4,7 +4,7 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
-const jitter = (d, j = 20) => {
+const jitter = (d, j = 40) => {
   // return d;
   return d + j * (Math.random() - 0.5);
 }
@@ -34,13 +34,14 @@ class DRComponent extends D3Component {
     this.width = node.getBoundingClientRect().width;
     this.height = window.innerHeight;
 
-    const images = props.images;//.filter((d) => Math.random() > 0.5);
+    const images = props.images.filter((d) => Math.random() > 0.5);
 
     const svg = this.svg = d3.select(node).append('svg');
     svg.attr('viewBox', `0 0 ${this.width} ${this.height}`)
       .style('width', '100%')
       .style('height', 'auto')
       .style('overflow', 'visible')
+      .style('cursor', 'crosshair')
       .style('box-shadow', '0px 0px 10000px transparent') // hack for overflow on chrome
       // .style('background', 'white')
       // .style('max-height', '100vh');
@@ -49,7 +50,10 @@ class DRComponent extends D3Component {
     const _scaleCache = [];
     this.weightKeys.concat(['X_pca_x', 'X_pca_y', 'X_mctsne_x', 'X_mctsne_y', 'X_umap_x', 'X_umap_y']).forEach((key) => {
       _scaleCache[key] = d3.scaleLinear().domain(d3.extent(images, (d) => d[key]));
+      console.log(key, _scaleCache[key].domain())
     })
+
+    console.log('this.weightKeys', this.weightKeys);
 
     this.normalizeVar = (d, key) => {
       // console.log(key);
@@ -181,7 +185,6 @@ class DRComponent extends D3Component {
           .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
-      .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
 
 
 
@@ -195,21 +198,22 @@ class DRComponent extends D3Component {
   }
 
   _updateHilbert(props) {
-    let max = 0;
-    let min = 0;
+    let max = Number.NEGATIVE_INFINITY;
+    let min = Number.POSITIVE_INFINITY;
     let weights = [];
-    const scale = this.weightKeys.reduce((memo, key, i) => {
-      return memo + props.weights[key];
-    }, 0);
-    if (scale === 0) {
-      return;
-    }
+    // const scale = this.weightKeys.reduce((memo, key, i) => {
+    //   return memo + props.weights[key];
+    // }, 0);
+    // if (scale === 0) {
+    //   return;
+    // }
     this.$el
       .each((d) => {
 
         const _weighted = this.weightKeys.reduce((memo, key, i) => {
+          // console.log('props.weights[' + key + ']', props.weightKeys)
           return memo + props.weights[key] * this.normalizeVar(d, key);
-        }, 0) / scale;
+        }, 0);
 
         if (_weighted > max) {
           max = _weighted;
@@ -220,7 +224,7 @@ class DRComponent extends D3Component {
         weights.push(_weighted);
       });
 
-    console.log(max);
+    console.log('min', min, 'max', max);
     this.$el
       // .transition()
       // .duration(1000)
@@ -241,7 +245,8 @@ class DRComponent extends D3Component {
             .attr('y', 0)
             .attr('width', 0)
             .attr('height', 0)
-            .style('fill', '#ffd5c7');
+            .style('fill', '#FFD5C7');
+
 
           this.$rects
             .transition()
@@ -263,29 +268,36 @@ class DRComponent extends D3Component {
               return 20;
             })
             // .on('end', () => {
-            //     // `./static/images/${d.AccessionNumber}.jpg`)
+            //   // `./static/images/${d.AccessionNumber}.jpg`)
             // });
+
+            setTimeout(() => {
+              this
+                .$images
+                .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`)
+            }, 2000)
 
           break;
 
         case 'reveal':
           revealed = true;
-          this.$images.style('opacity', 1);
-          this.$rects
-            .transition()
-            .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
-            .duration(ANIMATION_DURATION)
-            .style('opacity', 0)
-            .on('end', function() {
-              d3.select(this).remove();
-            })
-          break;
-        case 'table':
           if (this.props.state === '1d') {
             this.$el
               .transition()
               .duration(ANIMATION_DURATION)
               .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
+          } else {
+            this
+              .$images
+              .style('opacity', 1);
+            this.$rects
+              .transition()
+              .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
+              .duration(ANIMATION_DURATION)
+              .style('opacity', 0)
+              .on('end', function() {
+                d3.select(this).remove();
+              })
           }
           break;
         case '1d':
@@ -312,9 +324,10 @@ class DRComponent extends D3Component {
           break;
         case 'hilbert-custom':
           this._updateHilbert(props);
+          props.updateProps({ algorithm: '' });
           break;
         case 'algorithms':
-          props.updateProps({ showHilbert: false });
+          props.updateProps({ showHilbert: false, algorithm: 'pca' });
           break;
         default:
           break;

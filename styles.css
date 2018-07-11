@@ -36,19 +36,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 .article-header h2 {
   color: hsl(49, 98%, 84%);
+  color: #81daf3;
+  font-family: 'Open Sans';
+  font-weight: normal;
 }
 
 .start-button {
   display: block;
   text-align: center;
   margin: 0 auto;
-  /* background: hsl(49, 98%, 84%); */
-  background: hsla(15, 100%, 89%, 1);
-  border-color: hsla(15, 100%, 89%, 1);
+  background: hsl(49, 98%, 84%);
+  /* background: hsla(15, 100%, 89%, 1); */
+  /* border-color: hsla(15, 100%, 89%, 1);
+  border-color: black;
+  border-width: 10px; */
+
+  margin-top: 75px;
+  box-shadow: 0 5px 20px #000;
+  border-top: none;
+  border-left: none;
   padding: 10px;
   cursor: pointer;
   width: 200px;
   color: #1E467E;
+  /* color: white; */
+  font-weight: bold;
+  border-radius: 20px;
+  transition: all 1s;
+}
+.start-button:hover {
+  transform: rotate(-5deg);
+  box-shadow: 5px 15px 10px #000;
 }
 
 .byline {
@@ -59,12 +77,13 @@ h1, h2, h3, h4, h5, h6 {
   /* color: hsla(193, 81%, 73%, 1); */
   color: white;
   border-bottom: solid 2px hsl(49, 98%, 84%);
+  transition: all 0.25s;
 }
 .byline a:hover, a:hover {
   /* color: hsl(49, 98%, 84%); */
   /* color: hsla(193, 81%, 73%, 1); */
-  color: hsla(15, 100%, 89%, 1);
-  border-bottom: solid 2px hsla(15, 100%, 89%, 1);
+  color: hsl(49, 98%, 84%);
+  border-bottom: solid 2px hsl(49, 98%, 84%);
   text-decoration: none;
 }
 
@@ -97,6 +116,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   color: hsl(49, 98%, 84%);
+  /* color: #ffd5c7; */
+  /* color: #81daf3; */
   font-family: 'Arvo';
   font-size: 40px;
 }
@@ -111,7 +132,7 @@ svg text {
 }
 
 .rt-td {
-  background: #fffdf5;
+  background: #fff;
 }
 
 .rt-tbody {
@@ -123,12 +144,6 @@ svg text {
   color: #1E467E;
 }
 
-.d3-component svg {
-  background: #ddd;
-  max-height: 300px;
-  overflow: visible;
-  cursor: crosshair;
-}
 
 .idyll-pub-date {
   /* color: hsl(49, 98%, 84%); */
@@ -146,6 +161,11 @@ button {
   cursor: pointer;
 }
 
+button.selected {
+  border-color: hsl(49, 98%, 84%);
+  color: hsl(49, 98%, 84%);
+}
+
 @media all and (max-width: 1000px) {
   .idyll-text-container {
     margin-left: 0 !important;
@@ -155,8 +175,9 @@ button {
   }
 }
 
-.katex {
-  color: hsla(51,100%,98%,1);
+.katex-html {
+  /* color: hsla(51,100%,98%,1); */
+  color: hsl(49, 98%, 84%);
 }
 
 .reference {

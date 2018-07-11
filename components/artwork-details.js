@@ -7,8 +7,9 @@ class CustomComponent extends React.Component {
       return null;
     }
     return (
-      <div style={{position: 'fixed', right: 10, bottom: 10, color: 'white', background: `rgba(0, 0, 0, 0.7)`, padding: 5, fontSize: 10, fontStyle: 'italic'}}>
-        {artwork.Title}
+      <div style={{position: 'fixed', right: 25, bottom: 10, color: 'white', background: `rgba(0, 0, 0, 0.7)`, padding: 5, fontSize: 10, fontStyle: 'italic', textAlign: 'right'}}>
+        {artwork['Title']} ({artwork['Object End Date']} )<br/>
+        {artwork['Artist Display Name']}
       </div>
     );
   }

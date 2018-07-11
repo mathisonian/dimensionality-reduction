@@ -25,7 +25,7 @@
     weights:`{
       // 'Width (cm)': widthWeight,
       // 'Height (cm)': heightWeight,
-      'Object End Date': endDateWeight,
+      'Object End Date': 1 - brightnessWeight,
       'brightness_avg_perceived': brightnessWeight
     }`
       /]
@@ -40,33 +40,33 @@
 
     [Header
       title:"The Beginner's Guide to Dimensionality Reduction"
-      subtitle:"Explore our interactive tutorial."
+      subtitle:"Welcome to our interactive tutorial."
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
         { name: "Fred Hohman", link: "https://twitter.com/fredhohman" }
       ]` /]
 
-    [StartButton state:scrollState /]
+    [var name:"loadStatus" value:"initial" /]
+    [StartButton state:scrollState status:loadStatus /]
+
+    [Conditional if:`loadStatus === 'loaded'`]
+      Dimensionality reduction is a powerful
+      technique used by data scientists to look for hidden structure in data.  The method is used by a variety of research and applications to visualize datasets to identify patterns and clusters of similar or dissimlar data.
+
+      For example, Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view a
+      number of high-dimensional datasets projected onto two or three dimensions. The idea is that
+      even though data is displayed in a lower dimension, structures present in higher dimensions are maintained, at least roughly.
+
+      Dimensionality reduction algorithms work by inferring a function to describe the structure of "unlabeled" data, i.e. data that has no preexisting categorization. However, many of the commonly used algorithms produce complex *embeddings* and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
+
+      Read on to learn what exactly these embeddings are, take a look at some simple algorithms, and
+      view a comparison of three of the most popular dimensionality reduction algorithms used today.
+
+    [/Conditional]
+
   [/Step]
 
-  [Step state:"intro"]
-
-  # The Intro
-
-  Dimensionality reduction is a powerful
-  technique used by data scientists to look for hidden structure in data.  The method is used by a variety of research and applications to visualize datasets to identify patterns and clusters of similar or dissimlar data.
-
-  For example, Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view a
-  number of high-dimensional datasets projected onto two or three dimensions. The idea is that
-  even though data is displayed in a lower dimension, structures present in higher dimensions are maintained, at least roughly.
-
-  Dimensionality reduction algorithms work by inferring a function to describe the structure of "unlabeled" data, i.e. data that has no preexisting categorization. However, many of the commonly used algorithms produce complex *embeddings* and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
-
-  Read on to learn what exactly these embeddings are, take a look at some simple algorithms, and
-  view a comparison of three of the most popular dimensionality reduction algorithms used today.
-
-  [/Step]
 
   [Step state:"reveal"]
 
@@ -78,7 +78,6 @@
     *Hover over an artwork to see its details.*
 
     [br/]
-    [br/]
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, and dimensions.
     Below are 10 random artworks from the dataset.
@@ -88,7 +87,7 @@
     [Table
       data:`images.slice(0, 10)`
       columns:`[
-        { Header: 'Type', accessor: 'Object Name' },
+        { Header: 'Year', accessor: 'Object End Date' },
         { Header: 'Title',  accessor: 'Title'},
         { Header: 'Artist', accessor: 'Artist Display Name'}]` /]
 
@@ -111,14 +110,13 @@
     This projection sometimes is also called an embedding.
     // of the data into a lower dimensional space.
 
-    // TODO - make this better
-    [Svg src:"./static/images/projection.svg" /]
-
     Let's compute a 1 dimensional embedding.
     This means we will take each artwork and compute one number to describe it
     instead of all of the features we showed earlier in the table.
     A benefit of reducing to 1D is that we can sort the numbers, and thus the artworks, on a line.
     (Remember points are 0D, lines are 1D, planes are 2D, etc.)
+
+    [Projection images:images src:"./static/images/projection.svg" /]
 
     Let's reduce using *average pixel brightness* of each artwork, and then sort these values.
 
@@ -193,19 +191,16 @@
     But this is not the only way to embed the artworks in 2D space.
     In fact, there are many, and some projections are more useful than others.
 
-    Use these sliders to toggle the influence that the features brightness, artwork age, and 3RD THING HERE
-    have in determining the artworks' embedding positions.
+    Use these sliders to toggle the influence that the brightness and artwork age
+    features have in determining the artworks' embedding positions.
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
-    *Brightness*
-    [Range value:brightnessWeight min:0 max:1 step:0.005 /]
-
-    *Artwork Age*
-    [Range value:endDateWeight min:0 max:1 step:0.005 /]
-
-    *Height*
-    [Range value:heightWeight min:0 max:1 step:0.005 /]
+      [div style:`{margin: '0 auto'}`]
+      *Artwork Age*
+      [Range value:brightnessWeight min:0 max:1 step:0.005 /]
+      *Brightness*
+      [/div]
 
     [/div]
 
@@ -232,7 +227,7 @@
     [Equation display:false]\mathbb{R}[/Equation].
 
     [Equation display:true]
-    a' = (a_{\text{brightness}} \times w_{\text{brightness}}) + (a_{\text{age}} \times w_{\text{age}}) + (a_{\text{THIRD}} \times w_{\text{THIRD}})
+    a' = (a_{\text{brightness}} \times w_{\text{brightness}}) + (a_{\text{age}} \times w_{\text{age}})
     [/Equation]
 
     We then jitter the artworks to prevent excessive overlap.
@@ -268,15 +263,15 @@
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
-      [button onClick:`algorithm = "pca" `]
+      [button className:`algorithm === 'pca' ? 'selected' : ''` onClick:`algorithm = "pca" `]
         PCA
       [/button]
 
-      [button onClick:`algorithm = "mctsne" `]
+      [button className:`algorithm === 'mctsne' ? 'selected' : ''` onClick:`algorithm = "mctsne" `]
         t-SNE
       [/button]
 
-      [button onClick:`algorithm = "umap" `]
+      [button className:`algorithm === 'umap' ? 'selected' : ''` onClick:`algorithm = "umap" `]
         UMAP
       [/button]
     [/div]

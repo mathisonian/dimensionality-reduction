@@ -10,9 +10,6 @@ class StartButton extends React.Component {
         window.scrollTo(0,0);
       };
     }
-    this.state = {
-      status: 'initial'
-    };
   }
 
   onClick() {
@@ -20,28 +17,33 @@ class StartButton extends React.Component {
     this.props.updateProps({
       state: 'initial'
     });
-    this.setState({ status: 'loading' })
+    this.props.updateProps({ status: 'loading' })
     setTimeout(() => {
-      this.setState({ status: 'loaded' })
+      this.props.updateProps({ status: 'loaded' })
     }, 2000);
   }
 
   render() {
-    const { hasError, idyll, updateProps, ...props } = this.props;
-    if (this.state.status === 'initial') {
+    const { hasError, idyll, status, updateProps, ...props } = this.props;
+    if (status === 'initial') {
       return (
         <button onClick={this.onClick.bind(this)} className={'start-button'}>
           Click to Begin
         </button>
       );
-    } else if (this.state.status === 'loading') {
-      return null;
     }
-    return (
-      <div style={{ position: 'relative', top: 30, margin: '0 auto', width: '100%', textAlign: 'center' }}>
-        Data loaded.<br/>Scroll to Continue...
-      </div>
-    );
+    // else if (status === 'loading') {
+    //   return <p>Data fetch initiated...</p>;
+    // }
+
+    return null;
+    // return (
+    //   <div style={{ position: 'relative', top: 30, margin: '0 auto', width: '100%', textAlign: 'center' }}>
+    //     <p>
+    //       Data loading.<br/>Scroll to Continue...
+    //     </p>
+    //   </div>
+    // );
   }
 }
 

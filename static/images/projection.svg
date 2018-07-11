@@ -1,79 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg  viewBox="0 0 724 559" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg  viewBox="0 0 622 458" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
     <title>projection</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g class="container" id="projection" transform="translate(36.000000, -1.000000)">
-            <rect class="" id="Rectangle" stroke="#FFD5C7" stroke-width="5" x="151.5" y="118.5" width="48" height="439" rx="24"></rect>
-            <rect class="" id="Rectangle-Copy" stroke="#FFD5C7" stroke-width="5" x="464.5" y="242.5" width="37" height="191" rx="18.5"></rect>
-            <path d="M464.487182,339.5 L501.5,339.5" class="" id="Line" stroke="#FFD5C7" stroke-width="5" stroke-linecap="square"></path>
-            <text class="" id="x" font-family="Lora-Italic, Lora" font-size="24" font-style="italic" font-weight="normal" fill="#000000">
-                <tspan x="476" y="305">x</tspan>
+        <rect class="" id="Rectangle-2" fill="#1E467E" x="0" y="0" width="622" height="477"></rect>
+        <g class="container" class="" id="projection" transform="translate(91.000000, 48.000000)">
+            <rect class="" id="Rectangle" stroke="#FFD5C7" stroke-width="5" transform="translate(222.000000, 74.500000) rotate(-270.000000) translate(-222.000000, -74.500000) " x="198" y="-145" width="48" height="439" rx="24"></rect>
+            <text class="" id="Attributes-Copy" font-family="Arvo-Bold, Arvo" font-size="24" font-weight="bold" fill="#000000">
+                <tspan x="149" y="23">Attributes</tspan>
             </text>
-            <text class="" id="Attributes" font-family="Helvetica-Bold, Helvetica" font-size="24" font-weight="bold" fill="#000000">
-                <tspan x="0" y="332">Attributes</tspan>
+            <text class="" id="Output" font-family="Arvo-Bold, Arvo" font-size="24" font-weight="bold" fill="#000000">
+                <tspan x="177" y="376">Output</tspan>
             </text>
-            <text class="" id="y" font-family="Lora-Italic, Lora" font-size="24" font-style="italic" font-weight="normal" fill="#000000">
-                <tspan x="476" y="382">y</tspan>
+            <text class="" id="0" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="38.3105469" y="333">0</tspan>
             </text>
-            <g class="" id="Group" transform="translate(166.000000, 164.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
-                <text class="" id="a" font-size="24">
-                    <tspan x="0" y="23">a</tspan>
-                </text>
-                <text class="" id="1" font-size="12">
-                    <tspan x="15" y="29">1</tspan>
-                </text>
-            </g>
-            <g class="" id="Group-Copy" transform="translate(166.000000, 240.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
-                <text class="" id="a" font-size="24">
-                    <tspan x="0" y="23">a</tspan>
-                </text>
-                <text class="" id="2" font-size="12">
-                    <tspan x="15" y="29">2</tspan>
-                </text>
-            </g>
-            <g class="" id="Group-Copy-2" transform="translate(166.000000, 312.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
-                <text class="" id="a" font-size="24">
-                    <tspan x="0" y="23">a</tspan>
-                </text>
-                <text class="" id="3" font-size="12">
-                    <tspan x="15" y="29">3</tspan>
-                </text>
-            </g>
-            <g class="" id="Group-Copy-3" transform="translate(165.000000, 404.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
-                <text class="" id="a" font-size="24">
-                    <tspan x="0" y="23">a</tspan>
-                </text>
-                <text class="" id="4" font-size="12">
-                    <tspan x="15" y="29">4</tspan>
-                </text>
-            </g>
-            <g class="" id="Group-Copy-4" transform="translate(164.000000, 492.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
-                <text class="" id="a" font-size="24">
-                    <tspan x="0" y="23">a</tspan>
-                </text>
-                <text class="" id="5" font-size="12">
-                    <tspan x="15" y="29">5</tspan>
-                </text>
-            </g>
-            <path d="M208.5,506.5 L452.5,310.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M215.5,403.5 L452.5,310.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M218.5,326.5 L452.5,310.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M218.5,326.5 L443.5,391.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M216.5,405.5 L443.5,391.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M208.5,509.5 L443.5,391.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M221.5,258.5 L443.5,391.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M220.5,179.5 L443.5,391.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M218.5,257.5 L452.5,310.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <path d="M222.5,179.5 L452.5,310.5" class="" id="Line-2" stroke="#FFD5C7" stroke-width="3" stroke-linecap="square"></path>
-            <text class="" id="Input" font-family="Helvetica-Bold, Helvetica" font-size="48" font-weight="bold" fill="#000000">
-                <tspan x="107" y="47">Input</tspan>
+            <text class="" id="1" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="403" y="334">1</tspan>
             </text>
-            <text class="" id="Output" font-family="Helvetica-Bold, Helvetica" font-size="48" font-weight="bold" fill="#000000">
-                <tspan x="424" y="47">Output</tspan>
+            <text class="R " id="D" font-family="Arvo" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="206" y="214">D.R.</tspan>
             </text>
+            <g class="attribute-labels" id="" transform="translate(30.000000, 58.000000)" fill="#000000" font-family="Lora-Italic, Lora" font-style="italic" font-weight="normal">
+                <g class="" id="Group">
+                    <text class="" id="a" font-size="24">
+                        <tspan x="0" y="23">a</tspan>
+                    </text>
+                    <text class="" id="1" font-size="12">
+                        <tspan x="15" y="29">1</tspan>
+                    </text>
+                </g>
+                <g class="" id="Group-Copy" transform="translate(84.000000, 0.000000)">
+                    <text class="" id="a" font-size="24">
+                        <tspan x="0" y="23">a</tspan>
+                    </text>
+                    <text class="" id="2" font-size="12">
+                        <tspan x="15" y="29">2</tspan>
+                    </text>
+                </g>
+                <g class="" id="Group-Copy-2" transform="translate(182.000000, 0.000000)">
+                    <text class="" id="a" font-size="24">
+                        <tspan x="0" y="23">a</tspan>
+                    </text>
+                    <text class="" id="3" font-size="12">
+                        <tspan x="15" y="29">3</tspan>
+                    </text>
+                </g>
+                <g class="" id="Group-Copy-3" transform="translate(276.000000, 0.000000)">
+                    <text class="" id="a" font-size="24">
+                        <tspan x="0" y="23">a</tspan>
+                    </text>
+                    <text class="" id="4" font-size="12">
+                        <tspan x="15" y="29">4</tspan>
+                    </text>
+                </g>
+                <g class="" id="Group-Copy-4" transform="translate(368.000000, 0.000000)">
+                    <text class="" id="a" font-size="24">
+                        <tspan x="0" y="23">a</tspan>
+                    </text>
+                    <text class="" id="5" font-size="12">
+                        <tspan x="15" y="29">5</tspan>
+                    </text>
+                </g>
+            </g>
+            <path d="M111.5,325.5 L221.5,222.5" class="output-line" id="" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <rect class="" id="Rectangle-3" stroke="#FFD5C7" stroke-width="5" x="171.5" y="192.5" width="101" height="30"></rect>
+            <path d="M51.5,109.5 L219.5,190.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M138.5,114.5 L220.5,186.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M222.5,116.5 L222.5,187.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M316.5,116.5 L221.5,188.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M400.5,113.5 L227.5,190.5" class="" id="Line-2" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M204,192.482127 C210.267433,185.799368 216.438678,182.457989 222.513734,182.457989 C228.58879,182.457989 234.760035,185.799368 241.027468,192.482127 L204,192.482127 Z" class="" id="Path-2" fill="#FFD5C7"></path>
+            <path d="M63.5,327.5 L388.353813,327.5" class="bottom-line" id="" stroke="#FFD5C7" stroke-width="4" stroke-linecap="square"></path>
+            <circle class="output-circle" id="" fill="#FFFFFF" cx="108.5" cy="328.5" r="7.5"></circle>
         </g>
     </g>
 </svg>
