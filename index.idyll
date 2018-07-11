@@ -13,6 +13,7 @@
 [var name:"brightnessWeight" value:1 /]
 [var name:"showHilbert" value:false /]
 [var name:"algorithm" value:"" /]
+[var name:"selectedArtwork" value:`null ` /]
 
 [Fixed]
   [DRComponent
@@ -20,6 +21,7 @@
     state:scrollState
     showHilbert:showHilbert
     algorithm:algorithm
+    selectedArtwork:selectedArtwork
     weights:`{
       // 'Width (cm)': widthWeight,
       // 'Height (cm)': heightWeight,
@@ -47,8 +49,7 @@
     [StartButton state:scrollState /]
   [/Step]
 
-  [Step state:"reveal" /]
-  [Step]
+  [Step state:"reveal"]
 
     # The Art
 
@@ -56,7 +57,7 @@
     This dataset contains 134,455 records, representing all of the works that have been accessioned into MoMA’s collection and cataloged in their database.
   [/Step]
 
-  [Step]
+  [Step state:"table"]
     # The Data
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, dimensions, and date acquired by the Museum.
@@ -260,3 +261,6 @@
 
 [/Scroller]
 
+
+
+[ArtworkDetails artwork:selectedArtwork /]
