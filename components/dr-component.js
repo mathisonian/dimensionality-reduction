@@ -4,7 +4,7 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
-const jitter = (d, j = 20) => {
+const jitter = (d, j = 40) => {
   // return d;
   return d + j * (Math.random() - 0.5);
 }
