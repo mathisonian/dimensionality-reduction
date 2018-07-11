@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 1s;
 }
 .start-button:hover {
-  transform: rotate(-5deg);
+  transform: rotate(-2.5deg);
   box-shadow: 5px 15px 10px #000;
 }
 
@@ -122,7 +122,7 @@ h1 {
   font-size: 40px;
 }
 
-p {
+p, li {
   font-family: 'Open Sans';
   font-size: 18px;
 }
@@ -186,4 +186,41 @@ button.selected {
 
 hr {
   height: 0.15em;
+}
+
+
+input[type="range"]{
+  -webkit-appearance:none;
+  width:160px;
+  height:10px;
+  margin:10px 15px;
+  background: linear-gradient(to right, #fff 0%, #fff 100%);
+  background-size:150px 2px;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:visible;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:15px;
+  height:15px;
+  border-radius: 10px;
+  background:#81daf3;
+  border: solid 1px #fff;
+  position:relative;
+  z-index:3;
+  /* box-shadow:0 0 5px 0 rgba(0,0,0,0.3); */
+}
+
+input[type="range"]::-webkit-slider-thumb:after{
+  content:" ";
+  width:160px;
+  height:10px;
+  position:absolute;
+  z-index:1;
+  right:20px;
+  top:5px;
+  background: #000;
 }

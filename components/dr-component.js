@@ -151,20 +151,21 @@ class DRComponent extends D3Component {
 
         d3.select(nodes[i].parentNode).moveToFront();
 
+        const size = smallImageSize * 1.5;
         d3.select(nodes[i])
         .attr('x', (d) => {
-          return - largeImageSize / 2;
+          return - size / 2;
         })
         .attr('y', (d) => {
-          return - largeImageSize / 2;
+          return - size / 2;
         })
         .attr('width', (d) => {
-          return largeImageSize;
+          return size;
         })
         .attr('height', (d) => {
-          return largeImageSize;
+          return size;
         })
-        .attr("xlink:href", (d) => `${IMAGE_BASE}/met/${d['Object ID']}.jpg`);
+        // .attr("xlink:href", (d) => `${IMAGE_BASE}/met/${d['Object ID']}.jpg`);
       })
       .on('mouseleave', (d, i, nodes) => {
         // console.log('mouseleave');
@@ -184,7 +185,7 @@ class DRComponent extends D3Component {
           .attr('height', (d) => {
             return smallImageSize;
           })
-          .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`);
+          // .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
 

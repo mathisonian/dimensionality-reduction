@@ -1,4 +1,5 @@
 const React = require('react');
+const IMAGE_BASE = 'https://s3-us-west-2.amazonaws.com/idyll-pub'
 
 class CustomComponent extends React.Component {
   render() {
@@ -7,9 +8,20 @@ class CustomComponent extends React.Component {
       return null;
     }
     return (
-      <div style={{position: 'fixed', right: 25, bottom: 10, color: 'white', background: `rgba(0, 0, 0, 0.7)`, padding: 5, fontSize: 10, fontStyle: 'italic', textAlign: 'right'}}>
-        {artwork['Title']} ({artwork['Object End Date']} )<br/>
-        {artwork['Artist Display Name']}
+      <div style={{position: 'fixed', right: 25, bottom: 10, fontSize: 10, textAlign: 'right', maxWidth: 600, pointerEvents: 'none'}}>
+        <img src={`${IMAGE_BASE}/met/${artwork['Object ID']}.jpg`} style={{maxHeight: 200, maxWidth: 600}} />
+        <div style={{
+            color: 'white',
+            // color: '#1E467E',
+            // background: `rgba(0, 0, 0, 0.7)`,
+            // background: 'hsl(49, 98%, 84%)',
+            maxWidth: 400,
+            background: 'black',
+            textAlign: 'left',
+            padding: 5}}>
+          {artwork['Title']} ({artwork['Object End Date']})<br/>
+          {artwork['Artist Display Name']}
+        </div>
       </div>
     );
   }

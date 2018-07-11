@@ -1,6 +1,6 @@
 [meta
-  title:"What is Dimensionality Reduction?"
-  description:"An intuitive guide to the statistical technique." /]
+  title:"The Beginner's Guide to Dimensionality Reduction"
+  description:"Welcome to our interactive tutorial." /]
 
 
 [data name:"images" source:"met-with-coordinates.csv"  /]
