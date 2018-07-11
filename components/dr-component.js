@@ -287,8 +287,8 @@ class DRComponent extends D3Component {
       this._updateHilbert(props);
     } else if (props.state === 'algorithms' && props.algorithm !== this.props.algorithm) {
       this.$el
-        // .transition()
-        // .duration(1000)
+        .transition()
+        .duration(1000)
         .attr('transform', (d) => {
           const x = this.width * this.normalizeVar(d, `X_${props.algorithm}_x`);
           const y = this.height * this.normalizeVar(d, `X_${props.algorithm}_y`);
