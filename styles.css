@@ -114,12 +114,15 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   color: hsl(49, 98%, 84%);
   /* color: #ffd5c7; */
   /* color: #81daf3; */
   font-family: 'Arvo';
-  font-size: 40px;
+}
+
+h1 {
+  font-size: 28px;
 }
 
 p, li {
@@ -160,10 +163,49 @@ button {
   display: block;
   cursor: pointer;
 }
+.panel button {
+  border: 3px solid #1E467E;
+  padding: 10px;
+  color: #1E467E;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: all 0.25s;
+  width: 100px;
+  text-transform: none;
+}
+.panel button:hover {
+  /* transform: rotate(-2.5deg); */
+  background: #eee;
+  /* box-shadow: 5px 15px 10px #000; */
+}
+
+.panel {
+  background: #fff;
+  color: #1E467E;
+  padding: 15px;
+  margin: 30px 0;
+  box-shadow: 7px 7px 10px #000;
+  border-radius: 10px;
+}
+
+.panel h2 {
+  color: #1E467E;
+  width: 76%;
+}
 
 button.selected {
   border-color: hsl(49, 98%, 84%);
   color: hsl(49, 98%, 84%);
+}
+.panel button.selected {
+  background: #1E467E;
+  border-color: #1E467E;
+  color: #fff;
+}
+.panel button.selected:hover {
+  background: #1E467E;
+  border-color: #1E467E;
+  color: #fff;
 }
 
 @media all and (max-width: 1000px) {

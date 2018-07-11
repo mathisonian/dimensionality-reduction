@@ -70,7 +70,7 @@
 
   [Step state:"reveal"]
 
-    # The Art
+    # First, some art
 
     Your browser has just loaded information about
     1,517 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection [Cite reference:"met"/].
@@ -100,7 +100,7 @@
 
   [Step state:"1d"]
 
-    # The Projection
+    # Projecting onto a line
 
     If you store the features in a *vector*, you can think of the data as existing in
     a high-dimensional space.
@@ -110,11 +110,15 @@
     This projection sometimes is also called an embedding.
     // of the data into a lower dimensional space.
 
+    *Remember points are 0D, lines are 1D, planes are 2D, etc.*
+
+    [br/]
+
     Let's compute a 1 dimensional embedding.
     This means we will take each artwork and compute one number to describe it
     instead of all of the features we showed earlier in the table.
     A benefit of reducing to 1D is that we can sort the numbers, and thus the artworks, on a line.
-    (Remember points are 0D, lines are 1D, planes are 2D, etc.)
+
 
     [Projection images:images src:"./static/images/projection.svg" /]
 
@@ -127,7 +131,7 @@
 
   [Step state:"reset"]
 
-    # The Math
+    # For the mathematically inclined
 
     We can formulate dimensionality mathematically in the context of a given dataset.
 
@@ -181,7 +185,7 @@
 
   [Step state:"hilbert-brightness"]
 
-    # The Embedding
+    # Embedding data in two dimensions
 
     Instead of reducing to 1D, let's add another dimension and embed the artworks in 2D.
 
@@ -239,28 +243,17 @@
 
   [Step state:"algorithms"]
 
-    # The Algorithms
+    # Real-world algorithms
 
     We just showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
     However, you may have noticed that its hard to find meaningful combinations of feature weights.
     Luckily this is something that computers are very good at: searching for some optimal combination of numbers.
 
-    There are many algorithms that compute a dimensionality reduction of a dataset.
-    Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible embedding.
-    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
-    iteratively produce highly clustered embeddings.
-    Unfortunately, whereas before each feature's influence was explicitly known,
-    one must relinquish control to a machine to determine the best embedding—
-    that means that it is not clear what features of the data are used to compute the embedding.
-
-    Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
-    developing new techniques to create better embeddings.
-    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/],
-    is a non-linear reduction that aims to create visually striking embeddings fast, scaling to larger datasets.
 
     Below are the three discussed algorithms run on the artworks.
     Click each button to toggle between the resulting embeddings.
 
+    [div className:"panel" ]
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
       [button className:`algorithm === 'pca' ? 'selected' : ''` onClick:`algorithm = "pca" `]
@@ -277,7 +270,7 @@
     [/div]
 
     [conditional if:`algorithm === 'pca' ` ]
-      ## PCA
+      ## Principal component analysis
 
       Pros:
 * Computationally cheap.
@@ -288,7 +281,7 @@
 
     [/conditional]
     [conditional if:`algorithm === 'mctsne' ` ]
-      ## t-SNE
+      ## t-Distributed stochastic neighbor embedding
 
       Pros:
 * Produces highly clustered, visually striking embeddings.
@@ -301,7 +294,7 @@
 
     [/conditional]
     [conditional if:`algorithm === 'umap' ` ]
-      ## UMAP
+      ## Uniform manifold approximation and projection
 
       Pros:
 * Non-linear reduction that is computationally faster than t-SNE.
@@ -313,13 +306,27 @@
 * Requires setting hyperparameters that influence quality of the embedding.
 
     [/conditional]
+[/div]
 
+
+    There are many algorithms that compute a dimensionality reduction of a dataset.
+    Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible embedding.
+    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
+    iteratively produce highly clustered embeddings.
+    Unfortunately, whereas before each feature's influence was explicitly known,
+    one must relinquish control to a machine to determine the best embedding—
+    that means that it is not clear what features of the data are used to compute the embedding.
+
+    Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
+    developing new techniques to create better embeddings.
+    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/],
+    is a non-linear reduction that aims to create visually striking embeddings fast, scaling to larger datasets.
 
 
   [/Step]
 
   [Step]
-    # The Outro
+    # Try it for yourself
 
     Dimensionality reduction is a powerful tool to better understand high-dimensional data.
     If you have your own dataset and wish to visualize it using dimensionality reduction, there are a number of different algorithms and
