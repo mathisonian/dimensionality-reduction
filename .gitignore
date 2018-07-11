@@ -65,4 +65,5 @@ build/**
 
 .ipynb_checkpoints
 static/images/met/
+static/images/thumbnails/met/
 met-images

@@ -11,8 +11,13 @@ const jitter = (d, j = 20) => {
 
 const brightnessKey = 'brightness_avg_perceived';
 
+const ANIMATION_DURATION = 500;
+const DELAY_FACTOR = 100;
+const DELAY_LOG_FACTOR = 100;
+const DELAY_BASE = 150;
+
 const smallImageSize = 20;
-const largeImageSize = 4 * smallImageSize;
+const largeImageSize = 160;
 let revealed = false;
 
 d3.selection.prototype.moveToFront = function() {
@@ -22,13 +27,14 @@ d3.selection.prototype.moveToFront = function() {
 };
 
 
+
 class DRComponent extends D3Component {
 
   initialize(node, props) {
     this.width = node.getBoundingClientRect().width;
     this.height = window.innerHeight;
 
-    const images = props.images.filter((d) => Math.random() > 0.5);
+    const images = props.images;//.filter((d) => Math.random() > 0.5);
 
     const svg = this.svg = d3.select(node).append('svg');
     svg.attr('viewBox', `0 0 ${this.width} ${this.height}`)
@@ -152,6 +158,7 @@ class DRComponent extends D3Component {
         .attr('height', (d) => {
           return largeImageSize;
         })
+        .attr("xlink:href", (d) => `./static/images/met/${d['Object ID']}.jpg`);
       })
       .on('mouseleave', (d, i, nodes) => {
         // console.log('mouseleave');
@@ -171,9 +178,10 @@ class DRComponent extends D3Component {
           .attr('height', (d) => {
             return smallImageSize;
           })
+          .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
-      .attr("xlink:href", (d) => `./static/images/met/${d['Object ID']}.jpg`);
+      .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
 
 
 
@@ -233,15 +241,15 @@ class DRComponent extends D3Component {
             .attr('y', 0)
             .attr('width', 0)
             .attr('height', 0)
-            .style('fill', '#feefae');
+            .style('fill', '#ffd5c7');
 
           this.$rects
             .transition()
-            .duration(1000)
+            .duration(ANIMATION_DURATION)
             // .delay(100)
             // .delay((d, i) => 100 + (i + 10) * 30 + (Math.random() - 0.5) * 30)
-            .delay((d, i) => 50 + 25 * Math.random() + i * 5)
-            .ease(d3.easeElasticOut)
+            .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
+            .ease(d3.easeQuadIn)
             .attr('x', (d) => {
               return -10;
             })
@@ -265,8 +273,8 @@ class DRComponent extends D3Component {
           this.$images.style('opacity', 1);
           this.$rects
             .transition()
-            .delay((d, i) => 50 + 25 * Math.random() + i * 5)
-            .duration(1000)
+            .delay((d, i) => DELAY_BASE * Math.random() + DELAY_LOG_FACTOR * Math.log(DELAY_FACTOR * i + 1))
+            .duration(ANIMATION_DURATION)
             .style('opacity', 0)
             .on('end', function() {
               d3.select(this).remove();
@@ -276,27 +284,27 @@ class DRComponent extends D3Component {
           if (this.props.state === '1d') {
             this.$el
               .transition()
-              .duration(1000)
+              .duration(ANIMATION_DURATION)
               .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
           }
           break;
         case '1d':
           this.$el
               .transition()
-              .duration(1000)
+              .duration(ANIMATION_DURATION)
               .attr('transform', (d) => `translate(${jitter(this.width / 2, this.width / 2)}, ${jitter(this.brightness(d[brightnessKey]))})` );
           break;
         case 'reset':
           props.updateProps({ showHilbert: false });
           this.$el
             .transition()
-            .duration(1000)
+            .duration(ANIMATION_DURATION)
             .attr('transform', () => `translate(${Math.random() * this.width}, ${Math.random() * this.height})`)
           break;
         case 'hilbert-brightness':
           this.$el
             .transition()
-            .duration(1000)
+            .duration(ANIMATION_DURATION)
             .attr('transform', (d) => {
               const { x, y } = this.hilbert(this.normalizeVar(d, brightnessKey));
               return  `translate(${jitter(x)}, ${jitter(y)})`;
@@ -316,7 +324,7 @@ class DRComponent extends D3Component {
     } else if (props.state === 'algorithms' && props.algorithm !== this.props.algorithm) {
       this.$el
         .transition()
-        .duration(1000)
+        .duration(ANIMATION_DURATION)
         .attr('transform', (d) => {
           const x = this.width * this.normalizeVar(d, `X_${props.algorithm}_x`);
           const y = this.height * this.normalizeVar(d, `X_${props.algorithm}_y`);

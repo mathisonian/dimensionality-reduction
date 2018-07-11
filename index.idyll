@@ -39,7 +39,8 @@
 
 
     [Header
-      title:"What is Dimensionality Reduction?"
+      title:"The Beginner's Guide to Dimensionality Reduction"
+      subtitle:"Explore our interactive tutorial."
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
@@ -53,47 +54,31 @@
 
   # The Intro
 
-  [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful
-  technique used in data mining, machine learning, and now more broadly, AI research and applications
-  that is used to visualize datasets to identify patterns and clusters of similar or dissimilar data.
-  // cite some applications?
+  Dimensionality reduction is a powerful
+  technique used by data scientists to look for hidden structure in data.  The method is used by a variety of research and applications to visualize datasets to identify patterns and clusters of similar or dissimlar data.
 
-  More formally, the goal of dimensionality reduction, a subset of unsupervised learning,
-  is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
-  
-  [br/]
+  For example, Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view a
+  number of high-dimensional datasets projected onto two or three dimensions. The idea is that
+  even though data is displayed in a lower dimension, structures present in higher dimensions are maintained, at least roughly.
 
-  This presents a challenge for all dimensionality reduction techniques,
-  since considered data is unlabeled, there is no straightforward way to evaluate the accuracy of the
-  embedding or structure that is produced by the reduction algorithm.
+  Dimensionality reduction algorithms work by inferring a function to describe the structure of "unlabeled" data, i.e. data that has no preexisting categorization. However, many of the commonly used algorithms produce complex *embeddings* and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
 
-  Furthermore, many of the commonly used algorithms produce puzzling *embeddings*: the output of dimensionality reduction.
-
-  Here, we will show examples of what dimensionality produces on real data,
-  present an interactive visualization of a simple reduction that allows a user to specify the rules of the embedding,
-  and a comparison of three of the most popular dimensionality reduction algorithms used today.
+  Read on to learn what exactly these embeddings are, take a look at some simple algorithms, and
+  view a comparison of three of the most popular dimensionality reduction algorithms used today.
 
   [/Step]
 
   [Step state:"reveal"]
 
     # The Art
-    
-    For our data, consider a collection of artworks from the [The Metropolitan Museum of Art](https://www.metmuseum.org/) [Cite reference:"met"/].
-    
+
+    Your browser has just loaded information about
+    1,517 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection [Cite reference:"met"/].
+
+    *Hover over an artwork to see its details.*
+
     [br/]
-
-    We will use a subset of this data that contains 1,517 artworks.
-    
     [br/]
-
-    Hover over an artwork to see its details.
-
-  [/Step]
-
-  [Step state:"table"]
-
-    # The Data
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, and dimensions.
     Below are 10 random artworks from the dataset.
@@ -102,7 +87,10 @@
 
     [Table
       data:`images.slice(0, 10)`
-      columns:`['Object Name', 'Title', 'Artist Display Name']` /]
+      columns:`[
+        { Header: 'Type', accessor: 'Object Name' },
+        { Header: 'Title',  accessor: 'Title'},
+        { Header: 'Artist', accessor: 'Artist Display Name'}]` /]
 
     [br/]
 
@@ -133,7 +121,7 @@
     (Remember points are 0D, lines are 1D, planes are 2D, etc.)
 
     Let's reduce using *average pixel brightness* of each artwork, and then sort these values.
-    
+
     Notice that the darkest images appear at the top and the brightest images on the bottom!
 
   [/Step]
@@ -159,13 +147,13 @@
     [Equation display:false]X'[/Equation], of size
     [Equation display:false]m \times d[/Equation], where
     [Equation display:false]d < n[/Equation].
-    As already stated, for visualization, we typically set 
+    As already stated, for visualization, we typically set
     [Equation display:false]d[/Equation] to be 1, 2 or 3.
 
     For example, say [Equation display:false]m=n[/Equation], that is
     [Equation display:false]X[/Equation] is a square matrix.
     Performing dimensionality reduction on
-    [Equation display:false]X[/Equation] and setting 
+    [Equation display:false]X[/Equation] and setting
     [Equation display:false]d=2[/Equation] will change it from a square matrix to a tall, rectangular matrix.
 
     [Equation display:true]
@@ -185,7 +173,7 @@
     [/Equation]
 
     Here,
-    [Equation display:false]x[/Equation] and 
+    [Equation display:false]x[/Equation] and
     [Equation display:false]x'[/Equation] just represent nonzero values of a matrix.
 
     Each data point only has two features now, i.e., each data point has been reduced from a 3 dimensional vector to a 2 dimensional vector.
@@ -202,7 +190,7 @@
     Here we take the same brightness feature and use it to position the artworks in 2D space instead of 1D.
     The pieces have more room to spread out.
 
-    But this is not the only way to embed the artworks in 2D space. 
+    But this is not the only way to embed the artworks in 2D space.
     In fact, there are many, and some projections are more useful than others.
 
     Use these sliders to toggle the influence that the features brightness, artwork age, and 3RD THING HERE
@@ -231,8 +219,6 @@
 
     [conditional if:showHilbertDetails ]
 
-    [hr/]
-
     The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
     mapped on a space-filling Hilbert curve to give the illusion of a 2D embedding.
 
@@ -241,7 +227,7 @@
     Let [Equation display:false]a[/Equation] be a given artwork, and let each slider's value be a weight
     [Equation display:false]w_{i}[/Equation].
     We will compute
-    [Equation display:false]a'[/Equation], the scalar projection of 
+    [Equation display:false]a'[/Equation], the scalar projection of
     [Equation display:false]a[/Equation] into
     [Equation display:false]\mathbb{R}[/Equation].
 
@@ -251,7 +237,7 @@
 
     We then jitter the artworks to prevent excessive overlap.
 
-    [button onClick:`showHilbert = !showHilbert `][Display style:`margin:0` value:`showHilbert ? 'hide' : 'show'` /] hilbert curve[/button]
+    [button onClick:`showHilbert = !showHilbert `]Toggle hilbert curve[/button]
 
     [/conditional]
   [/Step]
@@ -299,7 +285,7 @@
       ## PCA
 
       Pros:
-* Computationally cheap. 
+* Computationally cheap.
 * Can save embedding model to then project new data points into the reduced space.
 
       Cons:
@@ -349,7 +335,7 @@
 
     Regarding the three algorithms dicussed above, you can find Python implementations of the algorithms we used for the artworks here:
     [PCA](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html),
-    [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html), 
+    [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html),
     and [UMAP](https://github.com/lmcinnes/umap).
 
     ### Acknowledgments
