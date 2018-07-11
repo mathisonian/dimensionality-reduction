@@ -55,16 +55,16 @@
 
   [Dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) is a common yet powerful
   technique used in data mining, machine learning, and now more broadly, AI research and applications
-  that is used to visualize datasets to identify patterns and clusters of similar or dissimlar data.
+  that is used to visualize datasets to identify patterns and clusters of similar or dissimilar data.
   // cite some applications?
 
-  More formally, the goal of dimsionality reduction, a subset of unsupervised learning,
+  More formally, the goal of dimensionality reduction, a subset of unsupervised learning,
   is to infer a function to describe the structure of "unlabeled" data, i.e. data that has no categorization.
   
   [br/]
 
-  This presents a challenge for all dimsionality reduction techniques,
-  since considered data is unlabelled, there is no straightforward way to evaluate the accuracy of the
+  This presents a challenge for all dimensionality reduction techniques,
+  since considered data is unlabeled, there is no straightforward way to evaluate the accuracy of the
   embedding or structure that is produced by the reduction algorithm.
 
   Furthermore, many of the commonly used algorithms produce puzzling *embeddings*: the output of dimensionality reduction.
@@ -132,7 +132,7 @@
     A benefit of reducing to 1D is that we can sort the numbers, and thus the artworks, on a line.
     (Remember points are 0D, lines are 1D, planes are 2D, etc.)
 
-    Let's reduce using *average pixel brightness* of each arwork, and then sort these values.
+    Let's reduce using *average pixel brightness* of each artwork, and then sort these values.
     
     Notice that the darkest images appear at the top and the brightest images on the bottom!
 
@@ -145,7 +145,7 @@
 
     We can formulate dimensionality mathematically in the context of a given dataset.
 
-    Consider a datseta typically represented as a matrix
+    Consider a dataset typically represented as a matrix
     [Equation display:false]X[/Equation], where
     [Equation display:false]X[/Equation]
     is of size
@@ -154,7 +154,7 @@
     [Equation display:false]X[/Equation], and
     [Equation display:false]n[/Equation] is the number of columns.
     Typically, the rows are *data points* and the columns are *features*.
-    Dimesionality reduction will reduce the number of features of each data point, turning
+    Dimensionality reduction will reduce the number of features of each data point, turning
     [Equation display:false]X[/Equation] into a new matrix,
     [Equation display:false]X'[/Equation], of size
     [Equation display:false]m \times d[/Equation], where
@@ -164,7 +164,7 @@
 
     For example, say [Equation display:false]m=n[/Equation], that is
     [Equation display:false]X[/Equation] is a square matrix.
-    Performing dimesionality reduction on
+    Performing dimensionality reduction on
     [Equation display:false]X[/Equation] and setting 
     [Equation display:false]d=2[/Equation] will change it from a square matrix to a tall, rectangular matrix.
 
@@ -202,7 +202,7 @@
     Here we take the same brightness feature and use it to position the artworks in 2D space instead of 1D.
     The pieces have more room to spread out.
 
-    But this is not the only way to emebd the artworks in 2D space. 
+    But this is not the only way to embed the artworks in 2D space. 
     In fact, there are many, and some projections are more useful than others.
 
     Use these sliders to toggle the influence that the features brightness, artwork age, and 3RD THING HERE
@@ -230,8 +230,11 @@
     [/conditional]
 
     [conditional if:showHilbertDetails ]
+
+    [hr/]
+
     The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
-    mapped on a space-filling hilbert curve to give the illusion of a 2D embedding.
+    mapped on a space-filling Hilbert curve to give the illusion of a 2D embedding.
 
     Each artwork's 1D reduced projection is computed by a linear combination of the three features above.
 
@@ -262,10 +265,10 @@
     Luckily this is something that computers are very good at: searching for some optimal combination of numbers.
 
     There are many algorithms that compute a dimensionality reduction of a dataset.
-    Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible emebdding.
+    Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible embedding.
     More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
     iteratively produce highly clustered embeddings.
-    Unfortunately, whereas before each feature's influence was explictly known,
+    Unfortunately, whereas before each feature's influence was explicitly known,
     one must relinquish control to a machine to determine the best embedding—
     that means that it is not clear what features of the data are used to compute the embedding.
 
@@ -307,13 +310,13 @@
       ## t-SNE
 
       Pros:
-* Produces highly clustered, visualy striking embeddings.
+* Produces highly clustered, visually striking embeddings.
 * Non-linear reduction, captures more structure in data.
 
       Cons:
 * More computationally expensive.
-* Requires setting hyperparameters that influence quality of the emebdding.
-* Non-determinsitic algorithm.
+* Requires setting hyperparameters that influence quality of the embedding.
+* Non-deterministic algorithm.
 
     [/conditional]
     [conditional if:`algorithm === 'umap' ` ]
@@ -326,7 +329,7 @@
 
       Cons:
 * New, less prevalent algorithm.
-* Requires setting hyperparameters that influence quality of the emebdding.
+* Requires setting hyperparameters that influence quality of the embedding.
 
     [/conditional]
 
@@ -349,7 +352,7 @@
     [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html), 
     and [UMAP](https://github.com/lmcinnes/umap).
 
-    ### Acknowledgements
+    ### Acknowledgments
 * This article was created using [Idyll](https://idyll-lang.org).
 * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 

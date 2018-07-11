@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   text-align: center;
   margin: 0 auto;
-  background: hsla(15, 100%, 89%, 1);
+  background: hsl(49, 98%, 84%);
   padding: 10px;
   cursor: pointer;
   width: 200px;
@@ -102,9 +102,9 @@ svg text {
 
 button {
   background: none;
-  border: 3px solid #ffd5c7;
+  border: 3px solid hsl(49, 98%, 84%);
   padding: 15px;
-  color: #ffd5c7;
+  color: hsl(49, 98%, 84%);
   text-transform: uppercase;
   margin: 0 auto;
   text-align: center;
@@ -128,4 +128,8 @@ button {
 
 .reference {
   font-size: 14px;
+}
+
+hr {
+  height: 0.15em;
 }
