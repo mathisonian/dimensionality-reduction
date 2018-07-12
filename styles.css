@@ -266,3 +266,10 @@ input[type="range"]::-webkit-slider-thumb:after{
   top:5px;
   background: #000;
 }
+
+em {
+  /* color: #81daf3; */
+}
+textarea:focus, input:focus{
+  outline: none;
+}

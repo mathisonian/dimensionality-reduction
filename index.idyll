@@ -52,16 +52,17 @@
 
     [Conditional if:`loadStatus === 'loaded'`]
       Dimensionality reduction is a powerful
-      technique used by data scientists to look for hidden structure in data.  The method is used by a variety of research and applications to visualize datasets to identify patterns and clusters of similar or dissimlar data.
+      technique used by data scientists to look for hidden structure in data. The method
+      is useful in a number of domains, for example document categorization and protein disorder prediction.
+      // TODO - add citation?
 
-      For example, Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view a
-      number of high-dimensional datasets projected onto two or three dimensions. The idea is that
-      even though data is displayed in a lower dimension, structures present in higher dimensions are maintained, at least roughly.
+      The results of a dimensionality reduction algorithm can be visualized to reval patterns and clusters of similar or dissimlar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly.
 
-      Dimensionality reduction algorithms work by inferring a function to describe the structure of "unlabeled" data, i.e. data that has no preexisting categorization. However, many of the commonly used algorithms produce complex *embeddings* and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
+      The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
 
-      Read on to learn what exactly these embeddings are, take a look at some simple algorithms, and
-      view a comparison of three of the most popular dimensionality reduction algorithms used today.
+      // Dimensionality reduction algorithms work by inferring a function to describe the structure of *unlabeled* data, that is, data that has no preexisting categorization. Many of the commonly used algorithms produce complex embeddings and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
+
+      This guide will teach you how to think about these embeddings, and provide a comparison of some of the most popular dimensionality reduction algorithms used today.
 
     [/Conditional]
 
@@ -73,14 +74,14 @@
     # First, some art
 
     Your browser has just loaded information about
-    1,517 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection [Cite reference:"met"/].
+    roughly 800 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection, we are displaying just a small fraction [Cite reference:"met"/]. They are positioned randomly.
 
     *Hover over an artwork to see its details.*
 
     [br/]
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, and dimensions.
-    Below are 10 random artworks from the dataset.
+    Below are 10 artworks from the dataset.
 
     [br/]
 
@@ -102,30 +103,19 @@
 
     # Projecting onto a line
 
-    If you store the features in a *vector*, you can think of the data as existing in
-    a high-dimensional space.
+    These features can be thought of as vectors existing in a high-dimensional space. We want to visualize the vectors, however we can't show all the dimensions at once.
 
-    We often want to visualize the data, however we cannot show all the dimensions at once.
-    Instead we can choose to project the data into a lower dimension (oftentimes 1D, 2D, or 3D) that can be visualized.
-    This projection sometimes is also called an embedding.
-    // of the data into a lower dimensional space.
+    The answer is to project the data into a lower dimension, one that can be visualized. This kind of projection is called an *embedding*.
 
-    *Remember points are 0D, lines are 1D, planes are 2D, etc.*
+    // *Remember that points have 0 dimensions, lines are 1 dimensional, planes are 2 dimensional, etc.*
+    // [br/]
 
-    [br/]
-
-    Let's compute a 1 dimensional embedding.
-    This means we will take each artwork and compute one number to describe it
-    instead of all of the features we showed earlier in the table.
-    A benefit of reducing to 1D is that we can sort the numbers, and thus the artworks, on a line.
-
+    Computing 1-dimensional embedding requires taking each artwork and computing a single number to describe it.
+    A benefit of reducing to 1D is that the numbers, and the artworks, can be sorted on a line.
 
     [Projection images:images src:"./static/images/projection.svg" /]
 
-    Let's reduce using *average pixel brightness* of each artwork, and then sort these values.
-
-    Notice that the darkest images appear at the top and the brightest images on the bottom!
-
+    On the right you see the artwork positioned according to their *average pixel brightness*. Notice that the images are sorted, with the darkest images appear at the top and the brightest images on the bottom!
   [/Step]
 
 
@@ -133,26 +123,25 @@
 
     # For the mathematically inclined
 
-    We can formulate dimensionality mathematically in the context of a given dataset.
-
-    Consider a dataset typically represented as a matrix
+    Dimensionality reduction can be formulated mathematically in the context of a given dataset. Consider a dataset represented as a matrix
     [Equation display:false]X[/Equation], where
     [Equation display:false]X[/Equation]
     is of size
     [Equation display:false]m \times n[/Equation], where
-    [Equation display:false]m[/Equation] is the number of rows of
+    [Equation display:false]m[/Equation] represents the number of rows of
     [Equation display:false]X[/Equation], and
-    [Equation display:false]n[/Equation] is the number of columns.
-    Typically, the rows are *data points* and the columns are *features*.
+    [Equation display:false]n[/Equation] representes the number of columns.
+
+    Typically, the rows of the matrix are *data points* and the columns are *features*.
     Dimensionality reduction will reduce the number of features of each data point, turning
     [Equation display:false]X[/Equation] into a new matrix,
     [Equation display:false]X'[/Equation], of size
     [Equation display:false]m \times d[/Equation], where
     [Equation display:false]d < n[/Equation].
-    As already stated, for visualization, we typically set
+    For visualizations we typically set
     [Equation display:false]d[/Equation] to be 1, 2 or 3.
 
-    For example, say [Equation display:false]m=n[/Equation], that is
+    Say [Equation display:false]m=n[/Equation], that is
     [Equation display:false]X[/Equation] is a square matrix.
     Performing dimensionality reduction on
     [Equation display:false]X[/Equation] and setting
@@ -174,9 +163,9 @@
     = X'
     [/Equation]
 
-    Here,
-    [Equation display:false]x[/Equation] and
-    [Equation display:false]x'[/Equation] just represent nonzero values of a matrix.
+    // Here,
+    // [Equation display:false]x[/Equation] and
+    // [Equation display:false]x'[/Equation] just represent nonzero values of a matrix.
 
     Each data point only has two features now, i.e., each data point has been reduced from a 3 dimensional vector to a 2 dimensional vector.
 
@@ -187,16 +176,15 @@
 
     # Embedding data in two dimensions
 
-    Instead of reducing to 1D, let's add another dimension and embed the artworks in 2D.
-
-    Here we take the same brightness feature and use it to position the artworks in 2D space instead of 1D.
+    The same brightness feature can be used to position the artworks in 2D space instead of 1D.
     The pieces have more room to spread out.
 
-    But this is not the only way to embed the artworks in 2D space.
+    On the right you see a simple 2-dimensional embedding based on image brightness,
+    but this isn't the only way to position the artworks.
     In fact, there are many, and some projections are more useful than others.
 
-    Use these sliders to toggle the influence that the brightness and artwork age
-    features have in determining the artworks' embedding positions.
+    Use the slider to toggle the influence that the brightness and artwork age
+    have in determining the embedding positions. TODO - something about how to interpret output.
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
@@ -234,7 +222,7 @@
     a' = (a_{\text{brightness}} \times w_{\text{brightness}}) + (a_{\text{age}} \times w_{\text{age}})
     [/Equation]
 
-    We then jitter the artworks to prevent excessive overlap.
+    Each artwork's final position is randomly jittered to prevent excessive overlap.
 
     [button onClick:`showHilbert = !showHilbert `]Toggle hilbert curve[/button]
 
@@ -245,18 +233,20 @@
 
     # Real-world algorithms
 
+
+
     We just showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
     However, you may have noticed that its hard to find meaningful combinations of feature weights.
-    Luckily this is something that computers are very good at: searching for some optimal combination of numbers.
 
 
-    Below are the three discussed algorithms run on the artworks.
-    Click each button to toggle between the resulting embeddings.
+    State-of-the-art algorithms can find an optimal combination of features so that distances in
+    the high dimensional space are preserved in the embedding. Use the tool below to project the artworks using three commonly used algorithms. TODO - note in using pixels as input / what is output
 
     [div className:"panel" ]
+
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
-      [button className:`algorithm === 'pca' ? 'selected' : ''` onClick:`algorithm = "pca" `]
+      [button className:`(!algorithm || algorithm === 'pca')  ? 'selected' : ''` onClick:`algorithm = "pca" `]
         PCA
       [/button]
 
@@ -269,7 +259,7 @@
       [/button]
     [/div]
 
-    [conditional if:`algorithm === 'pca' ` ]
+    [conditional if:`!algorithm || algorithm === 'pca' ` ]
       ## Principal component analysis
 
       Pros:

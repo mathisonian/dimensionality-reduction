@@ -4,7 +4,7 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
-const IMAGE_BASE = 'https://s3-us-west-2.amazonaws.com/idyll-pub'
+const IMAGE_BASE = 'https://d1qh62yyj9qkpe.cloudfront.net'
 
 const jitter = (d, j = 40) => {
   // return d;

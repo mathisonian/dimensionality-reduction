@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 const imageSize = 40;
 
 
-const IMAGE_BASE = 'https://s3-us-west-2.amazonaws.com/idyll-pub'
+const IMAGE_BASE = 'https://d1qh62yyj9qkpe.cloudfront.net'
 
 class Projection extends React.Component {
 
