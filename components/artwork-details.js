@@ -16,7 +16,7 @@ class CustomComponent extends React.Component {
             // background: `rgba(0, 0, 0, 0.7)`,
             // background: 'hsl(49, 98%, 84%)',
             maxWidth: 400,
-            background: 'black',
+            background: '#222222',
             textAlign: 'left',
             padding: 5}}>
           {artwork['Title']} ({artwork['Object End Date']})<br/>
