@@ -112,17 +112,9 @@ class Analytics {
       top: (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0)
     };
 
-    console.log('initializing app');
     firebase.initializeApp(config);
 
-    console.log('initialized.');
-
-    console.log('authorizing...');
-
     firebase.auth().signInAnonymously().then(({user}) => {
-
-      console.log('Firebase user: ', user);
-
       const userRef = firebase.database().ref(`${projectName}/users/${user.uid}`);
 
       userRef.child('visitCount').once('value').then((value) => {

@@ -3,8 +3,6 @@ import SVG from 'react-inlinesvg';
 import * as d3 from 'd3';
 
 const imageSize = 40;
-
-
 const IMAGE_BASE = 'https://d1qh62yyj9qkpe.cloudfront.net'
 
 class Projection extends React.Component {
@@ -18,15 +16,9 @@ class Projection extends React.Component {
     const svg = d3.select(this.ref).select('.projection-svg-el svg .container');
     const circle = svg.select('.output-circle');
     const line = svg.select('.output-line');
-
-    // const bottomLine = svg.select('.bottom-line');
-    // const rect = bottomLine.node().getBoundingClientRect();
-    // const minX = rect.x;
-    // const maxX = rect.x + rect.width;
     const minX = 77.5;
     const maxX = 402.35;
 
-    console.log('extent', minX, maxX);
     const x = d3.scaleLinear().domain([4.807568008913199, 235.72559024683454]).range([minX, maxX]);
     const color = d3.scaleLinear().domain([4.807568008913199, 235.72559024683454]).range([0, 255]);
 
@@ -34,7 +26,6 @@ class Projection extends React.Component {
 
     const attributeLabels = svg.selectAll('.attribute-labels tspan');
 
-    console.log(attributeLabels);
 
     const img = svg.append("svg:image").attr('y', cy - imageSize / 2).attr('width', imageSize).attr('height', imageSize);
 
@@ -43,7 +34,6 @@ class Projection extends React.Component {
     const transition = () => {
       const image = images[count % images.length];
       const r = image['brightness_avg_perceived'];
-      console.log('r', r);
 
       attributeLabels
         .style('fill', '#81daf3')
