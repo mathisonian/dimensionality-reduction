@@ -1,39 +1,63 @@
-let bibliography = "@article{scikit-learn,\
- title={Scikit-learn: Machine Learning in Python},\
- author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.\
-         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.\
-         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and\
-         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},\
- journal={Journal of Machine Learning Research},\
- year={2011}\
-}\
-@article{sklearn_api,\
-  author    = {Lars Buitinck and Gilles Louppe and Mathieu Blondel and\
-               Fabian Pedregosa and Andreas Mueller and Olivier Grisel and\
-               Vlad Niculae and Peter Prettenhofer and Alexandre Gramfort\
-               and Jaques Grobler and Robert Layton and Jake VanderPlas and\
-               Arnaud Joly and Brian Holt and Gael Varoquaux},\
-  title     = {API design for machine learning software: experiences from the scikit-learn project},\
-  journal = {ECML PKDD Workshop: Languages for Data Mining and Machine Learning},\
-  year      = {2013},\
-}\
-@article{mcinnes2018umap,\
-     author = {McInnes, L. and Healy, J.},\
-     title = {UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction},\
-     journal = {arXiv},\
-     year = 2018,\
+let bibliography = "@article{hilbert1890stetige,\
+    title = {Uber die stetige Abbildung einer Linie auf ein Flachenstuck},\
+    author = {David Hilbert},\
+    journal = {Dritter Band: Analysis Grundlagen der Mathematik Physik Verschiedenes },\
+    year = {1890},\
 }\
 @article{maaten2008visualizing,\
   title={Visualizing data using t-SNE},\
-  author={Maaten, Laurens van der and Hinton, Geoffrey},\
+  author={Laurens van der Maaten, Geoffrey Hinton},\
   journal={Journal of machine learning research},\
   year={2008}\
 }\
-@article{met, \
+@article{van2009dimensionality,\
+title = {Dimensionality reduction: a comparative review},\
+    author = {Laurens van der Maaten, Eric Postma, Jaap Van den Herik},\
+    journal={Tilburg University Technical Report, TiCC-TR},\
+    year = {2009}\
+}\
+@article{mcinnes2018umap,\
+     author={Leland McInnes, John Healy},\
+     title = {UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction},\
+     journal = {arXiv},\
+     year = {2018},\
+}\
+@article{met,\
     title = {The Metropolitan Museum of Art Open Access}, \
     author = {The Metropolitan Museum of Art}, \
     journal = {Github}, \
     year = {2017}\
+}\
+@article{moon2001analysis,\
+    title = {Analysis of the clustering properties of the Hilbert space-filling curve},\
+    author = {Bongki Moon, Hosagrahar V Jagadish, Christos Faloutsos, Joel H. Saltz},\
+    journal = {IEEE Transactions on knowledge and data engineering},\
+    year = {2001}\
+}\
+@article{scikit-learn,\
+ title={Scikit-learn: Machine Learning in Python},\
+ author={F. Pedregosa, G. Varoquaux, A. Gramfort, and V. Michel,\
+        B. Thirion, O. Grisel, M. Blondel, and P. Prettenhofer,\
+        R. Weiss, V. Dubourg, J. Vanderplas, A. Passos,\
+        D. Cournapeau, M. Brucher, M. Perrot, E. Duchesnay},\
+ journal={Journal of Machine Learning Research},\
+ year={2011}\
+}\
+@article{sklearn_api,\
+  author    = {Lars Buitinck, Gilles Louppe, Mathieu Blondel,\
+               Fabian Pedregosa, Andreas Mueller, Olivier Grisel,\
+               Vlad Niculae, Peter Prettenhofer, Alexandre Gramfort,\
+               Jaques Grobler, Robert Layton, Jake VanderPlas,\
+               Arnaud Joly, Brian Holt, Gael Varoquaux},\
+  title     = {API design for machine learning software: experiences from the scikit-learn project},\
+  journal = {ECML PKDD Workshop: Languages for Data Mining and Machine Learning},\
+  year      = {2013},\
+}\
+@article{smilkov2016embedding,\
+    title = {Embedding Projector: Interactive visualization and interpretation of embeddings},\
+    author = {Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B Viegas, Martin Wattenberg},\
+    journal = {arXiv},\
+    year={2016}\
 }";
 
 export default bibliography;
