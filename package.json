@@ -7,11 +7,13 @@
   },
   "idyll": {
     "layout": "blog",
-    "template": "_index.html"
+    "template": "_index.html",
+    "context": "./analytics/context"
   },
   "dependencies": {
     "bibtex-parser": "0.0.0",
     "d3": "^4.13.0",
+    "firebase": "^5.2.0",
     "hilbert": "^2.0.0",
     "idyll": "^3.0.18",
     "idyll-components": "^3.0.6",

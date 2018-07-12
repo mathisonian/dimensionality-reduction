@@ -182,7 +182,7 @@
     In fact, there are many, and some projections are more useful than others.
 
     *Use the slider to vary the influence that the brightness and artwork age have in determining the embedding positions.*
-    
+
     As you move the slider from bightness to artwork age, the embedding changes from highlighting bright and dark images,
     and starts to cluster recent modern-day images in the bottom left corner whereas older artworks are moved farther away (*hover over images to see their date*).
 
@@ -243,10 +243,10 @@
 
     State-of-the-art algorithms can find an optimal combination of features so that distances in
     the high dimensional space are preserved in the embedding. Use the tool below to project the artworks using three commonly used algorithms.
-    
 
-    **Note**: here we are performing reduction on the pixels of each image, i.e., each image is flattened into a single vector, where each pixel represents one feature.
-    We then reduce each image to 2D.
+
+    In this example we are performing reduction on the pixels of each image: each image is flattened into a single vector, where each pixel represents one feature.
+    We then reduce these vectors to two dimensions.
 
     [div className:"panel" ]
 
@@ -351,3 +351,6 @@
 
 
 [ArtworkDetails artwork:selectedArtwork /]
+
+
+[analytics google:"UA-108267630-1" tag:"dimensionality-reduction" /]

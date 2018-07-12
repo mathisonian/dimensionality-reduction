@@ -52,10 +52,7 @@ class DRComponent extends D3Component {
     const _scaleCache = [];
     this.weightKeys.concat(['X_pca_x', 'X_pca_y', 'X_mctsne_x', 'X_mctsne_y', 'X_umap_x', 'X_umap_y']).forEach((key) => {
       _scaleCache[key] = d3.scaleLinear().domain(d3.extent(images, (d) => d[key]));
-      console.log(key, _scaleCache[key].domain())
     })
-
-    console.log('this.weightKeys', this.weightKeys);
 
     this.normalizeVar = (d, key) => {
       // console.log(key);
@@ -227,7 +224,6 @@ class DRComponent extends D3Component {
         weights.push(_weighted);
       });
 
-    console.log('min', min, 'max', max);
     this.$el
       // .transition()
       // .duration(1000)
@@ -242,7 +238,6 @@ class DRComponent extends D3Component {
       switch(props.state) {
         case 'initial':
 
-          console.log('initial.....');
           this.$rects = this.$el.append('rect')
             .attr('x', 0)
             .attr('y', 0)
