@@ -4,6 +4,8 @@ const d3 = require('d3');
 const H = require('hilbert');
 const Path = require('svg-path-generator');
 
+const IMAGE_BASE = 'https://d1qh62yyj9qkpe.cloudfront.net'
+
 const jitter = (d, j = 40) => {
   // return d;
   return d + j * (Math.random() - 0.5);
@@ -149,20 +151,21 @@ class DRComponent extends D3Component {
 
         d3.select(nodes[i].parentNode).moveToFront();
 
+        const size = smallImageSize * 1.5;
         d3.select(nodes[i])
         .attr('x', (d) => {
-          return - largeImageSize / 2;
+          return - size / 2;
         })
         .attr('y', (d) => {
-          return - largeImageSize / 2;
+          return - size / 2;
         })
         .attr('width', (d) => {
-          return largeImageSize;
+          return size;
         })
         .attr('height', (d) => {
-          return largeImageSize;
+          return size;
         })
-        .attr("xlink:href", (d) => `./static/images/met/${d['Object ID']}.jpg`);
+        // .attr("xlink:href", (d) => `${IMAGE_BASE}/met/${d['Object ID']}.jpg`);
       })
       .on('mouseleave', (d, i, nodes) => {
         // console.log('mouseleave');
@@ -182,7 +185,7 @@ class DRComponent extends D3Component {
           .attr('height', (d) => {
             return smallImageSize;
           })
-          .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`);
+          // .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`);
       })
       .style('opacity', 0)
 
@@ -274,7 +277,7 @@ class DRComponent extends D3Component {
             setTimeout(() => {
               this
                 .$images
-                .attr("xlink:href", (d) => `./static/images/thumbnails/met/${d['Object ID']}.jpg`)
+                .attr("xlink:href", (d) => `${IMAGE_BASE}/thumbnails/met/${d['Object ID']}.jpg`)
             }, 2000)
 
           break;
@@ -346,8 +349,8 @@ class DRComponent extends D3Component {
     }
 
     if (props.showHilbert !== this.props.showHilbert) {
-      this.$el.style('opacity', props.showHilbert ? 0.5 : 1);
-      this.$hPath.attr('stroke', props.showHilbert ? 'white' : 'none');
+      this.$el.style('opacity', props.showHilbert ? 0.7 : 1);
+      this.$hPath.attr('stroke', props.showHilbert ? '#81daf3' : 'none');
     }
   }
 }
