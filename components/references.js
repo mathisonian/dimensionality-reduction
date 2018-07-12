@@ -18,7 +18,7 @@ class References extends React.Component {
   createReference(reference, i) {
     return (
       <li id={`reference-${i + 1}`} key={reference.TITLE} className={'reference'}>
-        <strong>{reference.TITLE}.</strong>
+        <span className={'reference-title'}>{reference.TITLE}.</span>
         <br />
         {reference.AUTHOR}.
         <br />

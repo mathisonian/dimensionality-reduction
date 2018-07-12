@@ -58,6 +58,12 @@ title = {Dimensionality reduction: a comparative review},\
     author = {Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B Viegas, Martin Wattenberg},\
     journal = {arXiv},\
     year={2016}\
+}\
+@article{wattenberg2016how,\
+  author = {Martin Wattenberg, Fernanda Viegas, Ian Johnson},\
+  title = {How to Use t-SNE Effectively},\
+  journal = {Distill},\
+  year = {2016}\
 }";
 
 export default bibliography;
