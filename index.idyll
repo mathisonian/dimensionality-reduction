@@ -199,7 +199,7 @@
     [var name:"showHilbertDetails" value:false /]
 
     [conditional if:`!showHilbertDetails ` ]
-      [button onClick:` showHilbertDetails = true ` ]
+      [button onClick:` showHilbertDetails = true; showHilbert = true; ` ]
         Show technical details
       [/button]
     [/conditional]
@@ -224,7 +224,7 @@
 
     Each artwork's final position is randomly jittered to prevent excessive overlap.
 
-    [button onClick:`showHilbert = !showHilbert `]Toggle hilbert curve[/button]
+    [button onClick:`showHilbert = false; showHilbertDetails = false; `]Hide technical details[/button]
 
     [/conditional]
   [/Step]

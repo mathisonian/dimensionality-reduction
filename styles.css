@@ -270,6 +270,6 @@ input[type="range"]::-webkit-slider-thumb:after{
 em {
   /* color: #81daf3; */
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus, button:focus {
   outline: none;
 }
