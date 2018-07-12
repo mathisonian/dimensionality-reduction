@@ -1,6 +1,6 @@
 [meta
   title:"The Beginner's Guide to Dimensionality Reduction"
-  description:"Welcome to our interactive tutorial." /]
+  description:"An interactive tutorial for visualizing high-dimensional data." /]
 
 
 [data name:"images" source:"met-with-coordinates.csv"  /]
@@ -40,7 +40,7 @@
 
     [Header
       title:"The Beginner's Guide to Dimensionality Reduction"
-      subtitle:"Welcome to our interactive tutorial."
+      subtitle:"An interactive tutorial for visualizing high-dimensional data."
       date:"July 12, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
@@ -53,12 +53,11 @@
     [Conditional if:`loadStatus === 'loaded'`]
       Dimensionality reduction is a powerful
       technique used by data scientists to look for hidden structure in data. The method
-      is useful in a number of domains, for example document categorization and protein disorder prediction.
-      // TODO - add citation?
+      is useful in a number of domains, for example document categorization, protein disorder prediction, and machine learning model debugging [Cite reference:"maaten2008visualizing"/].
 
       The results of a dimensionality reduction algorithm can be visualized to reval patterns and clusters of similar or dissimlar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly.
 
-      The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/) let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
+      The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/) [Cite reference:"smilkov2016embedding"/] let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
 
       // Dimensionality reduction algorithms work by inferring a function to describe the structure of *unlabeled* data, that is, data that has no preexisting categorization. Many of the commonly used algorithms produce complex embeddings and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
 
@@ -74,7 +73,7 @@
     # First, some art
 
     Your browser has just loaded information about
-    roughly 800 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection, we are displaying just a small fraction [Cite reference:"met"/]. They are positioned randomly.
+    roughly 800 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection [Cite reference:"met"/], we are displaying just a small fraction. They are positioned randomly.
 
     *Hover over an artwork to see its details.*
 
@@ -183,8 +182,11 @@
     but this isn't the only way to position the artworks.
     In fact, there are many, and some projections are more useful than others.
 
-    Use the slider to toggle the influence that the brightness and artwork age
-    have in determining the embedding positions. TODO - something about how to interpret output.
+    *Use the slider to vary the influence that the brightness and artwork age have in determining the embedding positions.*
+    
+    As you move the slider from bightness to artwork age, the embedding changes from highlighting bright and dark images,
+    and starts to cluster recent modern-day images in the bottom left corner whereas older artworks are moved farther away (*hover over images to see their date*).
+
 
     [div style:`{display: 'flex', flexAlign: 'row', textAlign: 'center'}`]
 
@@ -207,7 +209,8 @@
     [conditional if:showHilbertDetails ]
 
     The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
-    mapped on a space-filling Hilbert curve to give the illusion of a 2D embedding.
+    mapped on a space-filling Hilbert curve [Cite reference:"hilbert1890stetige"/] to give the illusion of a 2D embedding,
+    since space-filling curves preserve locality fairly well [Cite reference:"moon2001analysis"/]
 
     Each artwork's 1D reduced projection is computed by a linear combination of the three features above.
 
@@ -240,7 +243,11 @@
 
 
     State-of-the-art algorithms can find an optimal combination of features so that distances in
-    the high dimensional space are preserved in the embedding. Use the tool below to project the artworks using three commonly used algorithms. TODO - note in using pixels as input / what is output
+    the high dimensional space are preserved in the embedding. Use the tool below to project the artworks using three commonly used algorithms.
+    
+
+    **Note**: here we are performing reduction on the pixels of each image, i.e., each image is flattened into a single vector, where each pixel represents one feature.
+    We then reduce each image to 2D.
 
     [div className:"panel" ]
 
@@ -267,7 +274,7 @@
 * Can save embedding model to then project new data points into the reduced space.
 
       Cons:
-* Linear reduction, resulting embedding is not as clustered as other algorithm.
+* Linear reduction, resulting embedding is not as high-quality and clustered as other algorithm.
 
     [/conditional]
     [conditional if:`algorithm === 'mctsne' ` ]
@@ -304,7 +311,7 @@
     More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
     iteratively produce highly clustered embeddings.
     Unfortunately, whereas before each feature's influence was explicitly known,
-    one must relinquish control to a machine to determine the best embedding—
+    one must relinquish control to the algorithm to determine the best embedding—
     that means that it is not clear what features of the data are used to compute the embedding.
 
     Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
@@ -319,16 +326,16 @@
     # Try it for yourself
 
     Dimensionality reduction is a powerful tool to better understand high-dimensional data.
-    If you have your own dataset and wish to visualize it using dimensionality reduction, there are a number of different algorithms and
+    If you have your own dataset and wish to visualize it using dimensionality reduction, there are a number of different algorithms [Cite reference:"van2009dimensionality"/] and
     implementations available.
-    In Python, the scikit-learn package provides APIs for many
+    In Python, the scikit-learn package [Cite reference:`["scikit-learn", "sklearn_api"]`/] provides APIs for many
     [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html) algorithms,
     as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
     Regarding the three algorithms dicussed above, you can find Python implementations of the algorithms we used for the artworks here:
     [PCA](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html),
-    [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html),
-    and [UMAP](https://github.com/lmcinnes/umap).
+    [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) [Cite reference:"maaten2008visualizing"/],
+    and [UMAP](https://github.com/lmcinnes/umap) [Cite reference:"mcinnes2018umap"/].
 
     ### Acknowledgments
 * This article was created using [Idyll](https://idyll-lang.org).
