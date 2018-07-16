@@ -5,13 +5,13 @@ let bibliography = "@article{hilbert1890stetige,\
     year = {1890},\
 }\
 @article{maaten2008visualizing,\
-  title={Visualizing data using t-SNE},\
+  title={Visualizing Data Using t-SNE},\
   author={Laurens van der Maaten, Geoffrey Hinton},\
   journal={Journal of machine learning research},\
   year={2008}\
 }\
 @article{van2009dimensionality,\
-title = {Dimensionality reduction: a comparative review},\
+title = {Dimensionality Reduction: A Comparative Review},\
     author = {Laurens van der Maaten, Eric Postma, Jaap Van den Herik},\
     journal={Tilburg University Technical Report, TiCC-TR},\
     year = {2009}\
@@ -29,7 +29,7 @@ title = {Dimensionality reduction: a comparative review},\
     year = {2017}\
 }\
 @article{moon2001analysis,\
-    title = {Analysis of the clustering properties of the Hilbert space-filling curve},\
+    title = {Analysis of the Clustering Properties of the Hilbert Space-filling Curve},\
     author = {Bongki Moon, Hosagrahar V Jagadish, Christos Faloutsos, Joel H. Saltz},\
     journal = {IEEE Transactions on knowledge and data engineering},\
     year = {2001}\
@@ -55,12 +55,12 @@ title = {Dimensionality reduction: a comparative review},\
                Vlad Niculae, Peter Prettenhofer, Alexandre Gramfort,\
                Jaques Grobler, Robert Layton, Jake VanderPlas,\
                Arnaud Joly, Brian Holt, Gael Varoquaux},\
-  title     = {API design for machine learning software: experiences from the scikit-learn project},\
+  title     = {API Design for Machine Learning Software: Experiences from the Scikit-learn Project},\
   journal = {ECML PKDD Workshop: Languages for Data Mining and Machine Learning},\
   year      = {2013},\
 }\
 @article{smilkov2016embedding,\
-    title = {Embedding Projector: Interactive visualization and interpretation of embeddings},\
+    title = {Embedding Projector: Interactive Visualization and Interpretation of Embeddings},\
     author = {Daniel Smilkov, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B Viegas, Martin Wattenberg},\
     journal = {arXiv},\
     year={2016}\
