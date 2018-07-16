@@ -67,3 +67,5 @@ build/**
 static/images/met/
 static/images/thumbnails/met/
 met-images
+
+analytics

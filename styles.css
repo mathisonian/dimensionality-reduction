@@ -163,11 +163,13 @@ button {
   text-align: center;
   display: block;
   cursor: pointer;
+  background: #1e467d;
 }
 
 .panel button {
   border: 3px solid #1E467E;
   padding: 10px;
+  background: #ffffff;
   color: #1E467E;
   font-weight: bold;
   border-radius: 20px;
@@ -218,11 +220,70 @@ button.selected {
 }
 
 @media all and (max-width: 1000px) {
+
+  .article-header {
+    /* background: rgba(55, 55, 55, 0.5); */
+  }
+
+
+  .article-header, h1 {
+    text-shadow:
+     -1px -1px 3px #000,
+      1px -1px 3px #000,
+      -1px 1px 3px #000,
+       1px 1px 3px #000;
+  }
+
+  p, li {
+    font-size: 14px;
+    padding: 5px 10px;
+    background: rgba(22, 22, 22, 0.9);
+  }
+
+  .panel button {
+    background: #fff;
+
+  }
+
+  .panel p, .panel li {
+    background: none;
+  }
+  .fixed {
+    background: none;
+    border-top: none;
+  }
+
   .idyll-text-container {
     margin-left: 0 !important;
   }
+
   .d3-component svg {
     max-height: 200px;
+  }
+
+  .idyll-scroll-text:first-of-type {
+    padding-top: 0;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .article-header h1 {
+    font-size: 1.8rem;
+    /* width: 100%; */
+  }
+
+  .article-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .katex-display {
+    overflow-x: auto;
+  }
+
+  .byline {
+    font-size: .8rem;
   }
 }
 

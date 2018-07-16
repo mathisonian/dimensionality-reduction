@@ -1,6 +1,9 @@
 [meta
   title:"The Beginner's Guide to Dimensionality Reduction"
-  description:"Explore the methods that data scientists use to visualize high-dimensional data in this interactive article." /]
+  description:"Explore the methods that data scientists use to visualize high-dimensional data in this interactive article."
+  shareImageUrl:"https://idyll.pub/post/dimensionality-reduction-293e465c2a3443e8941b016d/static/images/share.png"
+  shareImageWidth:"1600"
+  shareImageHeight:"800" /]
 
 
 [data name:"images" source:"met-with-coordinates.csv"  /]
@@ -284,7 +287,7 @@
 * Non-linear reduction, captures local structure well.
 
       Cons:
-* Global structure may be lost in favor of preseving local distances.
+* Global structure may be lost in favor of preserving local distances.
 * More computationally expensive.
 * Requires setting hyperparameters that influence quality of the embedding.
 * Non-deterministic algorithm.
