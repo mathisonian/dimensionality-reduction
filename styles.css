@@ -191,6 +191,10 @@ button {
   border-radius: 10px;
 }
 
+.ReactTable {
+  box-shadow: 7px 7px 10px #222222;
+}
+
 .panel h2 {
   color: #1E467E;
   width: 76%;

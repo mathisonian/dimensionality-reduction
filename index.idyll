@@ -113,7 +113,7 @@
 
     [Projection images:images src:"./static/images/projection.svg" /]
 
-    On the right you see the artwork positioned according to their *average pixel brightness*. Notice that the images are sorted, with the darkest images appear at the top and the brightest images on the bottom!
+    On the right you see the artwork positioned according to their *average pixel brightness*. Notice that the images are sorted, with the darkest images appearing at the top and the brightest images on the bottom!
   [/Step]
 
 
@@ -269,11 +269,11 @@
       ## Principal component analysis
 
       Pros:
-* Computationally cheap.
+* Relatively computationally cheap.
 * Can save embedding model to then project new data points into the reduced space.
 
       Cons:
-* Linear reduction, resulting embedding is not as high-quality and clustered as other algorithm.
+* Linear reduction limits information that can be captured; not as discriminably clustered as other algorithms.
 
     [/conditional]
     [conditional if:`algorithm === 'mctsne' ` ]
@@ -281,9 +281,10 @@
 
       Pros:
 * Produces highly clustered, visually striking embeddings.
-* Non-linear reduction, captures more structure in data.
+* Non-linear reduction, captures local structure well.
 
       Cons:
+* Global structure may be lost in favor of preseving local distances.
 * More computationally expensive.
 * Requires setting hyperparameters that influence quality of the embedding.
 * Non-deterministic algorithm.
@@ -294,7 +295,7 @@
 
       Pros:
 * Non-linear reduction that is computationally faster than t-SNE.
-* Often performs better at finding global structure of the data as well as preserving local neighbor relations.
+* User defined parameter for preserving local or global structure.
 * Solid theoretical foundations in manifold learning.
 
       Cons:
