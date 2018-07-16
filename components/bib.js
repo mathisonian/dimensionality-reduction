@@ -34,6 +34,12 @@ title = {Dimensionality reduction: a comparative review},\
     journal = {IEEE Transactions on knowledge and data engineering},\
     year = {2001}\
 }\
+@article{olah2014visualizing,\
+    title = {Visualizing MNIST: An Exploration of Dimensionality Reduction},\
+    author = {Chris Olah},\
+    journal = {Colah's Blog},\
+    year = {2014}\
+}\
 @article{scikit-learn,\
  title={Scikit-learn: Machine Learning in Python},\
  author={F. Pedregosa, G. Varoquaux, A. Gramfort, and V. Michel,\

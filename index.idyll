@@ -58,7 +58,7 @@
       technique used by data scientists to look for hidden structure in data. The method
       is useful in a number of domains, for example document categorization, protein disorder prediction, and machine learning model debugging [Cite reference:"maaten2008visualizing"/].
 
-      The results of a dimensionality reduction algorithm can be visualized to reveal patterns and clusters of similar or dissimilar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly.
+      The results of a dimensionality reduction algorithm can be visualized to reveal patterns and clusters of similar or dissimilar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly [Cite reference:"olah2014visualizing"/].
 
       The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/) [Display value:" "/] [Cite reference:"smilkov2016embedding"/] let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
 
