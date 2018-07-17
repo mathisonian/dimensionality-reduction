@@ -21,8 +21,17 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+.citation {
+  color: hsl(49, 98%, 84%);
+}
 .citation a {
+  color: hsl(49, 98%, 84%);
   border-bottom: none;
+  text-decoration: none;
+}
+.citation a:hover {
+  border-bottom: none;
+  text-decoration: none;
 }
 
 .article-header h1 {

@@ -7,8 +7,7 @@
   },
   "idyll": {
     "layout": "blog",
-    "template": "_index.html",
-    "context": "./analytics/context"
+    "template": "_index.html"
   },
   "dependencies": {
     "bibtex-parser": "0.0.0",

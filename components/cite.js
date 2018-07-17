@@ -21,7 +21,9 @@ class Cite extends React.Component {
     const { hasError, idyll, updateProps, ...props } = this.props;
     return (
       <span className="citation">
-        [{this.renderInner()}]
+        <sup>
+          [{this.renderInner()}]
+        </sup>
       </span>
     );
   }
