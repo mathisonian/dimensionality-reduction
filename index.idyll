@@ -56,11 +56,11 @@
     [Conditional if:`loadStatus === 'loaded'`]
       Dimensionality reduction is a powerful
       technique used by data scientists to look for hidden structure in data. The method
-      is useful in a number of domains, for example document categorization, protein disorder prediction, and machine learning model debugging [Cite reference:"maaten2008visualizing"/].
+      is useful in a number of domains, for example document categorization, protein disorder prediction, and machine learning model debugging[Cite reference:"maaten2008visualizing"/].
 
-      The results of a dimensionality reduction algorithm can be visualized to reveal patterns and clusters of similar or dissimilar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly [Cite reference:"olah2014visualizing"/].
+      The results of a dimensionality reduction algorithm can be visualized to reveal patterns and clusters of similar or dissimilar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly[Cite reference:"olah2014visualizing"/].
 
-      The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/) [Display value:" "/] [Cite reference:"smilkov2016embedding"/] let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
+      The technique is available in many applications, for example Google's [Embedding Projector](https://projector.tensorflow.org/)[Cite reference:"smilkov2016embedding"/] let's you view high-dimensional datasets embedded in two or three dimensions under a variety of different projections.
 
       // Dimensionality reduction algorithms work by inferring a function to describe the structure of *unlabeled* data, that is, data that has no preexisting categorization. Many of the commonly used algorithms produce complex embeddings and, since all considered data are unlabelled, it is difficult to evaluate the results of the structures produced by such algorithms.
 
@@ -76,7 +76,7 @@
     # Art or science?
 
     Your browser has just loaded information about
-    roughly 800 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection [Cite reference:"met"/], we are displaying just a small fraction. They are positioned randomly.
+    roughly 800 artworks from the collection at the [Metropolitan Museum of Art](https://www.metmuseum.org/). The museum has publicly released a large dataset about their collection[Cite reference:"met"/], just a small fraction are displayed here. They are positioned randomly.
 
     *Hover over an artwork to see its details.*
 
@@ -84,7 +84,7 @@
 
     Each artwork includes basic metadata, such as its title, artist, date made, medium, and dimensions.
     Data scientists like to call metadata for each data point (artwork) *features*.
-    Below are 10 artworks from the dataset.
+    Below are some of the features of 10 artworks in the dataset.
 
     [br/]
 
@@ -104,14 +104,14 @@
 
     # Projecting onto a line
 
-    These features can be thought of as vectors existing in a high-dimensional space. We want to visualize the vectors, however we can't show all the dimensions at once.
+    These features can be thought of as vectors existing in a high-dimensional space. Visualizing the vectors would reveal a lot about the distribution of the data, however humans can't see so many dimensions all at once.
 
-    The answer is to project the data into a lower dimension, one that can be visualized. This kind of projection is called an *embedding*.
+    Instead the data can be projected onto a lower dimension, one that can be visualized directly. This kind of projection is called an *embedding*.
 
     // *Remember that points have 0 dimensions, lines are 1 dimensional, planes are 2 dimensional, etc.*
     // [br/]
 
-    Computing 1-dimensional embedding requires taking each artwork and computing a single number to describe it.
+    Computing a 1-dimensional embedding requires taking each artwork and computing a single number to describe it.
     A benefit of reducing to 1D is that the numbers, and the artworks, can be sorted on a line.
 
     [Projection images:images src:"./static/images/projection.svg" /]
@@ -211,8 +211,8 @@
     [conditional if:showHilbertDetails ]
 
     The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
-    mapped on a space-filling Hilbert curve [Cite reference:"hilbert1890stetige"/] to give the illusion of a 2D embedding,
-    since space-filling curves preserve locality fairly well [Cite reference:"moon2001analysis"/]
+    mapped on a space-filling Hilbert curve[Cite reference:"hilbert1890stetige"/] to give the illusion of a 2D embedding,
+    since space-filling curves preserve locality fairly well[Cite reference:"moon2001analysis"/]
 
     Each artwork's 1D reduced projection is computed by a linear combination of the three features above.
 
@@ -238,9 +238,7 @@
 
     # Real-world algorithms
 
-
-
-    We just showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
+    The previous section showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
     However, you may have noticed that it's hard to find meaningful combinations of feature weights.
 
 
@@ -248,8 +246,8 @@
     the high dimensional space are preserved in the embedding. Use the tool below to project the artworks using three commonly used algorithms.
 
 
-    In this example we are performing reduction on the pixels of each image: each image is flattened into a single vector, where each pixel represents one feature.
-    We then reduce these vectors to two dimensions.
+    In this example the reduction is performed on the pixels of each image: each image is flattened into a single vector, where each pixel represents one feature.
+    The vecords are then reduce to two dimensions.
 
     [div className:"panel" ]
 
@@ -312,16 +310,16 @@
 
     There are many algorithms that compute a dimensionality reduction of a dataset.
     Simpler algorithms such as principal component analysis (PCA) maximize the variance in the data to produce the best possible embedding.
-    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE) [Cite reference:"maaten2008visualizing"/],
+    More complicated algorithms, such as t-distributed stochastic neighbor embedding (t-SNE)[Cite reference:"maaten2008visualizing"/],
     iteratively produce highly clustered embeddings.
     Unfortunately, whereas before the influence of each feature was explicitly known,
     one must relinquish control to the algorithm to determine the best embedding—
     that means that it is not clear what features of the data are used to compute the embedding.
-    This can be problematic for misinterpreting what an embedding is showing [Cite reference:"wattenberg2016how"/].
+    This can be problematic for misinterpreting what an embedding is showing[Cite reference:"wattenberg2016how"/].
 
     Dimensionality reduction, and more broadly the field of unsupervised learning, is an active area of research where researchers are
     developing new techniques to create better embeddings.
-    A new technique, uniform manifold approximation and projection (UMAP) [Cite reference:"mcinnes2018umap"/],
+    A new technique, uniform manifold approximation and projection (UMAP)[Cite reference:"mcinnes2018umap"/],
     is a non-linear reduction that aims to create visually striking embeddings fast, scaling to larger datasets.
 
 
@@ -337,14 +335,15 @@
     [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html) algorithms,
     as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
-    Regarding the three algorithms discussed above, you can find Python implementations of the algorithms we used for the artworks here:
+    Regarding the three algorithms discussed above, you can find the Python implementations we used here:
     [PCA](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html),
     [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) [Display value:" "/] [Cite reference:"maaten2008visualizing"/],
-    and [UMAP](https://github.com/lmcinnes/umap) [Display value:" "/] [Cite reference:"mcinnes2018umap"/].
+    and [UMAP](https://github.com/lmcinnes/umap)[Cite reference:"mcinnes2018umap"/].
 
     ### Acknowledgments
 * This article was created using [Idyll](https://idyll-lang.org).
 * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
+* Thanks to everyone who gave feedback on this article, including Jeffrey Heer, Polo Chau, Caleb Robinson, Nicky Case, and Hamish Todd.
 
     [References /]
 
