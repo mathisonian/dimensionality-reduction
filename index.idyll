@@ -253,7 +253,7 @@
 
 
     In this example the reduction is performed on the pixels of each image: each image is flattened into a single vector, where each pixel represents one feature.
-    The records are then reduced to two dimensions.
+    The vectors records are then reduced to two dimensions.
 
     [div className:"panel" ]
 
