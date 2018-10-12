@@ -44,7 +44,7 @@
     [Header
       title:"The Beginner's Guide to Dimensionality Reduction"
       subtitle:"Explore the methods that data scientists use to visualize high-dimensional data."
-      date:"July 12, 2018"
+      date:"July 16, 2018"
       authors:`[
         { name: "Matthew Conlen", link: "https://twitter.com/mathisonian" },
         { name: "Fred Hohman", link: "https://twitter.com/fredhohman" }
@@ -57,6 +57,12 @@
       Dimensionality reduction is a powerful
       technique used by data scientists to look for hidden structure in data. The method
       is useful in a number of domains, for example document categorization, protein disorder prediction, and machine learning model debugging[Cite reference:"maaten2008visualizing"/].
+
+      https://idyll-lang.org
+
+      ```
+        https://idyll-lang.org
+      ```
 
       The results of a dimensionality reduction algorithm can be visualized to reveal patterns and clusters of similar or dissimilar data. Even though the data is displayed in only two or three dimensions, structures present in higher dimensions are maintained, at least roughly[Cite reference:"olah2014visualizing"/].
 
@@ -212,7 +218,7 @@
 
     The embedding you see here is actually a linear 1D embedding, whose resulting scalar is then
     mapped on a space-filling Hilbert curve[Cite reference:"hilbert1890stetige"/] to give the illusion of a 2D embedding,
-    since space-filling curves preserve locality fairly well[Cite reference:"moon2001analysis"/]
+    since space-filling curves preserve locality fairly well[Cite reference:"moon2001analysis"/].
 
     Each artwork's 1D reduced projection is computed by a linear combination of the three features above.
 
@@ -238,7 +244,7 @@
 
     # Real-world algorithms
 
-    The previous section showed an example of a user-driven embedding, where the exact influence of each feature is known in the embedding.
+    The previous section showed an example of a user-driven embedding, where the exact influence of each feature is known.
     However, you may have noticed that it's hard to find meaningful combinations of feature weights.
 
 
@@ -247,7 +253,7 @@
 
 
     In this example the reduction is performed on the pixels of each image: each image is flattened into a single vector, where each pixel represents one feature.
-    The vecords are then reduce to two dimensions.
+    The records are then reduced to two dimensions.
 
     [div className:"panel" ]
 
@@ -335,7 +341,7 @@
     [unsupervised dimensionality reduction](http://scikit-learn.org/stable/modules/unsupervised_reduction.html) algorithms,
     as well as [manifold learning](http://scikit-learn.org/stable/modules/manifold.html): an approach to non-linear dimensionality reduction.
 
-    Regarding the three algorithms discussed above, you can find the Python implementations we used here:
+    Regarding the three algorithms discussed above, you can find the open-source Python implementations that we used here:
     [PCA](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html),
     [t-SNE](http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) [Display value:" "/] [Cite reference:"maaten2008visualizing"/],
     and [UMAP](https://github.com/lmcinnes/umap)[Cite reference:"mcinnes2018umap"/].
@@ -344,6 +350,16 @@
 * This article was created using [Idyll](https://idyll-lang.org).
 * The source code is available on [Github](https://github.com/mathisonian/dimensionality-reduction).
 * Thanks to everyone who gave feedback on this article, including Jeffrey Heer, Polo Chau, Caleb Robinson, Nicky Case, and Hamish Todd.
+
+
+
+      https://idyll-lang.org
+
+      ```
+        https://idyll-lang.org
+      ```
+
+      https://idyll.pub/
 
     [References /]
 
